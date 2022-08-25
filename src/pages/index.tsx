@@ -11,14 +11,14 @@ const Home: NextPage = () => (
     <Scene />
 
     <Box>
-      <Nav display={false} />
+      <Nav position="relative" zIndex={500} />
 
-      <Box mt={500} position="relative" zIndex={500}>
-        <Flex w="100%" direction="column" alignItems="center" justifyContent="center">
-          <Heading as="h1" color="primary.400" textTransform="uppercase" fontSize="8xl">
+      <Box mt="calc(50vh - 100px)" position="relative" zIndex={500}>
+        <Flex w="100%" direction="column" alignItems="center" justifyContent="center" textAlign="center">
+          <Heading as="h1" color="primary.400" textTransform="uppercase" fontSize={{ base: '4xl', md: '8xl' }}>
             The Assets Club
           </Heading>
-          <Heading as="h1" color="primary.400" textTransform="uppercase" fontSize="6xl">
+          <Heading as="h1" color="primary.400" textTransform="uppercase" fontSize={{ base: '2xl', md: '6xl' }}>
             coming soon!
           </Heading>
         </Flex>

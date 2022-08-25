@@ -9,21 +9,30 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.9",
     "@chakra-ui/react": "^2.2.8",
     "@chakra-ui/styled-system": "^2.2.7",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
+    "@ethersproject/bignumber": "^5.7.0",
+    "@ethersproject/providers": "^5.7.0",
+    "@walletconnect/ethereum-provider": "^1.8.0",
+    "@web3-react/core": "beta",
+    "@web3-react/metamask": "beta",
+    "@web3-react/walletconnect": "beta",
     "framer-motion": "^7.2.1",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-scroll-parallax": "^3.3.1"
+    "react-scroll-parallax": "^3.3.1",
+    "react-swipeable": "^7.0.0"
   },
   "devDependencies": {
     "@mathieu-bour/prettier-config": "^1.1.0",
     "@types/node": "18.7.11",
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",
+    "@web3-react/types": "beta",
     "eslint": "8.22.0",
     "eslint-config-next": "12.2.5",
     "firebase-tools": "^11.8.0",
@@ -34,7 +43,8 @@
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": [
-        "@babel/*"
+        "@babel/*",
+        "@chakra-ui/system"
       ]
     }
   }

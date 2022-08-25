@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'Suisse Intl';
+  src: url('../../public/fonts/suisseintl/suisseintl-regular.woff2') format('woff2'),
+    url('../../public/fonts/suisseintl/suisseintl-regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Suisse Intl';
+  src: url('../../public/fonts/suisseintl/suisseintl-bold.woff2') format('woff2'),
+    url('../../public/fonts/suisseintl/suisseintl-bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Suisse Works';
+  src: url('../../public/fonts/suisseworks/suisseworks-regular.woff2') format('woff2'),
+    url('../../public/fonts/suisseworks/suisseworks-regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Suisse Works';
+  src: url('../../public/fonts/suisseworks/suisseworks-bold.woff2') format('woff2'),
+    url('../../public/fonts/suisseworks/suisseworks-bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}

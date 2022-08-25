@@ -5,6 +5,8 @@ import plane from '../../public/animations/plane.png';
 import useScrollToMint from '../lib/hooks/useScrollToMint';
 import MotionBox from './MotionBox';
 
+const r = plane.width / plane.height;
+
 const Plane: FC = () => {
   const scroll = useScrollToMint();
 
@@ -14,9 +16,9 @@ const Plane: FC = () => {
       animate={{
         left: ['150%', '-70%', '-70%'],
       }}
-      top="280px"
-      width={plane.width}
-      height={plane.height}
+      top={{ base: 150, md: 280 }}
+      width={{ base: 150, md: plane.width }}
+      height={{ base: 150 / r, md: plane.height }}
       // @ts-expect-error no problem in operation, although type error appears.
       transition={{
         duration: 30,

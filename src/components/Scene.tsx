@@ -11,7 +11,7 @@ const Scene = () => {
       <Plane />
 
       <Parallax translateY={['50vh', '-100vh']}>
-        <Princess />
+        <Princess mt={{ base: '250px', md: 0 }} />
       </Parallax>
     </Box>
   );
