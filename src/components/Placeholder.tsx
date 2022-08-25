@@ -1,5 +1,6 @@
 import Image from 'next/future/image';
 import { FC, useMemo } from 'react';
+import { Box } from '@chakra-ui/react';
 
 interface PlaceholderProps {
   width: number;

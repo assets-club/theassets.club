@@ -1,13 +1,12 @@
 import type { NextPage } from 'next';
 import { Box, Flex, Heading } from '@chakra-ui/react';
 import bg from '../../public/background.jpg';
-import Nav from '../components/Nav';
 import Scene from '../components/Scene';
-
-const maxHeight = `${(bg.height / bg.width) * 100}vh`;
+import Nav from '../components/layout/Nav';
+import Princess from '../components/scene/Princess';
 
 const Home: NextPage = () => (
-  <Box bgImage={bg.src} bgPos="top center" bgRepeat="no-repeat" bgSize="cover" minH={maxHeight}>
+  <Box bgImage={bg.src} bgPos="top center" bgRepeat="no-repeat" bgSize="cover">
     <Scene />
 
     <Box>
@@ -23,6 +22,8 @@ const Home: NextPage = () => (
           </Heading>
         </Flex>
       </Box>
+
+      <Princess margin="auto" maxW={{ md: 1000 }} />
     </Box>
   </Box>
 );

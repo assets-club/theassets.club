@@ -1,7 +1,7 @@
 import Image from 'next/future/image';
 import { FC } from 'react';
-import cloud1 from '../../public/animations/cloud1.png';
-import MotionBox from './MotionBox';
+import cloud1 from '../../../public/animations/cloud1.png';
+import MotionBox from '../MotionBox';
 
 const Cloud1: FC = () => (
   <MotionBox

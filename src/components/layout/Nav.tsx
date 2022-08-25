@@ -19,16 +19,16 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { useWeb3React } from '@web3-react/core';
-import useScrollToMint from '../lib/hooks/useScrollToMint';
-import ConnectModal from './ConnectModal';
-import Placeholder from './Placeholder';
-import shortAddress from './utils/shortAddress';
+import useScrollToMint from '../../lib/hooks/useScrollToMint';
+import shortAddress from '../../utils/shortAddress';
+import ConnectModal from '../ConnectModal';
+import Placeholder from '../Placeholder';
 
 const sections = [
-  { text: 'team', href: '#team' },
-  { text: 'faq', href: '#faq' },
+  // { text: 'team', href: '#team' },
+  // { text: 'faq', href: '#faq' },
   { text: 'twitter', href: 'https://twitter.com/theassetsclub' },
-  { text: 'opensea', href: 'https://opensea.io/collection/theassetsclub' },
+  // { text: 'opensea', href: 'https://opensea.io/collection/theassetsclub' },
 ];
 
 interface NavPropsProps extends FlexProps {}
@@ -50,19 +50,19 @@ const Nav: FC<NavPropsProps> = (props) => {
       <Flex
         as="header"
         alignItems="center"
-        justifyContent="space-between"
+        justifyContent="end"
         py={{ base: 2, md: 8 }}
         px={{ base: 4, md: 32 }}
         {...props}
       >
-        <Placeholder width={250} height={80} text="logo" />
+        {/*<Placeholder width={250} height={80} text="logo" />*/}
 
         <IconButton
           variant="outline"
           display={{ md: 'none' }}
           icon={<HamburgerIcon />}
           onClick={onMenuOpen}
-          aria-label="Send email"
+          aria-label="Open menu"
         />
 
         <Drawer placement="right" finalFocusRef={btnRef} isOpen={isMenuOpen} onClose={onMenuClose}>
@@ -71,9 +71,7 @@ const Nav: FC<NavPropsProps> = (props) => {
             <DrawerContent>
               <DrawerCloseButton />
 
-              <DrawerHeader>
-                <Placeholder width={250} height={80} text="logo" />
-              </DrawerHeader>
+              <DrawerHeader>{/*<Placeholder width={250} height={80} text="logo" />*/}</DrawerHeader>
 
               <DrawerBody>
                 <Flex direction="column" mb={6}>

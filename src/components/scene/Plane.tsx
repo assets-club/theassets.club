@@ -1,9 +1,9 @@
 import Image from 'next/future/image';
 import { FC } from 'react';
 import { Box } from '@chakra-ui/react';
-import plane from '../../public/animations/plane.png';
-import useScrollToMint from '../lib/hooks/useScrollToMint';
-import MotionBox from './MotionBox';
+import plane from '../../../public/animations/plane.png';
+import useScrollToMint from '../../lib/hooks/useScrollToMint';
+import MotionBox from '../MotionBox';
 
 const r = plane.width / plane.height;
 
