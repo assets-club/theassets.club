@@ -1,31 +1,38 @@
 import type { NextPage } from 'next';
-import { Box, Flex, Heading } from '@chakra-ui/react';
+import Image from 'next/future/image';
+import { Box, Flex, useToast } from '@chakra-ui/react';
+import { useWeb3React } from '@web3-react/core';
 import bg from '../../public/background.jpg';
+import mintImg from '../../public/images/mint.svg';
+import title from '../../public/images/title3.png';
 import Scene from '../components/Scene';
 import Nav from '../components/layout/Nav';
 import Princess from '../components/scene/Princess';
+import useMint from '../web3/hooks/useMint';
 
-const Home: NextPage = () => (
-  <Box bgImage={bg.src} bgPos="top center" bgRepeat="no-repeat" bgSize="cover">
-    <Scene />
+const Home: NextPage = () => {
+  const { mint } = useMint();
 
-    <Box>
-      <Nav position="relative" zIndex={500} />
+  return (
+    <Box bgImage={bg.src} bgPos="top center" bgRepeat="no-repeat" bgSize="cover">
+      <Scene />
 
-      <Box mt="calc(50vh - 100px)" position="relative" zIndex={500}>
-        <Flex w="100%" direction="column" alignItems="center" justifyContent="center" textAlign="center">
-          <Heading as="h1" color="primary.400" textTransform="uppercase" fontSize={{ base: '4xl', md: '8xl' }}>
-            The Assets Club
-          </Heading>
-          <Heading as="h1" color="primary.400" textTransform="uppercase" fontSize={{ base: '2xl', md: '6xl' }}>
-            coming soon!
-          </Heading>
-        </Flex>
+      <Box>
+        <Nav position="relative" zIndex={500} />
+
+        <Box mt="calc(50vh - 300px)" position="relative" zIndex={500}>
+          <Flex w="100%" direction="column" alignItems="center" justifyContent="center" textAlign="center">
+            <Image src={title} alt="The Assets Club handwritten logo" />
+            <Box as="button" type="button" onClick={mint}>
+              <Image src={mintImg} width={200} alt="Mint button" />
+            </Box>
+          </Flex>
+        </Box>
+
+        <Princess margin="auto" maxW={{ md: 1000 }} />
       </Box>
-
-      <Princess margin="auto" maxW={{ md: 1000 }} />
     </Box>
-  </Box>
-);
+  );
+};
 
 export default Home;

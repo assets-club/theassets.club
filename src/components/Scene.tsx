@@ -1,7 +1,6 @@
 import { Box } from '@chakra-ui/react';
 import Cloud1 from './scene/Cloud1';
 import Plane from './scene/Plane';
-import Princess from './scene/Princess';
 
 const Scene = () => {
   return (

@@ -8,7 +8,7 @@ import defaultChain from './chains';
  * web3-react connectors available into the application.
  * We currently support:
  * - MetaMask via {@see MetaMask}
- * - Sequence via {@see Sequence}
+ * - WalletConnect via {@see WalletConnect}
  */
 
 export const [metaMaskConnector, metaMaskHooks] = initializeConnector<MetaMask>((actions) => {

@@ -3,13 +3,11 @@ import { useSwipeable } from 'react-swipeable';
 import { FC, useRef } from 'react';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import {
-  Box,
   Button,
   Drawer,
   DrawerBody,
   DrawerCloseButton,
   DrawerContent,
-  DrawerHeader,
   DrawerOverlay,
   Flex,
   FlexProps,
@@ -19,10 +17,9 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { useWeb3React } from '@web3-react/core';
-import useScrollToMint from '../../lib/hooks/useScrollToMint';
 import shortAddress from '../../utils/shortAddress';
+import useMint from '../../web3/hooks/useMint';
 import ConnectModal from '../ConnectModal';
-import Placeholder from '../Placeholder';
 
 const sections = [
   // { text: 'team', href: '#team' },
@@ -37,13 +34,13 @@ const Nav: FC<NavPropsProps> = (props) => {
   // Menu base on Chakra Drawer
   const { isOpen: isMenuOpen, onOpen: onMenuOpen, onClose: onMenuClose } = useDisclosure();
   const btnRef = useRef(null);
-  const scroll = useScrollToMint();
   const handlers = useSwipeable({
     onSwipedRight: onMenuClose,
   });
 
   const { isOpen: isConnectOpen, onOpen: onConnectOpen, onClose: onConnectClose } = useDisclosure();
   const { account } = useWeb3React();
+  const { mint, loading: minting } = useMint();
 
   return (
     <>
@@ -53,9 +50,12 @@ const Nav: FC<NavPropsProps> = (props) => {
         justifyContent="end"
         py={{ base: 2, md: 8 }}
         px={{ base: 4, md: 32 }}
+        gap={8}
         {...props}
       >
-        {/*<Placeholder width={250} height={80} text="logo" />*/}
+        <Button onClick={mint} isLoading={minting}>
+          mint
+        </Button>
 
         <IconButton
           variant="outline"
@@ -71,21 +71,17 @@ const Nav: FC<NavPropsProps> = (props) => {
             <DrawerContent>
               <DrawerCloseButton />
 
-              <DrawerHeader>{/*<Placeholder width={250} height={80} text="logo" />*/}</DrawerHeader>
-
               <DrawerBody>
                 <Flex direction="column" mb={6}>
-                  {sections.map(({ text, href }) => {
-                    return (
-                      <Text key={href} borderBottom="solid 1px" borderBottomColor="gray.200">
-                        <NextLink href={href} passHref>
-                          <Link isExternal={href.startsWith('http')} display="block" py={4}>
-                            {text}
-                          </Link>
-                        </NextLink>
-                      </Text>
-                    );
-                  })}
+                  {sections.map(({ text, href }) => (
+                    <Text key={href} borderBottom="solid 1px" borderBottomColor="gray.200">
+                      <NextLink href={href} passHref>
+                        <Link isExternal={href.startsWith('http')} display="block" py={4}>
+                          {text}
+                        </Link>
+                      </NextLink>
+                    </Text>
+                  ))}
                 </Flex>
 
                 {!account ? <Button onClick={onConnectOpen}>connect</Button> : <Button>{shortAddress(account)}</Button>}
@@ -95,18 +91,13 @@ const Nav: FC<NavPropsProps> = (props) => {
         </Drawer>
 
         <Flex display={{ base: 'none', md: 'flex' }} as="nav" gap={16} alignItems="center">
-          <Text cursor="pointer" onClick={scroll}>
-            mint
-          </Text>
-          {sections.map(({ text, href }) => {
-            return (
-              <Text key={href}>
-                <NextLink href={href} passHref>
-                  <Link isExternal={href.startsWith('http')}>{text}</Link>
-                </NextLink>
-              </Text>
-            );
-          })}
+          {sections.map(({ text, href }) => (
+            <Text key={href}>
+              <NextLink href={href} passHref>
+                <Link isExternal={href.startsWith('http')}>{text}</Link>
+              </NextLink>
+            </Text>
+          ))}
           {!account ? <Button onClick={onConnectOpen}>connect</Button> : <Button>{shortAddress(account)}</Button>}
         </Flex>
       </Flex>

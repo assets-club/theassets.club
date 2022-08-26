@@ -15,7 +15,7 @@ export const ETHEREUM_MAINNET: AddEthereumChainParameter = {
 export const GOERLI_TESTNET: AddEthereumChainParameter = {
   chainId: 5,
   chainName: 'Goerli Test Network',
-  rpcUrls: ['https://goerli.infura.io/v3/'],
+  rpcUrls: ['https://eth-goerli.g.alchemy.com/v2/Gbb2WvEz7cFmQUXPfsF9DQDqmHmXgpyz'],
   nativeCurrency: {
     name: 'GoerliETH',
     symbol: 'GoerliETH',
