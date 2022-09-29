@@ -17,9 +17,9 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { useWeb3React } from '@web3-react/core';
-import shortAddress from '../../utils/shortAddress';
-import useMint from '../../web3/hooks/useMint';
-import ConnectModal from '../ConnectModal';
+import shortAddress from '../utils/shortAddress';
+import useMint from '../web3/hooks/useMint';
+import ConnectModal from './ConnectModal';
 
 const sections = [
   // { text: 'team', href: '#team' },
