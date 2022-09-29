@@ -1,37 +1,53 @@
 import type { NextPage } from 'next';
 import Image from 'next/future/image';
-import { Box, Flex, useToast } from '@chakra-ui/react';
-import { useWeb3React } from '@web3-react/core';
+import { FullPage, Slide } from 'react-full-page';
+import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
+import { Box, Flex } from '@chakra-ui/react';
+import princess from '../../public/animations/princess.png';
 import bg from '../../public/background.jpg';
-import mintImg from '../../public/images/mint.svg';
-import title from '../../public/images/title3.png';
-import Scene from '../components/Scene';
+import Player from '../components/Player';
 import Nav from '../components/layout/Nav';
-import Princess from '../components/scene/Princess';
-import useMint from '../web3/hooks/useMint';
+import useWindowSize from '../lib/hooks/useWindowSize';
+
+const STEPS = 4;
+const PRINCESS_RATIO = 0.6;
 
 const Home: NextPage = () => {
-  const { mint } = useMint();
+  const { height } = useWindowSize();
+  const totalHeight = STEPS * height;
+  const princessH = totalHeight * PRINCESS_RATIO;
+  const princessW = (princessH * princess.width) / princess.height;
 
   return (
-    <Box bgImage={bg.src} bgPos="top center" bgRepeat="no-repeat" bgSize="cover">
-      <Scene />
+    <ParallaxProvider>
+      <Box
+        bgImage={bg.src}
+        bgPos="top center"
+        bgRepeat="repeat-x"
+        bgSize={`auto ${totalHeight}px`}
+        height={totalHeight}
+        position="relative"
+        overflow="hidden"
+      >
+        {/* Fixed elements*/}
+        <Nav position="fixed" top={0} left={0} right={0} />
 
-      <Box>
-        <Nav position="relative" zIndex={500} />
+        <Player position="fixed" bottom="5vh" left="5vh" />
 
-        <Box mt="calc(50vh - 300px)" position="relative" zIndex={500}>
-          <Flex w="100%" direction="column" alignItems="center" justifyContent="center" textAlign="center">
-            <Image src={title} alt="The Assets Club handwritten logo" />
-            <Box as="button" type="button" onClick={mint}>
-              <Image src={mintImg} width={200} alt="Mint button" />
-            </Box>
-          </Flex>
-        </Box>
+        <Flex pt={height * 1.3} justifyContent="center">
+          <Parallax speed={-60}>
+            <Image src={princess} width={princessW} height={princessH} alt="The Assets Club princess" />
+          </Parallax>
+        </Flex>
 
-        <Princess margin="auto" maxW={{ md: 1000 }} />
+        <FullPage>
+          <Slide />
+          <Slide />
+          <Slide />
+          <Slide />
+        </FullPage>
       </Box>
-    </Box>
+    </ParallaxProvider>
   );
 };
 

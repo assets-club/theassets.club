@@ -24,7 +24,7 @@ import ConnectModal from '../ConnectModal';
 const sections = [
   // { text: 'team', href: '#team' },
   // { text: 'faq', href: '#faq' },
-  { text: 'twitter', href: 'https://twitter.com/theassetsclub' },
+  { text: 'twitter', href: 'https://twitter.com/nonfungibleass' },
   // { text: 'opensea', href: 'https://opensea.io/collection/theassetsclub' },
 ];
 
