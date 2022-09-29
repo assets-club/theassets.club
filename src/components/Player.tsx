@@ -99,7 +99,7 @@ const Player: FC<PlayerProps> = (props) => {
   return (
     <Box display="inline-block" mt={100} py="8px" pr="8px" pl="40px" {...props}>
       <Flex bgColor="white" color="black" gap={2} borderRadius={8}>
-        <audio ref={player} autoPlay>
+        <audio ref={player}>
           <source src={music.src} type="audio/mpeg" />
         </audio>
 
