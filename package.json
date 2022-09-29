@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build && next export",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "firebase deploy --only=hosting"
   },
   "dependencies": {
     "@assets-club/smart-contracts": "0.0.3",
