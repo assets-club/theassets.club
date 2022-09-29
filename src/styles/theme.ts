@@ -11,7 +11,7 @@ const theme = extendTheme({
     },
     player: {
       200: '#ff4060',
-      400: '#ff6080',
+      500: '#ff6080',
     },
   },
 });

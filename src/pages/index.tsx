@@ -32,7 +32,7 @@ const Home: NextPage = () => {
         {/* Fixed elements*/}
         <Nav position="fixed" top={0} left={0} right={0} />
 
-        <Player position="fixed" bottom="5vh" left="5vh" />
+        <Player position="fixed" bottom="5vh" left="5vh" zIndex={9999} />
 
         <Flex pt={height * 1.3} justifyContent="center">
           <Parallax speed={-60}>
