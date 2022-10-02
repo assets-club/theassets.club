@@ -48,13 +48,13 @@ const Home: NextPage = () => {
         z: 11,
         parallax: { translateX: ['-50%', '0'], translateY: ['-100%', '100%'] },
       },
-      { img: cloud1, position: `${height * 0.3}px auto auto 0`, z: 11, parallax: { translateX: ['100%', '-100%'] } },
+      { img: cloud1, position: `${height * 0.3}px auto auto 0`, z: 11, parallax: { translateX: ['50%', '-100%'] } },
       {
         img: cloud2,
-        scale: 0.8,
+        scale: 0.7,
         position: `${height * 0.1}px 0 auto auto`,
         z: 11,
-        parallax: { translateX: ['-100%', '100%'] },
+        parallax: { translateX: ['-50%', '100%'] },
       },
 
       { img: palmLeft1, position: `${height * 0.7}px auto auto 0`, z: 11, parallax: { translateX: ['-20%', '0'] } },
