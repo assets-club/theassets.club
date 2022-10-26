@@ -22,8 +22,9 @@ import useMint from '../web3/hooks/useMint';
 import ConnectModal from './ConnectModal';
 
 const sections = [
-  // { text: 'team', href: '#team' },
-  // { text: 'faq', href: '#faq' },
+  { text: 'home', href: '/' },
+  { text: 'team', href: '/team' },
+  { text: 'faq', href: '/faq' },
   { text: 'twitter', href: 'https://twitter.com/nonfungibleass' },
   // { text: 'opensea', href: 'https://opensea.io/collection/theassetsclub' },
 ];
@@ -48,12 +49,14 @@ const Nav: FC<NavPropsProps> = (props) => {
         as="header"
         alignItems="center"
         justifyContent="end"
-        py={{ base: 2, md: 8 }}
+        py={{ base: 2, md: 4 }}
         px={{ base: 4, md: 32 }}
         gap={8}
+        bgColor="rgba(0, 0, 0, 0.2)"
+        color="black"
         {...props}
       >
-        <Button onClick={mint} isLoading={minting}>
+        <Button colorScheme="twitter" onClick={mint} isLoading={minting}>
           mint
         </Button>
 
@@ -92,7 +95,7 @@ const Nav: FC<NavPropsProps> = (props) => {
 
         <Flex display={{ base: 'none', md: 'flex' }} as="nav" gap={16} alignItems="center">
           {sections.map(({ text, href }) => (
-            <Text key={href}>
+            <Text key={href} color="white">
               <NextLink href={href} passHref>
                 <Link isExternal={href.startsWith('http')}>{text}</Link>
               </NextLink>

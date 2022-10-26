@@ -1,8 +1,8 @@
 import Image from 'next/future/image';
 import { BiMinus, BiSkipNext, BiSkipPrevious } from 'react-icons/bi';
 import { BsPauseFill, BsPlayFill } from 'react-icons/bs';
-import { FC, useCallback, useRef, useState } from 'react';
-import { Box, BoxProps, Flex, IconButton, keyframes, Text } from '@chakra-ui/react';
+import { FC, MouseEventHandler, useCallback, useRef, useState } from 'react';
+import { Box, BoxProps, Flex, IconButton, keyframes, Link, Text } from '@chakra-ui/react';
 import album from '../../public/images/player.png';
 import music1 from '../../public/music/01 Jay Fase - Voices In My Head (Original Mix).mp3';
 import music2 from '../../public/music/02 Jay Fase - Time (Inward Records).mp3';
@@ -55,16 +55,21 @@ const Player: FC<PlayerProps> = (props) => {
   const [musicIndex, setMusicIndex] = useState(0);
   const music = musics[musicIndex];
 
-  const handleOpen = useCallback(async () => {
-    setOpen((v) => !v);
+  const handleOpen: MouseEventHandler = useCallback(
+    async ($e) => {
+      $e.preventDefault();
+      setOpen((v) => !v);
 
-    if (!open && player.current && player.current.paused) {
-      await player.current.play();
-      setPaused(player.current.paused);
-    }
-  }, [open]);
+      if (!open && player.current && player.current.paused) {
+        await player.current.play();
+        setPaused(player.current.paused);
+      }
+    },
+    [open],
+  );
 
-  const handlePlay = useCallback(async () => {
+  const handlePlay: MouseEventHandler = useCallback(async ($e) => {
+    $e.preventDefault();
     if (!player.current) return;
 
     if (player.current.paused) {
@@ -76,28 +81,51 @@ const Player: FC<PlayerProps> = (props) => {
     setPaused(player.current.paused);
   }, []);
 
-  const handlePrev = useCallback(async () => {
-    if (!player.current) return;
+  const handlePrev: MouseEventHandler = useCallback(
+    async ($e) => {
+      $e.preventDefault();
+      if (!player.current) return;
 
-    setMusicIndex((i) => (i - 1) % musics.length);
-    player.current.load();
-    if (!paused) {
-      await player.current.play();
-    }
-  }, [paused]);
+      setMusicIndex((i) => (i - 1) % musics.length);
+      player.current.load();
+      if (!paused) {
+        await player.current.play();
+      }
+    },
+    [paused],
+  );
 
-  const handleNext = useCallback(async () => {
-    if (!player.current) return;
+  const handleNext: MouseEventHandler = useCallback(
+    async ($e) => {
+      $e.preventDefault();
+      if (!player.current) return;
 
-    setMusicIndex((i) => (i + 1) % musics.length);
-    player.current.load();
-    if (!paused) {
-      await player.current.play();
-    }
-  }, [paused]);
+      setMusicIndex((i) => (i + 1) % musics.length);
+      player.current.load();
+      if (!paused) {
+        await player.current.play();
+      }
+    },
+    [paused],
+  );
 
   return (
-    <Box display="inline-block" mt={100} py="8px" pr="8px" pl="40px" {...props}>
+    <Box
+      as={Link}
+      href="https://soundcloud.com/jayfase"
+      target="_blank"
+      display="inline-block"
+      mt={100}
+      py="8px"
+      pr="8px"
+      pl="40px"
+      sx={{
+        '*:hover &': {
+          textDecoration: 'none',
+        },
+      }}
+      {...props}
+    >
       <Flex bgColor="white" color="black" gap={2} borderRadius={8}>
         <audio ref={player}>
           <source src={music.src} type="audio/mpeg" />

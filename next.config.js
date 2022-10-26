@@ -2,14 +2,15 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  experimental: {
-    images: {
-      allowFutureImage: true,
-      unoptimized: true,
-    },
-  },
+  // experimental: {
+  //   images: {
+  //     allowFutureImage: true,
+  //     unoptimized: true,
+  //   },
+  // },
   images: {
     domains: ['via.placeholder.com'],
+    unoptimized: true,
   },
 
   webpack(config) {

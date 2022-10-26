@@ -29,3 +29,12 @@
   font-weight: bold;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'Marker Felt';
+  src: url('../../public/fonts/marker-felt/marker-felt.woff2') format('woff2'),
+  url('../../public/fonts/marker-felt/marker-felt.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
