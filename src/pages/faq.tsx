@@ -11,7 +11,7 @@ import {
   Heading,
   Text,
 } from '@chakra-ui/react';
-import faq from '../../public/faq.png';
+import faq from '../../public/faq/faq.png';
 import leafLeft from '../../public/faq/leaf-left.png';
 import leafRight from '../../public/faq/leaf-right.png';
 import leafTop from '../../public/faq/leaf-top.png';
@@ -165,11 +165,20 @@ const FAQPage: NextPage = () => {
       />
 
       <Box position="relative" zIndex={1}>
-        <Box w="20%" mx="auto" mb={16}>
+        <Box w={{ base: '60%', md: '20%' }} mx="auto" mb={16}>
           <Image src={faq} alt="FAQ text logo" />
         </Box>
 
-        <Container maxW="100ch" my={16} px={16} py={8} textAlign="center" bgColor="#131716" borderRadius={8}>
+        <Container
+          maxW={{ base: 'calc(100% - 32px)', md: '100ch' }}
+          mx={{ base: 4, md: 'auto' }}
+          my={16}
+          px={{ base: 8, md: 16 }}
+          py={{ base: 4, md: 8 }}
+          textAlign="center"
+          bgColor="#131716"
+          borderRadius={8}
+        >
           <HeadingMF as="h1" fontSize="6xl" mb={6}>
             Frequently assked questions
           </HeadingMF>
