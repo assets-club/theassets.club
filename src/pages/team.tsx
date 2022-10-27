@@ -55,7 +55,7 @@ const members: TeamCardProps[] = [
     name: 'Marc Mandril',
     image: marc,
     title: 'Artist / Illustrator / Professor / Art Historian',
-    twitter: 'marcmandril',
+    twitter: 'MandrilMarc',
     instagram: 'la_mandr',
   },
   {

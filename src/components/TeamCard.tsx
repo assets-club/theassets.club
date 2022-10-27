@@ -29,6 +29,7 @@ const TeamCard: FC<TeamCardProps> = ({ image, name, title, twitter, instagram, g
         {twitter && (
           <Link
             href={`https://twitter.com/${twitter}`}
+            isExternal
             display="flex"
             alignItems="center"
             gap={2}
@@ -42,6 +43,7 @@ const TeamCard: FC<TeamCardProps> = ({ image, name, title, twitter, instagram, g
         {instagram && (
           <Link
             href={`https://instagram.com/${instagram}`}
+            isExternal
             display="flex"
             alignItems="center"
             gap={2}
@@ -55,6 +57,7 @@ const TeamCard: FC<TeamCardProps> = ({ image, name, title, twitter, instagram, g
         {github && (
           <Link
             href={`https://github.com/${github}`}
+            isExternal
             display="flex"
             alignItems="center"
             gap={2}
