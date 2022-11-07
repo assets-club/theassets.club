@@ -26,8 +26,12 @@ const questions = [
   },
   {
     question: 'Is this a «profile picture project»?',
-    answer:
-      "It was not designed to be. Please be careful when using it as profile picture on social networks like twitter, the algorithm doesn't like overly naked asse(t)s.",
+    answer: (
+      <>
+        It was not designed to be. Please be careful when using it as profile picture on social networks like twitter,
+        the algorithm doesn&apos;t like overly naked asse(t)s. Maybe soon because of Elon Musk!
+      </>
+    ),
   },
   {
     question: 'How many Asses are there going to be?',
@@ -43,8 +47,8 @@ const questions = [
       <>
         Private sale: 1 free NFT per wallet and 1 optional for 0.05 ETH. (Only for Ass List).
         <br />
-        Public sale: 0.0X ETH FCFS and max 5 NFTs per tx/wallet. (price tba, likely: 0.05 ETH). Please keep in mind that
-        additional cost will occur because of transaction fees on the Ethereum blockchain. (enter estimated amount here)
+        Public sale: 0.0X ETH FCFS and max 5 NFTs per tx/wallet. Please keep in mind that additional cost will occur
+        because of transaction fees on the Ethereum blockchain.
       </>
     ),
   },

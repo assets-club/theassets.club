@@ -17,49 +17,49 @@ import TeamCard, { TeamCardProps } from '../components/TeamCard';
 
 const members: TeamCardProps[] = [
   {
-    name: 'Johann Pélichet (Sélwat)',
+    name: 'Johann P. (Sélwat)',
     image: johann,
-    title: 'Co-founder / COO / Creative Director / Film director',
+    title: 'Co-founder / CPO / Creative Director / Film director',
     twitter: 'selwatisback',
     instagram: 'selwat',
   },
   {
-    name: 'Adrien Pisler',
+    name: 'Adrien P. (Apisler)',
     image: adrien,
     title: 'Co-founder / Lead Artist / Creative Director / Illustrator',
     twitter: 'apisler',
     instagram: 'adrien.pisler',
   },
   {
-    name: 'Lymnah',
+    name: 'Charly M. (Lymnah)',
     image: lymnah,
     title: 'Co-Founder / Software Engineer',
     twitter: 'Alstrice',
     github: 'Lymnah',
   },
   {
-    name: 'Mathieu Bour',
+    name: 'Mathieu B. (Windyy)',
     image: mathieu,
     title: 'Blockchain Software Engineer',
     twitter: 'mathieu_bour_',
     github: 'mathieu-bour',
   },
   {
-    name: 'Mawuli Amuklu',
+    name: 'Mawuli A.',
     image: mawuli,
     title: 'Artist / Illustrator',
     twitter: 'amuklumawuli',
     instagram: 'Mawulisan',
   },
   {
-    name: 'Marc Mandril',
+    name: 'Marc M.',
     image: marc,
     title: 'Artist / Illustrator / Professor / Art Historian',
-    twitter: 'MandrilMarc',
+    twitter: 'mandrilmarc',
     instagram: 'la_mandr',
   },
   {
-    name: 'Kali Ataripsni',
+    name: 'Kali A.',
     image: kali,
     title: 'Student / Apprentice',
     twitter: 'kaliataripsni',
@@ -102,6 +102,8 @@ const TeamPage: NextPage = () => {
               src={sign}
               alt="Team on a wooden sign"
               style={{
+                width: '75%',
+                margin: '0 auto',
                 filter: 'drop-shadow(50px 50px 50px #222)',
               }}
             />
