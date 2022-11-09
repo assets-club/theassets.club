@@ -130,7 +130,7 @@ const Home: NextPage = () => {
 
         <Flex pt={height * 1.3} justifyContent="center" position="relative" zIndex={10}>
           <Parallax speed={-60}>
-            <Image src={princess} width={princessW} height={princessH} alt="The Assets Club princess" />
+            <Image src={princess} width={princessW} height={princessH} alt="The Asse(t)s Club princess" />
           </Parallax>
         </Flex>
 

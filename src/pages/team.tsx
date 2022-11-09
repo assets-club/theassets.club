@@ -117,7 +117,7 @@ const TeamPage: NextPage = () => {
             <Text>
               A collective of artists and engineers from Switzerland. None of us comes from BigTech. We are independent
               story tellers loaded with creativity. We are excited to bring our unique skills and creative vision to
-              blockchain and NFTs. The first chapter is The Assets Club. The book is called Inspirata.
+              blockchain and NFTs. The first chapter is The Asse(t)s Club. The book is called Inspirata.
             </Text>
           </Container>
 

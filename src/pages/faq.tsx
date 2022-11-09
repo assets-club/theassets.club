@@ -20,9 +20,9 @@ import Nav from '../components/Nav';
 
 const questions = [
   {
-    question: 'What is The Assets Club?',
+    question: 'What is The Asse(t)s Club?',
     answer:
-      'The Assets Club are unique Non-fungible ERC-721-A tokens created on Ethereum blockchain. Asse(t)s are an early access p-ASS. ',
+      'The Asse(t)s Club are unique Non-fungible ERC-721-A tokens created on Ethereum blockchain. Asse(t)s are an early access p-ASS. ',
   },
   {
     question: 'Is this a «profile picture project»?',
@@ -53,7 +53,7 @@ const questions = [
     ),
   },
   {
-    question: 'How will The Assets Club funds be used?',
+    question: 'How will The Asse(t)s Club funds be used?',
     answer: (
       <>
         45% of the primary sale + 100% of the 5.5% secondary sales royalties contributed towards building out Inspirata.

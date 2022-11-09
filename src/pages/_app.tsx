@@ -11,7 +11,7 @@ import connectors from '../web3/connectors';
 const TheAssetsClubApp = ({ Component, pageProps }: AppProps) => (
   <>
     <Head>
-      <title>The Assets Club</title>
+      <title>The Asse(t)s Club</title>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>
 
