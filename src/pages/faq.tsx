@@ -54,8 +54,12 @@ const questions = [
   },
   {
     question: 'How will The Assets Club funds be used?',
-    answer:
-      '45% of the primary sale + 100% of the 5.5% secondary sales royalties contributed towards building out Inspirata, our next project. 55% of the primary sale will be used to pay the team.',
+    answer: (
+      <>
+        45% of the primary sale + 100% of the 5.5% secondary sales royalties contributed towards building out Inspirata.
+        55% of the primary sale will be used to pay the team.
+      </>
+    ),
   },
   {
     question: 'How can I get on the Ass List?',
