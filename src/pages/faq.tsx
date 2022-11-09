@@ -29,7 +29,7 @@ const questions = [
     answer: (
       <>
         It was not designed to be. Please be careful when using it as profile picture on social networks like twitter,
-        the algorithm doesn&apos;t like overly naked asse(t)s. Maybe soon because of Elon Musk!
+        the algorithm doesn&apos;t like overly naked asse(t)s.
       </>
     ),
   },
