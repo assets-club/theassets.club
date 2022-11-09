@@ -20,7 +20,6 @@ import princess from '../../public/animations/princess.png';
 import sun from '../../public/animations/sun.png';
 import bg from '../../public/background.jpg';
 import Nav from '../components/Nav';
-import Player from '../components/Player';
 import useWindowSize from '../lib/hooks/useWindowSize';
 
 const STEPS = 4;
@@ -114,7 +113,6 @@ const Home: NextPage = () => {
       >
         {/* Fixed elements*/}
         <Nav position="fixed" top={0} left={0} right={0} zIndex={100} />
-        <Player position="fixed" bottom="5vh" left="5vh" zIndex={100} />
 
         {/* Absolute elements */}
         {layers.map((layer) => (

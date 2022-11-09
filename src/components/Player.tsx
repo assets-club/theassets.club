@@ -3,7 +3,7 @@ import { BiMinus, BiSkipNext, BiSkipPrevious } from 'react-icons/bi';
 import { BsPauseFill, BsPlayFill } from 'react-icons/bs';
 import { FC, MouseEventHandler, useCallback, useRef, useState } from 'react';
 import { Box, BoxProps, Flex, IconButton, keyframes, Link, Text } from '@chakra-ui/react';
-import album from '../../public/images/player.png';
+import album from '../../public/images/sound.png';
 import music1 from '../../public/music/01 Jay Fase - Voices In My Head (Original Mix).mp3';
 import music2 from '../../public/music/02 Jay Fase - Time (Inward Records).mp3';
 import music3 from '../../public/music/03 Jay Fase - Nasta.mp3';
@@ -135,8 +135,8 @@ const Player: FC<PlayerProps> = (props) => {
           <Image
             src={album}
             alt={`${music.title} album icon`}
-            width={album.width}
-            height={album.height}
+            width={70}
+            height={70}
             style={{ borderRadius: '100%' }}
           />
         </Box>

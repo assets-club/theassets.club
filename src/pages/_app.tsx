@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Web3ReactProvider } from '@web3-react/core';
+import Player from '../components/Player';
 import StateProvider from '../lib/StateProvider';
 import '../styles/fonts.css';
 import theme from '../styles/theme';
@@ -18,6 +19,8 @@ const TheAssetsClubApp = ({ Component, pageProps }: AppProps) => (
       <ChakraProvider theme={theme}>
         <StateProvider>
           <Component {...pageProps} />
+
+          <Player position="fixed" bottom="5vh" left="5vh" zIndex={100} />
         </StateProvider>
       </ChakraProvider>
     </Web3ReactProvider>
