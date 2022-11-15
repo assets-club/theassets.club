@@ -3,7 +3,7 @@ import Image, { StaticImageData } from 'next/future/image';
 import { FullPage, Slide } from 'react-full-page';
 import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
 import { ComponentProps, useMemo } from 'react';
-import { Box, BoxProps, Flex } from '@chakra-ui/react';
+import { Box, BoxProps, Flex, useBreakpointValue } from '@chakra-ui/react';
 import cloud1 from '../../public/animations/cloud1.png';
 import cloud2 from '../../public/animations/cloud2.png';
 import palmLeft1 from '../../public/animations/palm-left1.png';
@@ -18,7 +18,8 @@ import plant4 from '../../public/animations/plant4.png';
 import plant5 from '../../public/animations/plant5.png';
 import princess from '../../public/animations/princess.png';
 import sun from '../../public/animations/sun.png';
-import bg from '../../public/background.jpg';
+import bgSea from '../../public/background-sea.png';
+import bgSky from '../../public/background-sky.png';
 import Nav from '../components/Nav';
 import useWindowSize from '../lib/hooks/useWindowSize';
 
@@ -44,7 +45,7 @@ const Home: NextPage = () => {
       {
         img: sun,
         position: `${height * 0.2}px auto auto 20%`,
-        z: 11,
+        z: 9,
         parallax: { translateX: ['-50%', '0'], translateY: ['-100%', '100%'] },
       },
       { img: cloud1, position: `${height * 0.3}px auto auto 0`, z: 11, parallax: { translateX: ['50%', '-100%'] } },
@@ -56,11 +57,41 @@ const Home: NextPage = () => {
         parallax: { translateX: ['-50%', '100%'] },
       },
 
-      { img: palmLeft1, position: `${height * 0.7}px auto auto 0`, z: 11, parallax: { translateX: ['-20%', '0'] } },
-      { img: palmLeft2, position: `${height * 0.8}px auto auto 0`, z: 10, parallax: { translateX: ['-20%', '0'] } },
-      { img: palmRight1, position: `${height * 0.7}px 0 auto auto`, z: 12, parallax: { translateX: ['20%', '0'] } },
-      { img: palmRight2, position: `${height * 0.8}px 0 auto auto`, z: 11, parallax: { translateX: ['20%', '0'] } },
-      { img: palmRight3, position: `${height * 0.9}px 0 auto auto`, z: 10, parallax: { translateX: ['20%', '0'] } },
+      {
+        img: palmLeft1,
+        scale: 0.7,
+        position: `${height * 0.7}px auto auto 0`,
+        z: 11,
+        parallax: { translateX: ['-20%', '0'] },
+      },
+      {
+        img: palmLeft2,
+        scale: 0.7,
+        position: `${height * 0.8}px auto auto 0`,
+        z: 10,
+        parallax: { translateX: ['-20%', '0'] },
+      },
+      {
+        img: palmRight1,
+        scale: 0.7,
+        position: `${height * 0.7}px 0 auto auto`,
+        z: 12,
+        parallax: { translateX: ['20%', '0'] },
+      },
+      {
+        img: palmRight2,
+        scale: 0.7,
+        position: `${height * 0.8}px 0 auto auto`,
+        z: 11,
+        parallax: { translateX: ['20%', '0'] },
+      },
+      {
+        img: palmRight3,
+        scale: 0.7,
+        position: `${height * 0.9}px 0 auto auto`,
+        z: 10,
+        parallax: { translateX: ['20%', '0'] },
+      },
       {
         img: plant1,
         scale: 0.7,
@@ -100,17 +131,35 @@ const Home: NextPage = () => {
     [height],
   );
 
+  const princessParallax = useBreakpointValue({
+    base: -200,
+    sm: -60,
+  });
+
   return (
     <ParallaxProvider>
-      <Box
-        bgImage={bg.src}
-        bgPos="top center"
-        bgRepeat="repeat-x"
-        bgSize={`auto ${totalHeight}px`}
-        height={totalHeight}
-        position="relative"
-        overflow="hidden"
-      >
+      <Box height={totalHeight} position="relative" overflow="hidden">
+        <Box
+          position="absolute"
+          inset={0}
+          bgImage={bgSky.src}
+          bgPos="top center"
+          bgRepeat="repeat-x"
+          bgSize={`auto ${totalHeight}px`}
+          height={totalHeight}
+          zIndex={8}
+        />
+        <Box
+          position="absolute"
+          inset={0}
+          bgImage={bgSea.src}
+          bgPos="top center"
+          bgRepeat="repeat-x"
+          bgSize={`auto ${totalHeight}px`}
+          height={totalHeight}
+          zIndex={10}
+        />
+
         {/* Fixed elements*/}
         <Nav position="fixed" top={0} left={0} right={0} zIndex={100} />
 
@@ -128,8 +177,8 @@ const Home: NextPage = () => {
           </Box>
         ))}
 
-        <Flex pt={height * 1.3} justifyContent="center" position="relative" zIndex={10}>
-          <Parallax speed={-60}>
+        <Flex pt={{ base: height * 2.5, md: height * 1.3 }} justifyContent="center" position="relative" zIndex={10}>
+          <Parallax speed={princessParallax}>
             <Image src={princess} width={princessW} height={princessH} alt="The Asse(t)s Club princess" />
           </Parallax>
         </Flex>
