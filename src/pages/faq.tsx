@@ -42,6 +42,16 @@ const questions = [
     answer: 'All of them are unique. We have more than 25 different ass shapes!',
   },
   {
+    question: <>What is generative art?</>,
+    answer: (
+      <>
+        Generative art refers to any art practice where the artist creates a process, such as a set of natural language
+        rules, a computer program, a machine, or other procedural invention, which is then set into motion with some
+        degree of autonomy contributing to or resulting in a completed work of art.
+      </>
+    ),
+  },
+  {
     question: 'What is the price of an Ass?',
     answer: (
       <>
