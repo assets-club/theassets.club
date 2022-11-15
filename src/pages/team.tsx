@@ -38,13 +38,6 @@ const members: TeamCardProps[] = [
     github: 'Lymnah',
   },
   {
-    name: 'Mathieu B. (Windyy)',
-    image: mathieu,
-    title: 'Blockchain Software Engineer',
-    twitter: 'mathieu_bour_',
-    github: 'mathieu-bour',
-  },
-  {
     name: 'Mawuli A.',
     image: mawuli,
     title: 'Artist / Illustrator',
