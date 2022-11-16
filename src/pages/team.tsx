@@ -1,14 +1,14 @@
 import { NextPage } from 'next';
 import Image from 'next/future/image';
 import { Box, Container, Flex, Text } from '@chakra-ui/react';
-import collaborator from '../../public/team/collaborators.png';
+import collaborator from '../../public/team/contributor.png';
 import leafLeft from '../../public/team/leaf-left.png';
 import leafRight from '../../public/team/leaf-right.png';
 import sign from '../../public/team/sign.png';
 import HeadingMF from '../components/HeadingMF';
 import Nav from '../components/Nav';
 import TeamCard from '../components/TeamCard';
-import collaborators from '../constants/collaborators';
+import contributors from '../constants/contributors';
 import team from '../constants/team';
 
 const TeamPage: NextPage = () => {
@@ -74,12 +74,12 @@ const TeamPage: NextPage = () => {
 
           <Container color="white" textAlign="center" my={16}>
             <HeadingMF textTransform="uppercase" mb={4}>
-              Collaborators
+              Contributors
             </HeadingMF>
           </Container>
 
           <Flex wrap="wrap" justify="center" gap={{ base: 4, md: 8 }}>
-            {collaborators.map((props, i) => (
+            {contributors.map((props, i) => (
               <TeamCard
                 key={i}
                 image={collaborator}

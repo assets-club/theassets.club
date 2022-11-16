@@ -1,6 +1,6 @@
 import { TeamCardProps } from '../components/TeamCard';
 
-const collaborators: Omit<TeamCardProps, 'image'>[] = [
+const contributors: Omit<TeamCardProps, 'image'>[] = [
   {
     name: 'Sinan Varis',
     title: 'Sound designer & Composer',
@@ -53,4 +53,4 @@ const collaborators: Omit<TeamCardProps, 'image'>[] = [
   },
 ];
 
-export default collaborators;
+export default contributors;
