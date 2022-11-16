@@ -1,72 +1,107 @@
 import { StaticImageData } from 'next/dist/client/future/image';
 import Image from 'next/future/image';
 import { BsGithub, BsInstagram, BsTwitter } from 'react-icons/bs';
+import { FaArtstation } from 'react-icons/fa';
 import { FC } from 'react';
-import { Box, BoxProps, Heading, Link } from '@chakra-ui/react';
+import { Box, BoxProps, Heading, Link, Text } from '@chakra-ui/react';
 
 export interface TeamCardProps extends BoxProps {
   image: StaticImageData;
+  size?: 'md' | 'sm';
   name: string;
   title: string;
   twitter?: string;
   instagram?: string;
   github?: string;
+  artstation?: string;
 }
 
-const TeamCard: FC<TeamCardProps> = ({ image, name, title, twitter, instagram, github, ...rest }) => {
+const TeamCard: FC<TeamCardProps> = ({
+  image,
+  size = 'md',
+  name,
+  title,
+  twitter,
+  instagram,
+  github,
+  artstation,
+  ...rest
+}) => {
   return (
     <Box color="gray2.400" bgColor="white" borderRadius={16} overflow="hidden" {...rest}>
       <Image src={image} alt={`${name}'s profile picture`} width={512} />
 
       <Box my={2} px={4}>
-        <Heading fontSize="xl">{name}</Heading>
-        <Heading fontSize="sm" fontWeight={300}>
+        <Heading fontSize={size == 'sm' ? 'lg' : 'xl'}>{name}</Heading>
+        <Heading fontSize={size == 'sm' ? 'xs' : 'sm'} fontWeight={300}>
           {title}
         </Heading>
       </Box>
 
       <Box my={2} px={4}>
         {twitter && (
-          <Link
-            href={`https://twitter.com/${twitter}`}
-            isExternal
-            display="flex"
-            alignItems="center"
-            gap={2}
-            sx={{
-              ':hover': { textDecoration: 'none', color: 'twitter.400' },
-            }}
-          >
-            <BsTwitter /> @{twitter}
-          </Link>
+          <Text fontSize={size == 'sm' ? 'xs' : 'sm'}>
+            <Link
+              href={`https://twitter.com/${twitter}`}
+              isExternal
+              display="flex"
+              alignItems="center"
+              gap={2}
+              sx={{
+                ':hover': { textDecoration: 'none', color: 'twitter.400' },
+              }}
+            >
+              <BsTwitter /> @{twitter}
+            </Link>
+          </Text>
         )}
         {instagram && (
-          <Link
-            href={`https://instagram.com/${instagram}`}
-            isExternal
-            display="flex"
-            alignItems="center"
-            gap={2}
-            sx={{
-              ':hover': { textDecoration: 'none', color: '#833AB4' },
-            }}
-          >
-            <BsInstagram /> @{instagram}
-          </Link>
+          <Text fontSize={size == 'sm' ? 'xs' : 'sm'}>
+            <Link
+              href={`https://instagram.com/${instagram}`}
+              isExternal
+              display="flex"
+              alignItems="center"
+              gap={2}
+              sx={{
+                ':hover': { textDecoration: 'none', color: '#833AB4' },
+              }}
+            >
+              <BsInstagram /> @{instagram}
+            </Link>
+          </Text>
         )}
         {github && (
-          <Link
-            href={`https://github.com/${github}`}
-            isExternal
-            display="flex"
-            alignItems="center"
-            gap={2}
-            sx={{
-              ':hover': { textDecoration: 'none', color: 'black' },
-            }}
-          >
-            <BsGithub /> {github}
-          </Link>
+          <Text fontSize={size == 'sm' ? 'xs' : 'sm'}>
+            <Link
+              href={`https://github.com/${github}`}
+              isExternal
+              display="flex"
+              alignItems="center"
+              gap={2}
+              sx={{
+                ':hover': { textDecoration: 'none', color: 'black' },
+              }}
+            >
+              <BsGithub /> {github}
+            </Link>
+          </Text>
+        )}
+        {artstation && (
+          <Text fontSize={size == 'sm' ? 'xs' : 'sm'}>
+            <Link
+              href={`https://www.artstation.com/${artstation}`}
+              isExternal
+              display="flex"
+              alignItems="center"
+              gap={2}
+              sx={{
+                ':hover': { textDecoration: 'none', color: 'black' },
+              }}
+            >
+              <FaArtstation /> {artstation}
+            </Link>
+          </Text>
         )}
       </Box>
     </Box>

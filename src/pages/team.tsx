@@ -1,70 +1,15 @@
 import { NextPage } from 'next';
 import Image from 'next/future/image';
 import { Box, Container, Flex, Text } from '@chakra-ui/react';
-import adrien from '../../public/team/adrien.png';
-import johann from '../../public/team/johann.png';
-import kali from '../../public/team/kali.png';
+import collaborator from '../../public/team/collaborators.png';
 import leafLeft from '../../public/team/leaf-left.png';
 import leafRight from '../../public/team/leaf-right.png';
-import lymnah from '../../public/team/lymnah.png';
-import marc from '../../public/team/marc.png';
-import mathieu from '../../public/team/mathieu.png';
-import mawuli from '../../public/team/mawuli.png';
 import sign from '../../public/team/sign.png';
 import HeadingMF from '../components/HeadingMF';
 import Nav from '../components/Nav';
-import TeamCard, { TeamCardProps } from '../components/TeamCard';
-
-const members: TeamCardProps[] = [
-  {
-    name: 'Johann P. (Sélwat)',
-    image: johann,
-    title: 'Co-founder / CPO / Creative Director / Film director',
-    twitter: 'selwatisback',
-    instagram: 'selwat',
-  },
-  {
-    name: 'Adrien P. (Apisler)',
-    image: adrien,
-    title: 'Co-founder / Lead Artist / Creative Director / Illustrator',
-    twitter: 'apisler',
-    instagram: 'adrien.pisler',
-  },
-  {
-    name: 'Charly M. (Lymnah)',
-    image: lymnah,
-    title: 'Co-Founder / Software Engineer',
-    twitter: 'Alstrice',
-    github: 'Lymnah',
-  },
-  {
-    name: 'Mathieu B. (Windyy)',
-    image: mathieu,
-    title: 'Blockchain Software Engineer',
-    twitter: 'mathieu_bour_',
-    github: 'mathieu-bour',
-  },
-  {
-    name: 'Mawuli A.',
-    image: mawuli,
-    title: 'Artist / Illustrator',
-    twitter: 'amuklumawuli',
-    instagram: 'Mawulisan',
-  },
-  {
-    name: 'Marc M.',
-    image: marc,
-    title: 'Artist / Illustrator / Professor / Art Historian',
-    twitter: 'mandrilmarc',
-    instagram: 'la_mandr',
-  },
-  {
-    name: 'Kali A.',
-    image: kali,
-    title: 'Student / Apprentice',
-    twitter: 'kaliataripsni',
-  },
-];
+import TeamCard from '../components/TeamCard';
+import collaborators from '../constants/collaborators';
+import team from '../constants/team';
 
 const TeamPage: NextPage = () => {
   return (
@@ -122,8 +67,26 @@ const TeamPage: NextPage = () => {
           </Container>
 
           <Flex wrap="wrap" justify="center" gap={{ base: 8, md: 16 }}>
-            {members.map((props, i) => (
+            {team.map((props, i) => (
               <TeamCard key={i} {...props} width={{ md: 'calc(100% / 3 - 64px)' }} />
+            ))}
+          </Flex>
+
+          <Container color="white" textAlign="center" my={16}>
+            <HeadingMF textTransform="uppercase" mb={4}>
+              Collaborators
+            </HeadingMF>
+          </Container>
+
+          <Flex wrap="wrap" justify="center" gap={{ base: 4, md: 8 }}>
+            {collaborators.map((props, i) => (
+              <TeamCard
+                key={i}
+                image={collaborator}
+                size="sm"
+                {...props}
+                width={{ base: 'calc(100% / 2 - 16px)', md: 'calc(100% / 6 - 32px)' }}
+              />
             ))}
           </Flex>
         </Container>
