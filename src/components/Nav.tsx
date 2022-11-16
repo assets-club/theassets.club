@@ -1,6 +1,6 @@
 import NextLink from 'next/link';
 import { useSwipeable } from 'react-swipeable';
-import { FC, useRef } from 'react';
+import { FC, useCallback, useRef } from 'react';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import {
   Button,
@@ -15,6 +15,7 @@ import {
   Link,
   Text,
   useDisclosure,
+  useToast,
 } from '@chakra-ui/react';
 import { useWeb3React } from '@web3-react/core';
 import shortAddress from '../utils/shortAddress';
@@ -42,7 +43,16 @@ const Nav: FC<NavPropsProps> = (props) => {
 
   const { isOpen: isConnectOpen, onOpen: onConnectOpen, onClose: onConnectClose } = useDisclosure();
   const { account } = useWeb3React();
-  const { mint, loading: minting } = useMint();
+  const toast = useToast({
+    title: 'Mint coming soon!',
+    status: 'info',
+    duration: 3000,
+  });
+  const { loading: minting } = useMint();
+
+  const handleMint = useCallback(() => {
+    toast();
+  }, [toast]);
 
   return (
     <>
@@ -57,7 +67,7 @@ const Nav: FC<NavPropsProps> = (props) => {
         color="black"
         {...props}
       >
-        <Button colorScheme="twitter" onClick={mint} isLoading={minting}>
+        <Button colorScheme="twitter" onClick={handleMint} isLoading={minting}>
           mint
         </Button>
 
