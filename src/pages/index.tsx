@@ -34,6 +34,9 @@ interface Layer extends Pick<BoxProps, 'top'> {
   parallax: Omit<ComponentProps<typeof Parallax>, 'children'>;
 }
 
+// Four layers
+// 0. Background + sun
+
 const Home: NextPage = () => {
   const { height } = useWindowSize();
   const totalHeight = STEPS * height;
@@ -53,7 +56,7 @@ const Home: NextPage = () => {
         img: cloud2,
         scale: 0.7,
         position: `${height * 0.1}px 0 auto auto`,
-        z: 11,
+        z: 120,
         parallax: { translateX: ['-50%', '100%'] },
       },
 
@@ -61,70 +64,70 @@ const Home: NextPage = () => {
         img: palmLeft1,
         scale: 0.7,
         position: `${height * 0.7}px auto auto 0`,
-        z: 11,
+        z: 120,
         parallax: { translateX: ['-20%', '0'] },
       },
       {
         img: palmLeft2,
         scale: 0.7,
         position: `${height * 0.8}px auto auto 0`,
-        z: 10,
+        z: 110,
         parallax: { translateX: ['-20%', '0'] },
       },
       {
         img: palmRight1,
         scale: 0.7,
         position: `${height * 0.7}px 0 auto auto`,
-        z: 12,
+        z: 130,
         parallax: { translateX: ['20%', '0'] },
       },
       {
         img: palmRight2,
         scale: 0.7,
         position: `${height * 0.8}px 0 auto auto`,
-        z: 11,
+        z: 120,
         parallax: { translateX: ['20%', '0'] },
       },
       {
         img: palmRight3,
         scale: 0.7,
         position: `${height * 0.9}px 0 auto auto`,
-        z: 10,
+        z: 110,
         parallax: { translateX: ['20%', '0'] },
       },
       {
         img: plant1,
         scale: 0.7,
         position: `auto auto 0 0`,
-        z: 11,
+        z: 120,
         parallax: { translateX: ['-20%', '0'], translateY: ['20%', '0'] },
       },
       {
         img: plant2,
         scale: 0.7,
         position: `auto auto 0 0`,
-        z: 11,
+        z: 120,
         parallax: { translateX: ['-70%', '0'], translateY: ['20%', '0'] },
       },
       {
         img: plant3,
         scale: 0.7,
         position: `auto auto 0 30vh`,
-        z: 11,
+        z: 120,
         parallax: { translateX: ['-70%', '200%'], translateY: ['20%', '0'] },
       },
       {
         img: plant4,
         scale: 0.7,
         position: `auto auto 0 50vh`,
-        z: 11,
+        z: 120,
         parallax: { translateX: ['-20%', '0'], translateY: ['20%', '0'] },
       },
       {
         img: plant5,
         scale: 0.7,
         position: `auto 0 0 auto`,
-        z: 11,
+        z: 120,
         parallax: { translateX: ['90%', '0'], translateY: ['-20%', '0'] },
       },
     ],
@@ -161,7 +164,7 @@ const Home: NextPage = () => {
         />
 
         {/* Fixed elements*/}
-        <Nav position="fixed" top={0} left={0} right={0} zIndex={100} />
+        <Nav position="fixed" top={0} left={0} right={0} zIndex={1000} />
 
         {/* Absolute elements */}
         {layers.map((layer) => (
@@ -177,7 +180,7 @@ const Home: NextPage = () => {
           </Box>
         ))}
 
-        <Flex pt={{ base: height * 2.5, md: height * 1.3 }} justifyContent="center" position="relative" zIndex={10}>
+        <Flex pt={{ base: height * 2.5, md: height * 1.3 }} justifyContent="center" position="relative" zIndex={100}>
           <Parallax speed={princessParallax}>
             <Image src={princess} width={princessW} height={princessH} alt="The Asse(t)s Club princess" />
           </Parallax>

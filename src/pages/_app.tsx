@@ -20,7 +20,7 @@ const TheAssetsClubApp = ({ Component, pageProps }: AppProps) => (
         <StateProvider>
           <Component {...pageProps} />
 
-          <Player position="fixed" bottom="5vh" left="5vh" zIndex={100} />
+          <Player position="fixed" bottom="5vh" left="5vh" zIndex={1000} />
         </StateProvider>
       </ChakraProvider>
     </Web3ReactProvider>
