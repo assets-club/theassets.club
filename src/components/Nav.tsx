@@ -67,7 +67,7 @@ const Nav: FC<NavPropsProps> = (props) => {
         color="black"
         {...props}
       >
-        <Button colorScheme="twitter" onClick={handleMint} isLoading={minting}>
+        <Button colorScheme="gray" onClick={handleMint} isLoading={minting} opacity={0.6}>
           mint
         </Button>
 
