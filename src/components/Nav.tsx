@@ -27,7 +27,7 @@ const sections = [
   { text: 'team', href: '/team' },
   { text: 'faq', href: '/faq' },
   { text: 'twitter', href: 'https://twitter.com/NonFungibleAss' },
-  { text: 'discord', href: 'https://discord.gg/RKaCGfQjdP' },
+  // { text: 'discord', href: 'https://discord.gg/RKaCGfQjdP' },
   // { text: 'opensea', href: 'https://opensea.io/collection/theassetsclub' },
 ];
 
