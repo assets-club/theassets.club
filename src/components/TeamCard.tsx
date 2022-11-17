@@ -1,6 +1,6 @@
 import { StaticImageData } from 'next/dist/client/future/image';
 import Image from 'next/future/image';
-import { BsGithub, BsInstagram, BsTwitter } from 'react-icons/bs';
+import { BsGithub, BsInstagram, BsTwitter, BsGlobe } from 'react-icons/bs';
 import { FaArtstation } from 'react-icons/fa';
 import { FC } from 'react';
 import { Box, BoxProps, Heading, Link, Text } from '@chakra-ui/react';
@@ -14,6 +14,7 @@ export interface TeamCardProps extends BoxProps {
   instagram?: string;
   github?: string;
   artstation?: string;
+  website?: string;
 }
 
 const TeamCard: FC<TeamCardProps> = ({
@@ -25,6 +26,7 @@ const TeamCard: FC<TeamCardProps> = ({
   instagram,
   github,
   artstation,
+  website,
   ...rest
 }) => {
   return (
@@ -100,6 +102,22 @@ const TeamCard: FC<TeamCardProps> = ({
               }}
             >
               <FaArtstation /> {artstation}
+            </Link>
+          </Text>
+        )}
+        {website && (
+          <Text fontSize={size == 'sm' ? 'xs' : 'sm'}>
+            <Link
+              href={website}
+              isExternal
+              display="flex"
+              alignItems="center"
+              gap={2}
+              sx={{
+                ':hover': { textDecoration: 'none', color: 'black' },
+              }}
+            >
+              <BsGlobe /> Website
             </Link>
           </Text>
         )}

@@ -13,7 +13,12 @@ import team from '../constants/team';
 
 const TeamPage: NextPage = () => {
   return (
-    <Box position="relative" bg="linear-gradient(180deg, rgba(95,183,171,1) 0%, rgba(0,42,34,1) 100%)" minH="100vh">
+    <Box
+      position="relative"
+      bg="linear-gradient(180deg, rgba(95,183,171,1) 0%, rgba(0,42,34,1) 100%)"
+      minH="100vh"
+      pb={{ base: 32 }}
+    >
       <Nav position="fixed" top={0} left={0} right={0} zIndex={100} />
 
       {/* Decorations */}

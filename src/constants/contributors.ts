@@ -32,6 +32,11 @@ const contributors: Omit<TeamCardProps, 'image'>[] = [
     twitter: 'CryptoEr1cc',
   },
   {
+    name: 'Jay Fase',
+    title: 'Dj & Producer',
+    website: 'https://fanlink.to/jayfase',
+  },
+  {
     name: 'Bruh',
     title: 'Community mod',
     twitter: 'fullmetalbruh',
