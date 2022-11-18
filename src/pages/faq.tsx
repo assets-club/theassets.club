@@ -20,26 +20,30 @@ import Nav from '../components/Nav';
 
 const questions = [
   {
-    question: 'What is The Asse(t)s Club?',
-    answer:
-      'The Asse(t)s Club are unique Non-fungible ERC-721-A tokens created on Ethereum blockchain. Asse(t)s are an early access p-ASS. ',
-  },
-  {
-    question: 'Is this a «profile picture project»?',
+    question: <>What is The Assets Club?</>,
     answer: (
       <>
-        It was not designed to be. Please be careful when using it as profile picture on social networks like twitter,
-        the algorithm doesn&apos;t like overly naked asse(t)s.
+        The Assets Club are unique Non-fungible ERC-721-A tokens created on Ethereum blockchain. Assets are an early
+        access p-ASS.{' '}
       </>
     ),
   },
   {
-    question: 'How many Asses are there going to be?',
-    answer: 'There will be 5’777 unique and randomly generated asses. ',
+    question: <>Is this a «profile picture project»?</>,
+    answer: (
+      <>
+        It was not designed to be. Please be careful when using it as profile picture on social networks like twitter,
+        the algorithm does not like overly naked assets.
+      </>
+    ),
   },
   {
-    question: 'Do each NFT looks different?',
-    answer: 'All of them are unique. We have more than 25 different ass shapes!',
+    question: <>How many Asses are there going to be?</>,
+    answer: <>There will be 5’777 unique and randomly generated asses. </>,
+  },
+  {
+    question: <>Do each NFT looks different?</>,
+    answer: <>All of them are unique. We have more than 25 different ass shapes!</>,
   },
   {
     question: <>What is generative art?</>,
@@ -52,7 +56,7 @@ const questions = [
     ),
   },
   {
-    question: 'What is the price of an Ass?',
+    question: <>What is the price of an Ass?</>,
     answer: (
       <>
         Private sale: 1 free NFT per wallet and 1 optional for 0.05 ETH. (Only for Ass List).
@@ -63,7 +67,7 @@ const questions = [
     ),
   },
   {
-    question: 'How will The Asse(t)s Club funds be used?',
+    question: <>How will The Assets Club funds be used?</>,
     answer: (
       <>
         45% of the primary sale + 100% of the 5.5% secondary sales royalties contributed towards building out Inspirata.
@@ -72,72 +76,102 @@ const questions = [
     ),
   },
   {
-    question: 'How can I get on the Ass List?',
+    question: <>How can I get on the Ass List?</>,
+    answer: (
+      <>
+        We frequently offer spots to our community and genuine people on Twitter/Discord. There will be raffles and it
+        will also be possible to apply through a form.
+      </>
+    ),
+  },
+  {
+    question: <>Do you have OG role?</>,
+    answer: (
+      <>
+        We have a limited number of « Original Ass » roles for those who wish to be more closely involved in this
+        journey. If you wish to apply, please send an application containing your presentation socials and references
+        to: contact@theassets.club
+      </>
+    ),
+  },
+  {
+    question: <>What are the benefits of owning an Ass NFT?</>,
     answer:
-      'We frequently offer spots to our community and genuine people on Twitter/Discord. There will be raffles and it will also be possible to apply through a form.',
+      "We really want to recognize our early supporters and community members. Owning Assets means you're one of them. You will have priority access to our future project: Inspirata. Holding multiple Assets NFTs entitles you to something that has not yet been disclosed.",
   },
   {
-    question: 'Do you have OG role?',
-    answer:
-      'We have a limited number of « Original Ass » roles for those who wish to be more closely involved in this journey. If you wish to apply, please send an application containing your presentation socials and references to: contact@theassets.club',
+    question: <>When can I mint Asses?</>,
+    answer: <>To be announced.</>,
   },
   {
-    question: 'What are the benefits of owning an Ass NFT?',
-    answer:
-      "We really want to recognize our early supporters and community members. Owning Asse(t)s means you're one of them. You will have priority access to our future project: Inspirata. Holding multiple Asse(t)s NFTs entitles you to something that has not yet been disclosed.",
+    question: <>Which wallets are supported for minting?</>,
+    answer: <>You will be able to mint with any wallet supported by Wallet Connect, including MetaMask.</>,
   },
   {
-    question: 'When can I mint Asses?',
-    answer: 'To be announced.',
+    question: <>Will the mint list spots be overallocated?</>,
+    answer: <>Yes, slightly overallocated.</>,
   },
   {
-    question: 'Which wallets are supported for minting?',
-    answer: 'You will be able to mint with any wallet supported by Wallet Connect, including MetaMask.',
+    question: <>When reveal?</>,
+    answer: <>TBA.</>,
   },
   {
-    question: 'Will the mint list spots be overallocated?',
-    answer: 'Yes, slightly overallocated.',
+    question: <>Smart contract released?</>,
+    answer: <>Written, not public yet.</>,
   },
   {
-    question: 'When reveal?',
-    answer: 'TBA.',
+    question: <>Token $ASS?</>,
+    answer: (
+      <>
+        Not planned, yet plausible. For any tokenomics, we will publish a white-paper first and If there is one, we’ll
+        make sure any token we come out with would adhere to regulations and be sustainable in our ecosystem.
+      </>
+    ),
   },
   {
-    question: 'Smart contract released?',
-    answer: 'Written, not public yet.',
+    question: <>Do you have a DAO?</>,
+    answer: <>No, we do not have a DAO, and it is not currently on our agenda.</>,
   },
   {
-    question: 'Token $ASS?',
-    answer:
-      'Not planned, yet plausible. For any tokenomics, we will publish a white-paper first and If there is one, we’ll make sure any token we come out with would adhere to regulations and be sustainable in our ecosystem.',
+    question: <>Do you have lands?</>,
+    answer: <>No, we do not offer lands, and land is not on our agenda.</>,
   },
   {
-    question: 'Do you have a DAO?',
-    answer: 'No, we do not have a DAO, and it is not currently on our agenda.',
+    question: <>What intellectual property rights do Ass holders receive?</>,
+    answer: (
+      <>
+        Do whatever you want with your asses, you have every right to it. Full commercial art rights for the Ass NFT
+        token you own.
+      </>
+    ),
   },
   {
-    question: 'Do you have lands?',
-    answer: 'No, we do not offer lands, and land is not on our agenda.',
+    question: <>Laws, lawyers?</>,
+    answer: (
+      <>
+        We’ll be closely working with lawyers on our legal, regulatory and tax strategy for our holders benefits. Laws
+        around the world are catching up to the web3 innovation.
+      </>
+    ),
   },
   {
-    question: 'What intellectual property rights do Ass holders receive?',
-    answer:
-      'Do whatever you want with your asses, you have every right to it. Full commercial art rights for the Ass NFT token you own.',
+    question: <>What is the value of this «Ass» NFT?</>,
+    answer: (
+      <>
+        This collection is first an artistic creation. Only the value that your heart and your eyes will give to it
+        matters!
+      </>
+    ),
   },
   {
-    question: 'Laws, lawyers?',
-    answer:
-      'We’ll be closely working with lawyers on our legal, regulatory and tax strategy for our holders benefits. Laws around the world are catching up to the web3 innovation.',
-  },
-  {
-    question: 'What is the value of this «Ass» NFT?',
-    answer:
-      'This collection is first an artistic creation. Only the value that your heart and your eyes will give to it matters!',
-  },
-  {
-    question: 'Last butt not least.',
-    answer:
-      'Remember we will never do "Stealth Mints" or "Surprise Drops". We will always announce events weeks ahead and only through official channels. The team, mods and bots will never DM you and if you have been contacted, they are 100% impersonators/imposters',
+    question: <>Last butt not least.</>,
+    answer: (
+      <>
+        Remember we will never do &ldquo;Stealth Mints&rdquo; or &ldquo;Surprise Drops&rdquo;. We will always announce
+        events weeks ahead and only through official channels. The team, mods and bots will never DM you and if you have
+        been contacted, they are 100% impersonators/imposters
+      </>
+    ),
   },
 ];
 

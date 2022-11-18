@@ -12,7 +12,7 @@ export default class TheAssetsClubDocument extends NextDocument {
           <link rel="manifest" href="/icons/site.webmanifest" />
           <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#5bbad5" />
           <link rel="shortcut icon" href="/icons/favicon.ico" />
-          <meta name="apple-mobile-web-app-title" content="The Asse(t)s Club" />
+          <meta name="apple-mobile-web-app-title" content="The Assets Club" />
           <meta name="application-name" content="The Asse(t)s Club" />
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="msapplication-config" content="/icons/browserconfig.xml" />

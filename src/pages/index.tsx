@@ -34,9 +34,6 @@ interface Layer extends Pick<BoxProps, 'top'> {
   parallax: Omit<ComponentProps<typeof Parallax>, 'children'>;
 }
 
-// Four layers
-// 0. Background + sun
-
 const Home: NextPage = () => {
   const { height } = useWindowSize();
   const totalHeight = STEPS * height;
