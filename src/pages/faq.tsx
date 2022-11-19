@@ -38,12 +38,12 @@ const questions = [
     ),
   },
   {
-    question: <>How many Asses are there going to be?</>,
-    answer: <>There will be 5’777 unique and randomly generated asses. </>,
+    question: <>How many Assets are there going to be?</>,
+    answer: <>There will be 5’777 unique and randomly generated assets. </>,
   },
   {
     question: <>Do each NFT looks different?</>,
-    answer: <>All of them are unique. We have more than 25 different ass shapes!</>,
+    answer: <>All of them are unique. We have more than 25 different asset shapes!</>,
   },
   {
     question: <>What is generative art?</>,
@@ -56,13 +56,14 @@ const questions = [
     ),
   },
   {
-    question: <>What is the price of an Ass?</>,
+    question: <>What is the price of an Asset?</>,
     answer: (
       <>
-        Private sale: 1 free NFT per wallet and 1 optional for 0.05 ETH. (Only for Ass List).
+        Private sale: 1 Free NFT per wallet and 1 optional NFT for paid. Price TBA. (Less than 100$).
         <br />
-        Public sale: 0.0X ETH FCFS and max 5 NFTs per tx/wallet. Please keep in mind that additional cost will occur
-        because of transaction fees on the Ethereum blockchain.
+        Public sale: Price TBA. (If there is a public sale).
+        <br />
+        Please keep in mind that additional cost will occur because of transaction fees on the Ethereum blockchain.
       </>
     ),
   },
@@ -76,7 +77,7 @@ const questions = [
     ),
   },
   {
-    question: <>How can I get on the Ass List?</>,
+    question: <>How can I get on the Asset List?</>,
     answer: (
       <>
         We frequently offer spots to our community and genuine people on Twitter/Discord. There will be raffles and it
@@ -88,19 +89,24 @@ const questions = [
     question: <>Do you have OG role?</>,
     answer: (
       <>
-        We have a limited number of « Original Ass » roles for those who wish to be more closely involved in this
+        We have a limited number of « Original Asset » roles for those who wish to be more closely involved in this
         journey. If you wish to apply, please send an application containing your presentation socials and references
         to: contact@theassets.club
       </>
     ),
   },
   {
-    question: <>What are the benefits of owning an Ass NFT?</>,
-    answer:
-      "We really want to recognize our early supporters and community members. Owning Assets means you're one of them. You will have priority access to our future project: Inspirata. Holding multiple Assets NFTs entitles you to something that has not yet been disclosed.",
+    question: <>What are the benefits of owning an Asset NFT?</>,
+    answer: (
+      <>
+        We really want to recognize our early supporters and community members. Owning Assets means you&apos;re one of
+        them. You will have priority access to our future project: Inspirata. Holding multiple Assets NFTs entitles you
+        to something that has not yet been disclosed.
+      </>
+    ),
   },
   {
-    question: <>When can I mint Asses?</>,
+    question: <>When can I mint Assets?</>,
     answer: <>To be announced.</>,
   },
   {
@@ -108,8 +114,8 @@ const questions = [
     answer: <>You will be able to mint with any wallet supported by Wallet Connect, including MetaMask.</>,
   },
   {
-    question: <>Will the mint list spots be overallocated?</>,
-    answer: <>Yes, slightly overallocated.</>,
+    question: <>Will the mint list spots be over-allocated?</>,
+    answer: <>Yes, slightly over-allocated.</>,
   },
   {
     question: <>When reveal?</>,
@@ -137,10 +143,10 @@ const questions = [
     answer: <>No, we do not offer lands, and land is not on our agenda.</>,
   },
   {
-    question: <>What intellectual property rights do Ass holders receive?</>,
+    question: <>What intellectual property rights do Asset holders receive?</>,
     answer: (
       <>
-        Do whatever you want with your asses, you have every right to it. Full commercial art rights for the Ass NFT
+        Do whatever you want with your assets, you have every right to it. Full commercial art rights for the Asset NFT
         token you own.
       </>
     ),
