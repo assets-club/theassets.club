@@ -42,7 +42,7 @@ const questions = [
     answer: <>There will be 5’777 unique and randomly generated assets. </>,
   },
   {
-    question: <>Do each NFT looks different?</>,
+    question: <>Do each Asset looks different?</>,
     answer: <>All of them are unique. We have more than 25 different asset shapes!</>,
   },
   {
