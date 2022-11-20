@@ -19,6 +19,21 @@ const theme = extendTheme((original: Theme) => {
         500: '#ff6080',
       },
     },
+    components: {
+      Button: {
+        variants: {
+          nav: {
+            color: '#000000',
+            bgColor: '#ffffff',
+            fontFamily: 'Marker Felt, sans-serif',
+            _hover: {
+              color: '#ffffff',
+              bgColor: '#000000',
+            },
+          },
+        },
+      },
+    },
   } as ThemeOverride);
 }) as Theme;
 

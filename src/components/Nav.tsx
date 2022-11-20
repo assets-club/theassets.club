@@ -1,26 +1,15 @@
+import Image from 'next/future/image';
 import NextLink from 'next/link';
-import { useSwipeable } from 'react-swipeable';
+import { useRouter } from 'next/router';
 import { FC, useCallback, useRef } from 'react';
 import { HamburgerIcon } from '@chakra-ui/icons';
-import {
-  Button,
-  Drawer,
-  DrawerBody,
-  DrawerCloseButton,
-  DrawerContent,
-  DrawerOverlay,
-  Flex,
-  FlexProps,
-  IconButton,
-  Link,
-  Text,
-  useDisclosure,
-  useToast,
-} from '@chakra-ui/react';
+import { Button, Flex, FlexProps, IconButton, Link, Show, Text, useDisclosure, useToast } from '@chakra-ui/react';
 import { useWeb3React } from '@web3-react/core';
+import LogoWhite from '../../public/logo-white.png';
 import shortAddress from '../utils/shortAddress';
 import useMint from '../web3/hooks/useMint';
 import ConnectModal from './ConnectModal';
+import NavDrawer from './NavDrawer';
 
 const sections = [
   { text: 'home', href: '/' },
@@ -34,13 +23,10 @@ const sections = [
 interface NavPropsProps extends FlexProps {}
 
 const Nav: FC<NavPropsProps> = (props) => {
+  const router = useRouter();
   // Menu base on Chakra Drawer
   const { isOpen: isMenuOpen, onOpen: onMenuOpen, onClose: onMenuClose } = useDisclosure();
   const btnRef = useRef(null);
-  const handlers = useSwipeable({
-    onSwipedRight: onMenuClose,
-  });
-
   const { isOpen: isConnectOpen, onOpen: onConnectOpen, onClose: onConnectClose } = useDisclosure();
   const { account } = useWeb3React();
   const toast = useToast({
@@ -59,61 +45,55 @@ const Nav: FC<NavPropsProps> = (props) => {
       <Flex
         as="header"
         alignItems="center"
-        justifyContent="end"
+        justifyContent={{ base: 'space-between', md: 'end' }}
         py={{ base: 2, md: 4 }}
         px={{ base: 4, md: 32 }}
-        gap={8}
-        bgColor="rgba(0, 0, 0, 0.2)"
-        color="black"
+        gap={{ base: 8, md: 16 }}
+        bgColor="rgba(0, 0, 0, 0.4)"
         {...props}
       >
-        <Button colorScheme="gray" onClick={handleMint} isLoading={minting} opacity={0.6}>
-          mint
-        </Button>
+        <Image src={LogoWhite} height={40} alt="TheAssetsClub logo" />
 
-        <IconButton
-          variant="outline"
-          display={{ md: 'none' }}
-          icon={<HamburgerIcon />}
-          onClick={onMenuOpen}
-          aria-label="Open menu"
-        />
+        <Show below="md">
+          <IconButton variant="nav" icon={<HamburgerIcon />} onClick={onMenuOpen} aria-label="Open menu" />
+          <NavDrawer
+            finalFocusRef={btnRef}
+            isOpen={isMenuOpen}
+            onClose={onMenuClose}
+            sections={sections}
+            onConnect={onConnectOpen}
+          />
+        </Show>
 
-        <Drawer placement="right" finalFocusRef={btnRef} isOpen={isMenuOpen} onClose={onMenuClose}>
-          <div {...handlers}>
-            <DrawerOverlay />
-            <DrawerContent>
-              <DrawerCloseButton />
+        <Show above="md">
+          <Flex as="nav" gap={16} alignItems="center">
+            {sections.map(({ text, href }) => (
+              <Text key={href} color="white">
+                <NextLink href={href} passHref>
+                  <Link
+                    isExternal={href.startsWith('http')}
+                    fontFamily="Marker Felt, sans-serif"
+                    textDecoration={router.pathname === href ? 'underline 2px' : 'none'}
+                  >
+                    {text}
+                  </Link>
+                </NextLink>
+              </Text>
+            ))}
 
-              <DrawerBody>
-                <Flex direction="column" mb={6}>
-                  {sections.map(({ text, href }) => (
-                    <Text key={href} borderBottom="solid 1px" borderBottomColor="gray.200">
-                      <NextLink href={href} passHref>
-                        <Link isExternal={href.startsWith('http')} display="block" py={4}>
-                          {text}
-                        </Link>
-                      </NextLink>
-                    </Text>
-                  ))}
-                </Flex>
+            <Button variant="nav" opacity={0.6} isLoading={minting} onClick={handleMint}>
+              mint
+            </Button>
 
-                {!account ? <Button onClick={onConnectOpen}>connect</Button> : <Button>{shortAddress(account)}</Button>}
-              </DrawerBody>
-            </DrawerContent>
-          </div>
-        </Drawer>
-
-        <Flex display={{ base: 'none', md: 'flex' }} as="nav" gap={16} alignItems="center">
-          {sections.map(({ text, href }) => (
-            <Text key={href} color="white">
-              <NextLink href={href} passHref>
-                <Link isExternal={href.startsWith('http')}>{text}</Link>
-              </NextLink>
-            </Text>
-          ))}
-          {!account ? <Button onClick={onConnectOpen}>connect</Button> : <Button>{shortAddress(account)}</Button>}
-        </Flex>
+            {!account ? (
+              <Button variant="nav" onClick={onConnectOpen}>
+                connect
+              </Button>
+            ) : (
+              <Button variant="nav">{shortAddress(account)}</Button>
+            )}
+          </Flex>
+        </Show>
       </Flex>
 
       <ConnectModal
