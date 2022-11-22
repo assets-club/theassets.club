@@ -54,7 +54,7 @@ const contributors: Omit<TeamCardProps, 'image'>[] = [
   {
     name: 'Table',
     title: 'Moderator',
-    twitter: 'TableOM',
+    twitter: 'TableQM',
   },
 ];
 
