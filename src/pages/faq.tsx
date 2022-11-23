@@ -9,6 +9,7 @@ import {
   Box,
   Container,
   Heading,
+  Stack,
   Text,
 } from '@chakra-ui/react';
 import faq from '../../public/faq/faq.png';
@@ -58,13 +59,13 @@ const questions = [
   {
     question: <>What is the price of an Asset?</>,
     answer: (
-      <>
-        Private sale: 1 Free NFT per wallet and 1 optional NFT for paid. Price TBA. (Less than 100$).
-        <br />
-        Public sale: Price TBA. (If there is a public sale).
-        <br />
-        Please keep in mind that additional cost will occur because of transaction fees on the Ethereum blockchain.
-      </>
+      <Stack gap={1}>
+        <Text>Private sale: 1 Free NFT per wallet and 1 optional NFT for paid. Price TBA. (Less than 100$).</Text>
+        <Text>Public sale: Price TBA. (If there is a public sale).</Text>
+        <Text>
+          Please keep in mind that additional cost will occur because of transaction fees on the Ethereum blockchain.
+        </Text>
+      </Stack>
     ),
   },
   {
