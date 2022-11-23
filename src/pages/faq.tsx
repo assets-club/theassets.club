@@ -161,13 +161,8 @@ const questions = [
     ),
   },
   {
-    question: <>What is the value of this «Ass» NFT?</>,
-    answer: (
-      <>
-        This collection is first an artistic creation. Only the value that your heart and your eyes will give to it
-        matters!
-      </>
-    ),
+    question: <>What is the value of this NFT?</>,
+    answer: <>This collection is first an artistic creation. The value of an Asset is what someone will pay for it.</>,
   },
   {
     question: <>Last butt not least.</>,
