@@ -5,7 +5,7 @@ import { FC, useCallback, useRef } from 'react';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { Button, Flex, FlexProps, IconButton, Link, Show, Text, useDisclosure, useToast } from '@chakra-ui/react';
 import { useWeb3React } from '@web3-react/core';
-import LogoWhite from '../../public/logo-white.png';
+import LogoWhite from '../../public/brand/logo.svg';
 import shortAddress from '../utils/shortAddress';
 import useMint from '../web3/hooks/useMint';
 import ConnectModal from './ConnectModal';

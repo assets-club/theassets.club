@@ -1,9 +1,8 @@
 import type { NextPage } from 'next';
-import Image, { StaticImageData } from 'next/future/image';
+import Image from 'next/future/image';
 import { FullPage, Slide } from 'react-full-page';
 import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
-import { ComponentProps } from 'react';
-import { Box, BoxProps, Flex, useBreakpointValue } from '@chakra-ui/react';
+import { Box, Flex, useBreakpointValue } from '@chakra-ui/react';
 import cloud1 from '../../public/animations/cloud1.png';
 import cloud2 from '../../public/animations/cloud2.png';
 import palmLeft1 from '../../public/animations/palm-left1.png';
@@ -20,21 +19,14 @@ import princess from '../../public/animations/princess.png';
 import sun from '../../public/animations/sun.png';
 import bgSea from '../../public/background-sea.png';
 import bgSky from '../../public/background-sky.png';
-import LogoWhite from '../../public/logo-white.png';
+import LogoWhite from '../../public/brand/logo.svg';
 import Nav from '../components/Nav';
 import useWindowSize from '../lib/hooks/useWindowSize';
+import Layer from '../lib/layers/Layer';
 import useLayer from '../lib/layers/useLayer';
 
 const STEPS = 4;
 const PRINCESS_RATIO = 0.6;
-
-interface Layer extends Pick<BoxProps, 'top'> {
-  img: StaticImageData;
-  scale?: number;
-  position: BoxProps['inset'];
-  z: number;
-  parallax: Omit<ComponentProps<typeof Parallax>, 'children'>;
-}
 
 const Home: NextPage = () => {
   const { height } = useWindowSize();
@@ -45,6 +37,7 @@ const Home: NextPage = () => {
   const princessParallax = useBreakpointValue({
     base: -200,
     sm: -60,
+    lg: -40,
   });
   const sunLayer = useLayer(sun, 9, {
     base: {
@@ -60,102 +53,165 @@ const Home: NextPage = () => {
   });
   const logoLayer = useLayer(LogoWhite, 9, {
     base: {
-      scale: 0.8,
-      position: `50vh 50% auto auto`,
+      scale: 1,
+      position: `35vh 50% auto auto`,
       parallax: { translateX: ['50%', '50%'], translateY: ['-80%', '80%'] },
     },
     md: {
-      scale: 0.6,
-      position: `30vh 50% auto auto`,
+      position: `0vh 50% auto auto`,
+      scale: 2,
+    },
+    xl: {
+      position: `20vh 50% auto auto`,
+      scale: 2.5,
     },
   });
   const cloudLeftLayer = useLayer(cloud1, 120, {
     base: {
+      scale: 0.2,
       position: `30vh auto auto 0`,
       parallax: { translateX: ['30%', '-100%'] },
     },
     md: {
-      parallax: { translateX: ['00%', '-100%'] },
+      scale: 1,
+      parallax: { translateX: ['0%', '-100%'] },
+    },
+    lg: {
+      parallax: { translateX: ['-30%', '-100%'] },
     },
   });
   const cloudRightLayer = useLayer(cloud2, 120, {
     base: {
-      scale: 0.7,
+      scale: 0.2,
       position: `${height * 0.1}px 0 auto auto`,
       parallax: { translateX: ['-50%', '100%'] },
     },
     md: {
+      scale: 0.7,
       parallax: { translateX: ['0%', '100%'] },
+    },
+    xl: {
+      parallax: { translateX: ['30%', '100%'] },
     },
   });
   const palmLeft1Layer = useLayer(palmLeft1, 120, {
     base: {
-      scale: 0.7,
+      scale: 0.2,
       position: `70vh auto auto 0`,
-      parallax: { translateX: ['-20%', '0'] },
+      parallax: { translateX: ['-20%', '0'], translateY: ['-50vh', '100vh'] },
+    },
+    md: {
+      scale: 0.7,
+      parallax: { translateX: ['-20%', '0'], translateY: ['0', '0'] },
     },
   });
   const palmLeft2Layer = useLayer(palmLeft2, 110, {
     base: {
+      scale: 0.2,
+      position: `80vh auto auto 0`,
+      parallax: { translateX: ['-20%', '0'], translateY: ['-50vh', '100vh'] },
+    },
+    md: {
       scale: 0.7,
-      position: `${height * 0.8}px auto auto 0`,
-      parallax: { translateX: ['-20%', '0'] },
+      parallax: { translateX: ['-20%', '0'], translateY: ['0', '0'] },
     },
   });
   const palmRight1Layer = useLayer(palmRight1, 130, {
     base: {
-      scale: 0.7,
+      scale: 0.2,
       position: `70vh 0 auto auto`,
-      parallax: { translateX: ['20%', '0'] },
+      parallax: { translateX: ['20%', '0'], translateY: ['-50vh', '100vh'] },
+    },
+    md: {
+      scale: 0.7,
+      parallax: { translateX: ['20%', '0'], translateY: ['0', '0'] },
     },
   });
   const palmRight2Layer = useLayer(palmRight2, 120, {
     base: {
-      scale: 0.7,
+      scale: 0.2,
       position: `80vh 0 auto auto`,
-      parallax: { translateX: ['20%', '0'] },
+      parallax: { translateX: ['20%', '0'], translateY: ['-50vh', '100vh'] },
+    },
+    md: {
+      scale: 0.7,
+      parallax: { translateX: ['20%', '0'], translateY: ['0', '0'] },
     },
   });
   const palmRight3Layer = useLayer(palmRight3, 110, {
     base: {
-      scale: 0.7,
+      scale: 0.2,
       position: `90vh 0 auto auto`,
-      parallax: { translateX: ['20%', '0'] },
+      parallax: { translateX: ['20%', '0'], translateY: ['-50vh', '100vh'] },
+    },
+    md: {
+      scale: 0.7,
+      parallax: { translateX: ['20%', '0'], translateY: ['0', '0'] },
     },
   });
   const plant1Layer = useLayer(plant1, 120, {
     base: {
-      scale: 0.7,
+      scale: 0.2,
       position: `auto auto 0 0`,
       parallax: { translateX: ['-20%', '0'], translateY: ['20%', '0'] },
+    },
+    md: {
+      scale: 0.4,
+    },
+    '2xl': {
+      scale: 0.7,
     },
   });
   const plant2Layer = useLayer(plant2, 120, {
     base: {
-      scale: 0.7,
+      scale: 0.2,
       position: `auto auto 0 0`,
       parallax: { translateX: ['-70%', '0'], translateY: ['20%', '0'] },
+    },
+    md: {
+      scale: 0.4,
+    },
+    '2xl': {
+      scale: 0.7,
     },
   });
   const plant3Layer = useLayer(plant3, 120, {
     base: {
-      scale: 0.7,
+      scale: 0.2,
       position: `auto auto 0 30vh`,
       parallax: { translateX: ['-70%', '200%'], translateY: ['20%', '0'] },
+    },
+    md: {
+      scale: 0.4,
+    },
+    '2xl': {
+      scale: 0.7,
     },
   });
   const plant4Layer = useLayer(plant4, 120, {
     base: {
-      scale: 0.7,
+      scale: 0.2,
       position: `auto auto 0 50vh`,
       parallax: { translateX: ['-20%', '0'], translateY: ['20%', '0'] },
+    },
+    md: {
+      scale: 0.4,
+    },
+    '2xl': {
+      scale: 0.7,
     },
   });
   const plant5Layer = useLayer(plant5, 120, {
     base: {
-      scale: 0.7,
+      scale: 0.2,
       position: `auto 0 0 auto`,
       parallax: { translateX: ['90%', '0'], translateY: ['-20%', '0'] },
+    },
+    md: {
+      scale: 0.4,
+    },
+    '2xl': {
+      scale: 0.7,
     },
   });
 
@@ -207,16 +263,25 @@ const Home: NextPage = () => {
 
         {/* Absolute elements */}
         {layers.map((layer) => (
-          <Box key={layer.img.src} position="absolute" inset={layer.position} zIndex={layer.z}>
-            <Parallax {...layer.parallax}>
-              <Image
-                src={layer.img}
-                width={layer.img.width * (layer.scale ?? 1)}
-                height={layer.img.height * (layer.scale ?? 1)}
-                alt=""
-              />
-            </Parallax>
-          </Box>
+          <Parallax
+            key={layer.img.src}
+            {...layer.parallax}
+            style={{
+              position: 'absolute',
+              inset: layer.position,
+              zIndex: layer.z,
+              width: layer.img.width * (layer.scale ?? 1),
+              height: layer.img.height * (layer.scale ?? 1),
+            }}
+          >
+            <Image
+              src={layer.img}
+              width={layer.img.width * (layer.scale ?? 1)}
+              height={layer.img.height * (layer.scale ?? 1)}
+              alt=""
+              style={{ width: '100%', height: '100%' }}
+            />
+          </Parallax>
         ))}
 
         <Flex pt={{ base: height * 2.5, md: height * 1.3 }} justifyContent="center" position="relative" zIndex={100}>

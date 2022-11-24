@@ -2,7 +2,7 @@ import { StaticImageData } from 'next/future/image';
 import { useBreakpointValue } from '@chakra-ui/react';
 import Layer from './Layer';
 
-const breakpoints = ['base', 'xs', 'sm', 'md', 'lg', 'xl'] as const;
+const breakpoints = ['base', 'sm', 'md', 'lg', 'xl', '2xl'] as const;
 type Breakpoint = typeof breakpoints[number];
 type ResponsiveLayer = Partial<Omit<Layer, 'img' | 'z'>>;
 
