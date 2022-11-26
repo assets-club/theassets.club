@@ -38,7 +38,7 @@ const contributors: Omit<TeamCardProps, 'image'>[] = [
   },
   {
     name: 'Bruh',
-    title: 'Community mod',
+    title: 'Community coordinator',
     twitter: 'fullmetalbruh',
   },
   {
