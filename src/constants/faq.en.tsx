@@ -98,8 +98,7 @@ export const questionsEN = [
     answer: (
       <>
         We really want to recognize our early supporters and community members. Owning Assets means you&apos;re one of
-        them. You will have priority access to our future project: Inspirata. Holding multiple Assets NFTs entitles you
-        to something that has not yet been disclosed.
+        them. You will have priority access to our future project: Inspirata.
       </>
     ),
   },
