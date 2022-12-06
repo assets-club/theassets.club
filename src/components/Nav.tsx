@@ -10,6 +10,7 @@ import shortAddress from '../utils/shortAddress';
 import useMint from '../web3/hooks/useMint';
 import ConnectModal from './ConnectModal';
 import NavDrawer from './NavDrawer';
+import TrailerModal from './TrailerModal';
 
 const sections = [
   { text: 'home', href: '/' },
@@ -28,6 +29,12 @@ const Nav: FC<NavPropsProps> = (props) => {
   const { isOpen: isMenuOpen, onOpen: onMenuOpen, onClose: onMenuClose } = useDisclosure();
   const btnRef = useRef(null);
   const { isOpen: isConnectOpen, onOpen: onConnectOpen, onClose: onConnectClose } = useDisclosure();
+  const {
+    isOpen: isTrailerOpen,
+    onOpen: onTrailerOpen,
+    onClose: onTrailerClose,
+  } = useDisclosure({ defaultIsOpen: true });
+
   const { account } = useWeb3React();
   const toast = useToast({
     title: 'Mint coming soon!',
@@ -81,6 +88,10 @@ const Nav: FC<NavPropsProps> = (props) => {
               </Text>
             ))}
 
+            <Button variant="link" fontFamily="Marker Felt, sans-serif" colorScheme="white" onClick={onTrailerOpen}>
+              trailer
+            </Button>
+
             <Button variant="nav" opacity={0.6} isLoading={minting} onClick={handleMint}>
               mint
             </Button>
@@ -96,6 +107,7 @@ const Nav: FC<NavPropsProps> = (props) => {
         </Show>
       </Flex>
 
+      <TrailerModal isOpen={isTrailerOpen} onClose={onTrailerClose} />
       <ConnectModal
         /** @see https://github.com/chakra-ui/chakra-ui/issues/6213#issuecomment-1216003840 */
         blockScrollOnMount={false}
