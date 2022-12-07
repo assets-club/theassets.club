@@ -5,6 +5,7 @@ const contributors: Omit<TeamCardProps, 'image'>[] = [
     name: 'Sinan Varis',
     title: 'Sound designer & Composer',
     twitter: 'sinanvrs',
+    instagram: 'chance_vrs',
   },
   {
     name: 'Théo Soumaille',
@@ -35,11 +36,6 @@ const contributors: Omit<TeamCardProps, 'image'>[] = [
     name: 'Jay Fase',
     title: 'Dj & Producer',
     website: 'https://fanlink.to/jayfase',
-  },
-  {
-    name: 'Bruh',
-    title: 'Community coordinator',
-    twitter: 'fullmetalbruh',
   },
   {
     name: 'Yacine',
