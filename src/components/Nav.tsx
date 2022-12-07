@@ -1,7 +1,7 @@
 import Image from 'next/future/image';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import { FC, useCallback, useRef } from 'react';
+import { FC, useCallback, useEffect, useRef } from 'react';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { Button, Flex, FlexProps, IconButton, Link, Show, Text, useDisclosure, useToast } from '@chakra-ui/react';
 import { useWeb3React } from '@web3-react/core';
@@ -29,11 +29,7 @@ const Nav: FC<NavPropsProps> = (props) => {
   const { isOpen: isMenuOpen, onOpen: onMenuOpen, onClose: onMenuClose } = useDisclosure();
   const btnRef = useRef(null);
   const { isOpen: isConnectOpen, onOpen: onConnectOpen, onClose: onConnectClose } = useDisclosure();
-  const {
-    isOpen: isTrailerOpen,
-    onOpen: onTrailerOpen,
-    onClose: onTrailerClose,
-  } = useDisclosure({ defaultIsOpen: false });
+  const { isOpen: isTrailerOpen, onOpen: onTrailerOpen, onClose: onTrailerClose } = useDisclosure();
 
   const { account } = useWeb3React();
   const toast = useToast({
@@ -46,6 +42,12 @@ const Nav: FC<NavPropsProps> = (props) => {
   const handleMint = useCallback(() => {
     toast();
   }, [toast]);
+
+  useEffect(() => {
+    if (router.pathname === '/') {
+      onTrailerOpen();
+    }
+  }, [router.pathname, onTrailerOpen]);
 
   return (
     <>
