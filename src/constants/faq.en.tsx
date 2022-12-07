@@ -38,11 +38,11 @@ export const questionsEN = [
   },
   {
     question: <>How many Assets are there going to be?</>,
-    answer: <>There will be 5’777 unique and randomly generated assets with over 3000 layers.</>,
+    answer: <>There will be 5&apos;777 unique and randomly generated assets with over 3000 layers.</>,
   },
   {
     question: <>Do each Asset looks different?</>,
-    answer: <>All of them are unique. We have more than 25 different asset shapes!</>,
+    answer: <>All of them are unique. We have more than 25 different asset shapes.</>,
   },
   {
     question: <>What is generative art?</>,
@@ -58,21 +58,12 @@ export const questionsEN = [
     question: <>What is the price of an Asset?</>,
     answer: (
       <Stack gap={1}>
-        <Text>Private sale: 1 Free NFT per wallet and 1 optional NFT for paid. Price TBA. (Less than 100$).</Text>
+        <Text>Private sale: 1 Free NFT per wallet + 1 optional NFT for paid. (Price TBA less than 100$).</Text>
         <Text>Public sale: Price TBA. (If there is a public sale).</Text>
         <Text>
           Please keep in mind that additional cost will occur because of transaction fees on the Ethereum blockchain.
         </Text>
       </Stack>
-    ),
-  },
-  {
-    question: <>How will The Assets Club funds be used?</>,
-    answer: (
-      <>
-        45% of the primary sale + 100% of the 5.5% secondary sales royalties contributed towards building out Inspirata.
-        55% of the primary sale will be used to pay the team and contributors.
-      </>
     ),
   },
   {
@@ -88,7 +79,7 @@ export const questionsEN = [
     question: <>Do you have OG role?</>,
     answer: (
       <>
-        We have a limited number of « Original Asset » roles for those who wish to be more closely involved in this
+        We have a limited number of « Original Ass » roles for those who wish to be more closely involved in this
         journey. If you wish to apply, please send an application containing your presentation socials and references
         to: contact@theassets.club
       </>
@@ -99,13 +90,13 @@ export const questionsEN = [
     answer: (
       <>
         We really want to recognize our early supporters and community members. Owning Assets means you&apos;re one of
-        them. You will have priority access to our future project: Inspirata.
+        them. You will have priority access to Inspirata.
       </>
     ),
   },
   {
     question: <>When can I mint Assets?</>,
-    answer: <>To be announced.</>,
+    answer: <>TBA.</>,
   },
   {
     question: <>Which wallets are supported for minting?</>,
@@ -113,19 +104,14 @@ export const questionsEN = [
   },
   {
     question: <>What intellectual property rights do Asset holders receive?</>,
-    answer: (
-      <>
-        Do whatever you want with your assets, you have every right to it. Full commercial art rights for the Asset NFT
-        token you own.
-      </>
-    ),
+    answer: <>Full commercial art rights for the Asset NFT token you own.</>,
   },
   {
     question: <>What is the value of an Asset?</>,
-    answer: <>This collection is first an artistic creation. The value of an Asset is what someone will pay for it.</>,
+    answer: <>This collection is an artistic creation, the value of an Asset is what someone will pay for it.</>,
   },
   {
     question: <>What is Inspirata?</>,
-    answer: <>TBA</>,
+    answer: <>TBA.</>,
   },
 ];

@@ -47,10 +47,6 @@ export const questionsZH = [
     ),
   },
   {
-    question: <>The Assets Club的资金将如何使用？</>,
-    answer: <>一级销售的45%+100%的二级销售版权费( 5.5%)，用于建设Inspirata。一级销售的55%将用于支付团队。</>,
-  },
-  {
     question: <>我怎样才能加入Asset List？</>,
     answer: <>我们经常在Twitter/Discord上向我们的社区和真正的人提供名额。将会有抽奖活动，也可以通过表格申请。</>,
   },
@@ -58,8 +54,8 @@ export const questionsZH = [
     question: <>你有OG角色吗？</>,
     answer: (
       <>
-        我们有数量有限的 &quot;Original Asset
-        &quot;角色，供那些希望更密切参与这一旅程的人使用。如果你想申请，请将包含你的演讲、社交和推荐信的申请书发送到：contact@theassets.club
+        我们有数量有限的 &quot;Original Ass &quot;
+        角色，供那些希望更密切参与这一旅程的人使用。如果你想申请，请将包含你的演讲、社交和推荐信的申请书发送到：contact@theassets.club
       </>
     ),
   },
