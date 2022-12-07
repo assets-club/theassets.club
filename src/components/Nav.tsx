@@ -17,7 +17,7 @@ const sections = [
   { text: 'team', href: '/team' },
   { text: 'faq', href: '/faq' },
   { text: 'twitter', href: 'https://twitter.com/NonFungibleAss' },
-  // { text: 'discord', href: 'https://discord.gg/RKaCGfQjdP' },
+  { text: 'discord', href: 'https://discord.gg/RKaCGfQjdP' },
   // { text: 'opensea', href: 'https://opensea.io/collection/theassetsclub' },
 ];
 
@@ -33,7 +33,7 @@ const Nav: FC<NavPropsProps> = (props) => {
     isOpen: isTrailerOpen,
     onOpen: onTrailerOpen,
     onClose: onTrailerClose,
-  } = useDisclosure({ defaultIsOpen: true });
+  } = useDisclosure({ defaultIsOpen: false });
 
   const { account } = useWeb3React();
   const toast = useToast({
@@ -88,9 +88,9 @@ const Nav: FC<NavPropsProps> = (props) => {
               </Text>
             ))}
 
-            <Button variant="link" fontFamily="Marker Felt, sans-serif" colorScheme="white" onClick={onTrailerOpen}>
-              trailer
-            </Button>
+            {/*<Button variant="link" fontFamily="Marker Felt, sans-serif" colorScheme="white" onClick={onTrailerOpen}>*/}
+            {/*  trailer*/}
+            {/*</Button>*/}
 
             <Button variant="nav" opacity={0.6} isLoading={minting} onClick={handleMint}>
               mint

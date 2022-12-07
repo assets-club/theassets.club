@@ -21,8 +21,9 @@ export const questionsEN = [
     question: <>What is The Assets Club?</>,
     answer: (
       <>
-        The Assets Club are unique Non-fungible ERC-721-A tokens created on Ethereum blockchain. Assets are an early
-        access p-ASS.{' '}
+        The Assets Club is the genesis collection of our ecosystem. 5&apos;777 unique Assets granting its holders access
+        to a journey called Inspirata. Assets are an early access pass and unique Non-fungible ERC-721-A tokens created
+        on Ethereum blockchain.
       </>
     ),
   },
@@ -37,7 +38,7 @@ export const questionsEN = [
   },
   {
     question: <>How many Assets are there going to be?</>,
-    answer: <>There will be 5’777 unique and randomly generated assets. </>,
+    answer: <>There will be 5’777 unique and randomly generated assets with over 3000 layers.</>,
   },
   {
     question: <>Do each Asset looks different?</>,
@@ -111,35 +112,6 @@ export const questionsEN = [
     answer: <>You will be able to mint with any wallet supported by Wallet Connect, including MetaMask.</>,
   },
   {
-    question: <>Will the mint list spots be over-allocated?</>,
-    answer: <>Yes, slightly over-allocated.</>,
-  },
-  {
-    question: <>When reveal?</>,
-    answer: <>TBA.</>,
-  },
-  {
-    question: <>Smart contract released?</>,
-    answer: <>Written, not public yet.</>,
-  },
-  {
-    question: <>Token $ASS?</>,
-    answer: (
-      <>
-        Not planned, yet plausible. For any tokenomics, we will publish a white-paper first and If there is one, we’ll
-        make sure any token we come out with would adhere to regulations and be sustainable in our ecosystem.
-      </>
-    ),
-  },
-  {
-    question: <>Do you have a DAO?</>,
-    answer: <>No, we do not have a DAO, and it is not currently on our agenda.</>,
-  },
-  {
-    question: <>Do you have lands?</>,
-    answer: <>No, we do not offer lands, and land is not on our agenda.</>,
-  },
-  {
     question: <>What intellectual property rights do Asset holders receive?</>,
     answer: (
       <>
@@ -149,26 +121,11 @@ export const questionsEN = [
     ),
   },
   {
-    question: <>Laws, lawyers?</>,
-    answer: (
-      <>
-        We’ll be closely working with lawyers on our legal, regulatory and tax strategy for our holders benefits. Laws
-        around the world are catching up to the web3 innovation.
-      </>
-    ),
-  },
-  {
-    question: <>What is the value of this NFT?</>,
+    question: <>What is the value of an Asset?</>,
     answer: <>This collection is first an artistic creation. The value of an Asset is what someone will pay for it.</>,
   },
   {
-    question: <>Last butt not least.</>,
-    answer: (
-      <>
-        Remember we will never do &ldquo;Stealth Mints&rdquo; or &ldquo;Surprise Drops&rdquo;. We will always announce
-        events weeks ahead and only through official channels. The team, mods and bots will never DM you and if you have
-        been contacted, they are 100% impersonators/imposters
-      </>
-    ),
+    question: <>What is Inspirata?</>,
+    answer: <>TBA</>,
   },
 ];

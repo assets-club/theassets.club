@@ -18,6 +18,21 @@ const contributors: Omit<TeamCardProps, 'image'>[] = [
     instagram: 'e.fessler',
   },
   {
+    name: 'Jay Fase',
+    title: 'Dj & Producer',
+    website: 'https://fanlink.to/jayfase',
+  },
+  {
+    name: 'Rocco',
+    title: 'Community coordinator',
+    twitter: 'Roccotiscrocco',
+  },
+  {
+    name: 'TEEE',
+    title: 'Community team',
+    twitter: 'ikuzoeth',
+  },
+  {
     name: 'HuntClubHero',
     title: 'Advisor',
     twitter: 'huntclubhero',
@@ -31,11 +46,6 @@ const contributors: Omit<TeamCardProps, 'image'>[] = [
     name: 'Eric',
     title: 'Collab manager',
     twitter: 'CryptoEr1cc',
-  },
-  {
-    name: 'Jay Fase',
-    title: 'Dj & Producer',
-    website: 'https://fanlink.to/jayfase',
   },
   {
     name: 'Yacine',
