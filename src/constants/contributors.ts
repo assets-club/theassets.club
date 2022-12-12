@@ -28,11 +28,6 @@ const contributors: Omit<TeamCardProps, 'image'>[] = [
     twitter: 'Roccotiscrocco',
   },
   {
-    name: 'TEEE',
-    title: 'Community team',
-    twitter: 'ikuzoeth',
-  },
-  {
     name: 'HuntClubHero',
     title: 'Advisor',
     twitter: 'huntclubhero',
