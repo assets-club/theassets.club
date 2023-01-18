@@ -1,13 +1,12 @@
 import Image from 'next/future/image';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
+import { useAccount } from 'wagmi';
 import { FC, useCallback, useEffect, useRef } from 'react';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { Button, Flex, FlexProps, IconButton, Link, Show, Text, useDisclosure, useToast } from '@chakra-ui/react';
-import { useWeb3React } from '@web3-react/core';
 import LogoWhite from '../../public/brand/logo.svg';
 import shortAddress from '../utils/shortAddress';
-import useMint from '../web3/hooks/useMint';
 import ConnectModal from './ConnectModal';
 import NavDrawer from './NavDrawer';
 import TrailerModal from './TrailerModal';
@@ -31,13 +30,12 @@ const Nav: FC<NavPropsProps> = (props) => {
   const { isOpen: isConnectOpen, onOpen: onConnectOpen, onClose: onConnectClose } = useDisclosure();
   const { isOpen: isTrailerOpen, onOpen: onTrailerOpen, onClose: onTrailerClose } = useDisclosure();
 
-  const { account } = useWeb3React();
+  const { address } = useAccount();
   const toast = useToast({
     title: 'Mint coming soon!',
     status: 'info',
     duration: 3000,
   });
-  const { loading: minting } = useMint();
 
   const handleMint = useCallback(() => {
     toast();
@@ -94,16 +92,16 @@ const Nav: FC<NavPropsProps> = (props) => {
             {/*  trailer*/}
             {/*</Button>*/}
 
-            <Button variant="nav" opacity={0.6} isLoading={minting} onClick={handleMint}>
+            <Button variant="nav" opacity={0.6} onClick={handleMint}>
               mint
             </Button>
 
-            {!account ? (
+            {!address ? (
               <Button variant="nav" onClick={onConnectOpen}>
                 connect
               </Button>
             ) : (
-              <Button variant="nav">{shortAddress(account)}</Button>
+              <Button variant="nav">{shortAddress(address)}</Button>
             )}
           </Flex>
         </Show>

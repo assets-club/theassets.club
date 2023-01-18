@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useConnect } from 'wagmi';
 import type { FC } from 'react';
 import type { ModalProps } from '@chakra-ui/react';
 import {
@@ -14,13 +15,16 @@ import {
 } from '@chakra-ui/react';
 import metamaskLogo from '../../public/images/metamask.svg';
 import walletConnectLogo from '../../public/images/wallet-connect.svg';
-import useWeb3Connect from '../web3/hooks/useConnect';
+import { metamaskConnector, walletConnectConnector } from '../web3/connectors';
 
 interface ConnectModalProps extends Omit<ModalProps, 'children'> {}
 
 const ConnectModal: FC<ConnectModalProps> = ({ isOpen, onClose, ...props }) => {
-  const { connectMetaMask, connectWalletConnect } = useWeb3Connect({
-    onConnected: onClose,
+  const { connectAsync: connectMetaMask } = useConnect({
+    connector: metamaskConnector,
+  });
+  const { connectAsync: connectWalletConnect } = useConnect({
+    connector: walletConnectConnector,
   });
 
   return (

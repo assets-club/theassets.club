@@ -1,33 +1,22 @@
-import type { AddEthereumChainParameter } from '@web3-react/types';
+import { configureChains } from 'wagmi';
+import { polygon, polygonMumbai } from 'wagmi/chains';
+import { alchemyProvider } from 'wagmi/providers/alchemy';
+import { publicProvider } from 'wagmi/providers/public';
 
-export const ETHEREUM_MAINNET: AddEthereumChainParameter = {
-  chainId: 1,
-  chainName: 'Ethereum Mainnet',
-  rpcUrls: ['https://mainnet.infura.io/v3/'],
-  nativeCurrency: {
-    name: 'ETH',
-    symbol: 'ETH',
-    decimals: 18,
-  },
-  blockExplorerUrls: ['https://etherscan.io'],
-};
+export const chain = (() => {
+  if (process.env.WEB3_CHAIN === 'mumbai' || process.env.NEXT_PUBLIC_APP_ENV !== 'production') {
+    return polygonMumbai;
+  }
 
-export const GOERLI_TESTNET: AddEthereumChainParameter = {
-  chainId: 5,
-  chainName: 'Goerli Test Network',
-  rpcUrls: ['https://eth-goerli.g.alchemy.com/v2/Gbb2WvEz7cFmQUXPfsF9DQDqmHmXgpyz'],
-  nativeCurrency: {
-    name: 'GoerliETH',
-    symbol: 'GoerliETH',
-    decimals: 18,
-  },
-  blockExplorerUrls: ['https://goerli.etherscan.io'],
-};
+  return polygon;
+})();
 
-/**
- * The default chain is computed from the NEXT_PUBLIC_APP_ENV environment variable.
- * It points to the Ethereum Mainnet if NEXT_PUBLIC_APP_ENV is 'production' and to the Goerli Testnet otherwise.
- */
-const defaultChain = process.env.NEXT_PUBLIC_APP_ENV === 'production' ? ETHEREUM_MAINNET : GOERLI_TESTNET;
+export const { chains, provider, webSocketProvider } = (() => {
+  const providers = [publicProvider()];
 
-export default defaultChain;
+  if (!process.env.NEXT_PUBLIC_ALCHEMY_API_KEY) {
+    providers.unshift(alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY as string }));
+  }
+
+  return configureChains([chain], providers);
+})();

@@ -1,11 +1,11 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { WagmiConfig } from 'wagmi';
 import { ChakraProvider } from '@chakra-ui/react';
-import { Web3ReactProvider } from '@web3-react/core';
 import Player from '../components/Player';
 import '../styles/fonts.css';
 import theme from '../styles/theme';
-import connectors from '../web3/connectors';
+import client from '../web3/client';
 
 const TheAssetsClubApp = ({ Component, pageProps }: AppProps) => (
   <>
@@ -14,13 +14,13 @@ const TheAssetsClubApp = ({ Component, pageProps }: AppProps) => (
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>
 
-    <Web3ReactProvider connectors={connectors}>
+    <WagmiConfig client={client}>
       <ChakraProvider theme={theme}>
         <Component {...pageProps} />
 
         <Player position="fixed" bottom="5vh" left="5vh" zIndex={1000} />
       </ChakraProvider>
-    </Web3ReactProvider>
+    </WagmiConfig>
   </>
 );
 
