@@ -3461,7 +3461,7 @@ packages:
       '@web3-react/store': 8.0.25-beta.0_react@18.2.0
       '@web3-react/types': 8.0.20-beta.0_react@18.2.0
       react: 18.2.0
-      zustand: 4.1.3_react@18.2.0
+      zustand: 4.3.2_react@18.2.0
     optionalDependencies:
       '@ethersproject/providers': 5.7.2
     transitivePeerDependencies:
@@ -3485,7 +3485,7 @@ packages:
     dependencies:
       '@ethersproject/address': 5.7.0
       '@web3-react/types': 8.0.20-beta.0_react@18.2.0
-      zustand: 4.1.3_react@18.2.0
+      zustand: 4.3.2_react@18.2.0
     transitivePeerDependencies:
       - immer
       - react
@@ -3494,7 +3494,7 @@ packages:
   /@web3-react/types/8.0.20-beta.0_react@18.2.0:
     resolution: {integrity: sha512-qOZYMyUmsm3Um6t6Pg3OgnE86ufhWZpB5/VxsooB8cdpXc/C/f8KMyYSeM63GoKSMScOKwfqV6yODFL7g/Qc8g==}
     dependencies:
-      zustand: 4.1.3_react@18.2.0
+      zustand: 4.3.2_react@18.2.0
     transitivePeerDependencies:
       - immer
       - react
@@ -10627,21 +10627,6 @@ packages:
       readable-stream: 3.6.0
     dev: true
 
-  /zustand/4.1.3_react@18.2.0:
-    resolution: {integrity: sha512-AdFyr6+4sVD6xlyc/ArQaOrleqzxJEBbAXglufZ5lgvisoz8GUN3icOrKOnX1uRSxmpmdVUQPen9hhymWIzhBg==}
-    engines: {node: '>=12.7.0'}
-    peerDependencies:
-      immer: '>=9.0'
-      react: '>=16.8'
-    peerDependenciesMeta:
-      immer:
-        optional: true
-      react:
-        optional: true
-    dependencies:
-      react: 18.2.0
-      use-sync-external-store: 1.2.0_react@18.2.0
-
   /zustand/4.3.2_react@18.2.0:
     resolution: {integrity: sha512-rd4haDmlwMTVWVqwvgy00ny8rtti/klRoZjFbL/MAcDnmD5qSw/RZc+Vddstdv90M5Lv6RPgWvm1Hivyn0QgJw==}
     engines: {node: '>=12.7.0'}
@@ -10656,7 +10641,6 @@ packages:
     dependencies:
       react: 18.2.0
       use-sync-external-store: 1.2.0_react@18.2.0
-    dev: false
 
   github.com/ethereumjs/ethereumjs-abi/ee3994657fa7a427238e6ba92a84d0b529bbcde0:
     resolution: {tarball: https://codeload.github.com/ethereumjs/ethereumjs-abi/tar.gz/ee3994657fa7a427238e6ba92a84d0b529bbcde0}

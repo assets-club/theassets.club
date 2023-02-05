@@ -7,16 +7,16 @@ import { HamburgerIcon } from '@chakra-ui/icons';
 import { Button, Flex, FlexProps, IconButton, Link, Show, Text, useDisclosure, useToast } from '@chakra-ui/react';
 import LogoWhite from '../../public/brand/logo.svg';
 import shortAddress from '../utils/shortAddress';
-import ConnectModal from './ConnectModal';
+import { useConnectModal } from './ConnectWalletProvider';
 import NavDrawer from './NavDrawer';
 import TrailerModal from './TrailerModal';
 
 const sections = [
-  { text: 'home', href: '/' },
-  { text: 'team', href: '/team' },
-  { text: 'faq', href: '/faq' },
-  { text: 'twitter', href: 'https://twitter.com/NonFungibleAss' },
-  { text: 'discord', href: 'https://discord.gg/RKaCGfQjdP' },
+  { children: 'home', href: '/' },
+  { children: 'team', href: '/team' },
+  { children: 'faq', href: '/faq' },
+  { children: 'twitter', href: 'https://twitter.com/NonFungibleAss' },
+  { children: 'discord', href: 'https://discord.gg/RKaCGfQjdP' },
   // { text: 'opensea', href: 'https://opensea.io/collection/theassetsclub' },
 ];
 
@@ -27,7 +27,7 @@ const Nav: FC<NavPropsProps> = (props) => {
   // Menu base on Chakra Drawer
   const { isOpen: isMenuOpen, onOpen: onMenuOpen, onClose: onMenuClose } = useDisclosure();
   const btnRef = useRef(null);
-  const { isOpen: isConnectOpen, onOpen: onConnectOpen, onClose: onConnectClose } = useDisclosure();
+  const { onOpen: onConnectOpen } = useConnectModal();
   const { isOpen: isTrailerOpen, onOpen: onTrailerOpen, onClose: onTrailerClose } = useDisclosure();
 
   const { address } = useAccount();
@@ -62,7 +62,7 @@ const Nav: FC<NavPropsProps> = (props) => {
         <Image src={LogoWhite} height={40} alt="TheAssetsClub logo" />
 
         <Show below="md">
-          <IconButton variant="nav" icon={<HamburgerIcon />} onClick={onMenuOpen} aria-label="Open menu" />
+          <IconButton icon={<HamburgerIcon />} onClick={onMenuOpen} aria-label="Open menu" />
           <NavDrawer
             finalFocusRef={btnRef}
             isOpen={isMenuOpen}
@@ -74,7 +74,7 @@ const Nav: FC<NavPropsProps> = (props) => {
 
         <Show above="md">
           <Flex as="nav" gap={16} alignItems="center">
-            {sections.map(({ text, href }) => (
+            {sections.map(({ children, href }) => (
               <Text key={href} color="white">
                 <NextLink href={href} passHref>
                   <Link
@@ -82,7 +82,7 @@ const Nav: FC<NavPropsProps> = (props) => {
                     fontFamily="Marker Felt, sans-serif"
                     textDecoration={router.pathname === href ? 'underline 2px' : 'none'}
                   >
-                    {text}
+                    {children}
                   </Link>
                 </NextLink>
               </Text>
@@ -92,28 +92,16 @@ const Nav: FC<NavPropsProps> = (props) => {
             {/*  trailer*/}
             {/*</Button>*/}
 
-            <Button variant="nav" opacity={0.6} onClick={handleMint}>
+            <Button opacity={0.6} onClick={handleMint}>
               mint
             </Button>
 
-            {!address ? (
-              <Button variant="nav" onClick={onConnectOpen}>
-                connect
-              </Button>
-            ) : (
-              <Button variant="nav">{shortAddress(address)}</Button>
-            )}
+            {!address ? <Button onClick={onConnectOpen}>connect</Button> : <Button>{shortAddress(address)}</Button>}
           </Flex>
         </Show>
       </Flex>
 
       <TrailerModal isOpen={isTrailerOpen} onClose={onTrailerClose} />
-      <ConnectModal
-        /** @see https://github.com/chakra-ui/chakra-ui/issues/6213#issuecomment-1216003840 */
-        blockScrollOnMount={false}
-        isOpen={isConnectOpen}
-        onClose={onConnectClose}
-      />
     </>
   );
 };

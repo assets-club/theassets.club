@@ -8,17 +8,6 @@ const theme = extendTheme((original: Theme) => {
       body: `'Suisse Intl', sans-serif`,
     },
     colors: {
-      white: {
-        100: '#ffffff',
-        200: '#ffffff',
-        300: '#ffffff',
-        400: '#ffffff',
-        500: '#ffffff',
-        600: '#ffffff',
-        700: '#ffffff',
-        800: '#ffffff',
-        900: '#ffffff',
-      },
       primary: {
         400: '#3474ff',
       },
@@ -32,16 +21,11 @@ const theme = extendTheme((original: Theme) => {
     },
     components: {
       Button: {
-        variants: {
-          nav: {
-            color: '#000000',
-            bgColor: '#ffffff',
-            fontFamily: 'Marker Felt, sans-serif',
-            _hover: {
-              color: '#ffffff',
-              bgColor: '#000000',
-            },
-          },
+        defaultProps: {
+          colorScheme: 'gray',
+        },
+        baseStyle: {
+          fontFamily: 'Marker Felt, sans-serif',
         },
       },
     },

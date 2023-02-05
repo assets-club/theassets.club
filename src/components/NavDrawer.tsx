@@ -17,7 +17,7 @@ import { useWeb3React } from '@web3-react/core';
 import shortAddress from '../utils/shortAddress';
 
 interface NavDrawerProps extends Omit<DrawerProps, 'children'> {
-  sections: { text: ReactNode; href: string }[];
+  sections: { children: ReactNode; href: string }[];
   onConnect: () => void;
 }
 
@@ -36,7 +36,7 @@ const NavDrawer: FC<NavDrawerProps> = ({ sections, onConnect, ...props }) => {
 
           <DrawerBody>
             <Flex direction="column" mb={6}>
-              {sections.map(({ text, href }) => (
+              {sections.map(({ children, href }) => (
                 <Text key={href} borderBottom="solid 1px" borderBottomColor="gray.200">
                   <NextLink href={href} passHref>
                     <Link
@@ -45,7 +45,7 @@ const NavDrawer: FC<NavDrawerProps> = ({ sections, onConnect, ...props }) => {
                       py={4}
                       fontFamily="Marker Felt, sans-serif"
                     >
-                      {text}
+                      {children}
                     </Link>
                   </NextLink>
                 </Text>

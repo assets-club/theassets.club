@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { WagmiConfig } from 'wagmi';
 import { ChakraProvider } from '@chakra-ui/react';
+import ConnectWalletProvider from '../components/ConnectWalletProvider';
 import Player from '../components/Player';
 import '../styles/fonts.css';
 import theme from '../styles/theme';
@@ -16,9 +17,13 @@ const TheAssetsClubApp = ({ Component, pageProps }: AppProps) => (
 
     <WagmiConfig client={client}>
       <ChakraProvider theme={theme}>
-        <Component {...pageProps} />
-
-        <Player position="fixed" bottom="5vh" left="5vh" zIndex={1000} />
+        <ConnectWalletProvider
+          /** @see https://github.com/chakra-ui/chakra-ui/issues/6213#issuecomment-1216003840 */
+          blockScrollOnMount={false}
+        >
+          <Component {...pageProps} />
+          <Player position="fixed" bottom="5vh" left="5vh" zIndex={1000} />
+        </ConnectWalletProvider>
       </ChakraProvider>
     </WagmiConfig>
   </>

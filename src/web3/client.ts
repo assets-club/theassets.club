@@ -5,7 +5,7 @@ import { metamaskConnector, walletConnectConnector } from './connectors';
 const client = createClient({
   provider,
   webSocketProvider,
-  autoConnect: true,
+  autoConnect: false,
   connectors: [metamaskConnector, walletConnectConnector],
 });
 
