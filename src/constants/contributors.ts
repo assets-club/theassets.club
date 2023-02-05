@@ -28,6 +28,11 @@ const contributors: Omit<TeamCardProps, 'image'>[] = [
     twitter: 'huntclubhero',
   },
   {
+    name: 'wale.swoosh',
+    title: 'Advisor',
+    twitter: 'waleswoosh',
+  },
+  {
     name: 'Drawknife',
     title: 'Head Collabs',
     twitter: 'AmorHaroun',
