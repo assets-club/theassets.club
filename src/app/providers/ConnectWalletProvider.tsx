@@ -36,12 +36,15 @@ const ConnectWalletProvider: FC<ConnectModalProps> = ({ children, ...props }) =>
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { connectAsync: connectMetaMask } = useConnect({
     connector: metamaskConnector,
+    onSuccess: onClose,
   });
   const { connectAsync: connectWalletConnect } = useConnect({
     connector: walletConnectConnector,
+    onSuccess: onClose,
   });
   const { connectAsync: connectLedger } = useConnect({
     connector: ledgerConnector,
+    onSuccess: onClose,
   });
 
   const connectors = [

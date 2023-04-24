@@ -2,16 +2,29 @@
 
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useAccount } from 'wagmi';
+import { useAccount, useDisconnect } from 'wagmi';
 import { FC, useEffect, useRef } from 'react';
+import MarkerFelt from '@/app/fonts/MarkerFelt';
 import LogoWhite from '@/public/brand/logo.svg';
-import { HamburgerIcon } from '@chakra-ui/icons';
+import shortAddress from '@/utils/shortAddress';
+import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { Link } from '@chakra-ui/next-js';
-import { Button, Flex, FlexProps, IconButton, Show, Text, useDisclosure } from '@chakra-ui/react';
-import TrailerModal from './TrailerModal';
-import shortAddress from '../../utils/shortAddress';
+import {
+  Button,
+  Flex,
+  FlexProps,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Show,
+  Text,
+  useDisclosure,
+} from '@chakra-ui/react';
 import { useConnectModal } from '../providers/ConnectWalletProvider';
 import NavDrawer from './NavDrawer';
+import TrailerModal from './TrailerModal';
 
 const sections = [
   { children: 'home', href: '/' },
@@ -33,6 +46,7 @@ const Nav: FC<NavPropsProps> = (props) => {
   const { isOpen: isTrailerOpen, onOpen: onTrailerOpen, onClose: onTrailerClose } = useDisclosure();
 
   const { address } = useAccount();
+  const { disconnect } = useDisconnect();
 
   useEffect(() => {
     if (pathname === '/') {
@@ -87,7 +101,21 @@ const Nav: FC<NavPropsProps> = (props) => {
               mint
             </Button>
 
-            {!address ? <Button onClick={onConnectOpen}>connect</Button> : <Button>{shortAddress(address)}</Button>}
+            {!address ? (
+              <Button onClick={onConnectOpen}>connect</Button>
+            ) : (
+              <Menu>
+                <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                  {shortAddress(address)}
+                </MenuButton>
+                <MenuList fontFamily={MarkerFelt.style.fontFamily}>
+                  <MenuItem as={Link} href={`https://etherscan.io/address/${address}`} target="_blank">
+                    Etherscan
+                  </MenuItem>
+                  <MenuItem onClick={() => disconnect()}>Disconnect</MenuItem>
+                </MenuList>
+              </Menu>
+            )}
           </Flex>
         </Show>
       </Flex>
