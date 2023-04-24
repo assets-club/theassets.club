@@ -1,6 +1,6 @@
 import { utils } from 'ethers';
 import { Address, mainnet, sepolia } from 'wagmi';
-import chainMap from '../utils/addressMap';
+import chainMap from '../utils/chainMap';
 
 // Types
 export enum Phase {
@@ -44,6 +44,11 @@ export const START_DATE = 1682586000; // Thu Apr 27 2023 09:00:00 GMT
 export const PRIVATE_SALE_END_DATE = START_DATE + PRIVATE_SALE_DURATION;
 // Thu Apr 30 2023 09:00:00 GMT
 export const PUBLIC_SALE_END_DATE = PRIVATE_SALE_END_DATE + PUBLIC_SALE_DURATION;
+
+export const NFT_PARIS = chainMap<Address>({
+  [mainnet.id]: '0xd13fbe29dbd15bd0175122a4f8c90072c568511d',
+  [sepolia.id]: '0xd13fbe29dbd15bd0175122a4f8c90072c568511d',
+});
 
 const TheAssetsClub = {
   address: chainMap<Address>({

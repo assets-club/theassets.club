@@ -66,7 +66,7 @@ const Nav: FC<NavPropsProps> = (props) => {
         py={{ base: 2, md: 4 }}
         px={{ base: 4, md: 32 }}
         gap={{ base: 8, md: 16 }}
-        bgColor="rgba(0, 0, 0, 0.4)"
+        bgColor="blackAlpha.600"
         // position="relative"
         {...props}
       >

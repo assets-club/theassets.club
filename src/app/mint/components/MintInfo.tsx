@@ -40,7 +40,7 @@ const MintInfo: FC<BoxProps> = (props) => {
         {mounted && remaining} remaining Asses
       </Heading>
 
-      <Text mb={4}>{description}</Text>
+      <Text>{description}</Text>
     </Box>
   );
 };
