@@ -3,7 +3,7 @@ import { Address, useAccount, useContractWrite, usePrepareContractWrite, useWait
 import { useMemo } from 'react';
 import { TransactionReceipt } from '@ethersproject/providers';
 import TheAssetsClub, { Phase, Proof, Tier } from '../contracts/TheAssetsClub';
-import usePhase from './usePhase';
+import useMintStatus from './useMintStatus';
 import usePrice from './usePrice';
 import useTree, { Leaf } from './useTree';
 
@@ -14,7 +14,7 @@ interface UseMintOptions {
 
 export default function useMint({ quantity, onSuccess }: UseMintOptions) {
   const { address } = useAccount();
-  const { data: phase } = usePhase();
+  const { data: phase } = useMintStatus();
   const { tree, leaves } = useTree();
 
   const tier = useMemo(() => {
