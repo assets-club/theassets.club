@@ -28,5 +28,6 @@ jobs:
           PRODUCTION: false
           ALIAS_DOMAINS: ${{ steps.aliases.outputs.domain }}
           BUILD_ENV: |
+            NEXT_PUBLIC_APP_ENV=dev
             NEXT_PUBLIC_CHAIN=sepolia
             NEXT_PUBLIC_ALCHEMY_API_KEY=XMkkUq6P2cSoZ2pMVNLK4_IYLm4JrurZ
