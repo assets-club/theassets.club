@@ -1,9 +1,9 @@
 name: Deploy to staging
 on:
   push:
-    branches: [develop]
+    branches: [dev]
   pull_request:
-    branches: [develop]
+    branches: [dev]
     types: [opened, reopened, synchronize]
 
 jobs:
