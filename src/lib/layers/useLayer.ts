@@ -1,9 +1,9 @@
-import { StaticImageData } from 'next/future/image';
+import { StaticImageData } from 'next/image';
 import { useBreakpointValue } from '@chakra-ui/react';
 import Layer from './Layer';
 
 const breakpoints = ['base', 'sm', 'md', 'lg', 'xl', '2xl'] as const;
-type Breakpoint = typeof breakpoints[number];
+type Breakpoint = (typeof breakpoints)[number];
 type ResponsiveLayer = Partial<Omit<Layer, 'img' | 'z'>>;
 
 function useLayerValue<K extends keyof ResponsiveLayer>(values: Partial<Record<Breakpoint, ResponsiveLayer>>, prop: K) {

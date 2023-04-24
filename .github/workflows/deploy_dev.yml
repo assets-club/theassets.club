@@ -1,0 +1,32 @@
+name: Deploy to staging
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [dev]
+    types: [opened, reopened, synchronize]
+
+jobs:
+  vercel:
+    name: Deploy to Vercel
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Generate domain aliases
+        if: github.event_name == 'push'
+        id: aliases
+        run: echo "domain=sepolia.theassets.club" >> $GITHUB_OUTPUT
+      - name: Deploy to Vercel Action
+        uses: BetaHuhn/deploy-to-vercel-action@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          GITHUB_DEPLOYMENT_ENV: preview
+          PRODUCTION: false
+          ALIAS_DOMAINS: ${{ steps.aliases.outputs.domain }}
+          BUILD_ENV: |
+            NEXT_PUBLIC_CHAIN=sepolia
+            NEXT_PUBLIC_ALCHEMY_API_KEY=XMkkUq6P2cSoZ2pMVNLK4_IYLm4JrurZ

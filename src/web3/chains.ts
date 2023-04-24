@@ -1,33 +1,33 @@
-import type { AddEthereumChainParameter } from '@web3-react/types';
+import { configureChains, mainnet } from 'wagmi';
+import { sepolia } from 'wagmi/chains';
+import { alchemyProvider } from 'wagmi/providers/alchemy';
+import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
+import { publicProvider } from 'wagmi/providers/public';
 
-export const ETHEREUM_MAINNET: AddEthereumChainParameter = {
-  chainId: 1,
-  chainName: 'Ethereum Mainnet',
-  rpcUrls: ['https://mainnet.infura.io/v3/'],
-  nativeCurrency: {
-    name: 'ETH',
-    symbol: 'ETH',
-    decimals: 18,
-  },
-  blockExplorerUrls: ['https://etherscan.io'],
-};
+export const { chains, provider, webSocketProvider } = (() => {
+  const chain = process.env.NEXT_PUBLIC_CHAIN === 'sepolia' ? sepolia : mainnet;
+  const apiKey = process.env.NEXT_PUBLIC_ALCHEMY_API_KEY;
 
-export const GOERLI_TESTNET: AddEthereumChainParameter = {
-  chainId: 5,
-  chainName: 'Goerli Test Network',
-  rpcUrls: ['https://eth-goerli.g.alchemy.com/v2/Gbb2WvEz7cFmQUXPfsF9DQDqmHmXgpyz'],
-  nativeCurrency: {
-    name: 'GoerliETH',
-    symbol: 'GoerliETH',
-    decimals: 18,
-  },
-  blockExplorerUrls: ['https://goerli.etherscan.io'],
-};
+  if (apiKey && chain === sepolia) {
+    return configureChains(
+      [sepolia],
+      [
+        jsonRpcProvider({
+          static: true,
+          rpc: () => ({
+            http: `https://eth-sepolia.g.alchemy.com/v2/${apiKey}`,
+            webSocket: `wss://eth-sepolia.g.alchemy.com/v2/${apiKey}`,
+          }),
+        }),
+      ],
+    );
+  }
 
-/**
- * The default chain is computed from the NEXT_PUBLIC_APP_ENV environment variable.
- * It points to the Ethereum Mainnet if NEXT_PUBLIC_APP_ENV is 'production' and to the Goerli Testnet otherwise.
- */
-const defaultChain = process.env.NEXT_PUBLIC_APP_ENV === 'production' ? ETHEREUM_MAINNET : GOERLI_TESTNET;
+  if (apiKey) {
+    return configureChains([mainnet], [alchemyProvider({ apiKey })]);
+  }
 
-export default defaultChain;
+  return configureChains([mainnet], [publicProvider()]);
+})();
+
+export const chain = chains[0];

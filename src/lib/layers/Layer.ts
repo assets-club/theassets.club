@@ -1,4 +1,4 @@
-import { StaticImageData } from 'next/future/image';
+import { StaticImageData } from 'next/image';
 import { Parallax } from 'react-scroll-parallax';
 import { ComponentProps, CSSProperties } from 'react';
 import { BoxProps } from '@chakra-ui/react';

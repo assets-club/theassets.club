@@ -1,18 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
-  // experimental: {
-  //   images: {
-  //     allowFutureImage: true,
-  //     unoptimized: true,
-  //   },
-  // },
-  images: {
-    domains: ['via.placeholder.com'],
-    unoptimized: true,
+  experimental: {
+    appDir: true,
   },
-
+  output: 'export',
   webpack(config) {
     config.module.rules.push({
       test: /\.(mp3)$/,
@@ -26,4 +18,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
