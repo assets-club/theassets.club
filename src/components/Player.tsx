@@ -1,4 +1,4 @@
-import Image from 'next/future/image';
+import Image from 'next/image';
 import { BiMinus, BiSkipNext, BiSkipPrevious } from 'react-icons/bi';
 import { BsPauseFill, BsPlayFill } from 'react-icons/bs';
 import { FC, MouseEventHandler, useCallback, useRef, useState } from 'react';

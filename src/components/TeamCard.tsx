@@ -1,5 +1,5 @@
 import { StaticImageData } from 'next/dist/client/future/image';
-import Image from 'next/future/image';
+import Image from 'next/image';
 import { BsGithub, BsInstagram, BsTwitter, BsGlobe } from 'react-icons/bs';
 import { FaArtstation } from 'react-icons/fa';
 import { FC } from 'react';

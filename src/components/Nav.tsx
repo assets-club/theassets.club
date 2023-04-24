@@ -1,10 +1,10 @@
-import Image from 'next/future/image';
-import NextLink from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useAccount } from 'wagmi';
-import { FC, useCallback, useEffect, useRef } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import { HamburgerIcon } from '@chakra-ui/icons';
-import { Button, Flex, FlexProps, IconButton, Link, Show, Text, useDisclosure, useToast } from '@chakra-ui/react';
+import { Link } from '@chakra-ui/next-js';
+import { Button, Flex, FlexProps, IconButton, Show, Text, useDisclosure } from '@chakra-ui/react';
 import LogoWhite from '../../public/brand/logo.svg';
 import shortAddress from '../utils/shortAddress';
 import { useConnectModal } from './ConnectWalletProvider';
@@ -31,15 +31,6 @@ const Nav: FC<NavPropsProps> = (props) => {
   const { isOpen: isTrailerOpen, onOpen: onTrailerOpen, onClose: onTrailerClose } = useDisclosure();
 
   const { address } = useAccount();
-  const toast = useToast({
-    title: 'Mint coming soon!',
-    status: 'info',
-    duration: 3000,
-  });
-
-  const handleMint = useCallback(() => {
-    toast();
-  }, [toast]);
 
   useEffect(() => {
     if (router.pathname === '/') {
@@ -76,15 +67,13 @@ const Nav: FC<NavPropsProps> = (props) => {
           <Flex as="nav" gap={16} alignItems="center">
             {sections.map(({ children, href }) => (
               <Text key={href} color="white">
-                <NextLink href={href} passHref>
-                  <Link
-                    isExternal={href.startsWith('http')}
-                    fontFamily="Marker Felt, sans-serif"
-                    textDecoration={router.pathname === href ? 'underline 2px' : 'none'}
-                  >
-                    {children}
-                  </Link>
-                </NextLink>
+                <Link
+                  href={href}
+                  fontFamily="Marker Felt, sans-serif"
+                  textDecoration={router.pathname === href ? 'underline 2px' : 'none'}
+                >
+                  {children}
+                </Link>
               </Text>
             ))}
 
@@ -92,7 +81,7 @@ const Nav: FC<NavPropsProps> = (props) => {
             {/*  trailer*/}
             {/*</Button>*/}
 
-            <Button opacity={0.6} onClick={handleMint}>
+            <Button as={Link} href="/mint">
               mint
             </Button>
 

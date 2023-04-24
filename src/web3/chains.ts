@@ -1,22 +1,35 @@
-import { configureChains } from 'wagmi';
-import { polygon, polygonMumbai } from 'wagmi/chains';
+import { configureChains, mainnet } from 'wagmi';
+import { sepolia } from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
+import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 import { publicProvider } from 'wagmi/providers/public';
 
 export const chain = (() => {
   if (process.env.WEB3_CHAIN === 'mumbai' || process.env.NEXT_PUBLIC_APP_ENV !== 'production') {
-    return polygonMumbai;
+    return sepolia;
   }
 
-  return polygon;
+  return mainnet;
 })();
 
-export const { chains, provider, webSocketProvider } = (() => {
-  const providers = [publicProvider()];
+const defaultProvider = (() => {
+  const apiKey = process.env.NEXT_PUBLIC_ALCHEMY_API_KEY;
 
-  if (!process.env.NEXT_PUBLIC_ALCHEMY_API_KEY) {
-    providers.unshift(alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY as string }));
+  if (apiKey && chain === sepolia) {
+    return jsonRpcProvider({
+      static: true,
+      rpc: () => ({
+        http: `https://eth-sepolia.g.alchemy.com/v2/${apiKey}`,
+        webSocket: `wss://eth-sepolia.g.alchemy.com/v2/${apiKey}`,
+      }),
+    });
   }
 
-  return configureChains([chain], providers);
+  if (apiKey) {
+    return alchemyProvider({ apiKey });
+  }
+
+  return publicProvider();
 })();
+
+export const { chains, provider, webSocketProvider } = configureChains([chain], [defaultProvider]);

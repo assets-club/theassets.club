@@ -1,5 +1,5 @@
 import { constants, utils } from 'ethers';
-import Image from 'next/future/image';
+import Image from 'next/image';
 import { FC, useCallback, useMemo } from 'react';
 import { Box, useSliderContext, Text } from '@chakra-ui/react';
 import sound from '../../public/images/sound.png';

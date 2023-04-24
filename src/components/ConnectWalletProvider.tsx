@@ -15,9 +15,10 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react';
+import ledgerLogo from '../../public/images/ledger.svg';
 import metamaskLogo from '../../public/images/metamask.svg';
 import walletConnectLogo from '../../public/images/wallet-connect.svg';
-import { metamaskConnector, walletConnectConnector } from '../web3/connectors';
+import { ledgerConnector, metamaskConnector, walletConnectConnector } from '../web3/connectors';
 
 const ConnectWalletContext = createContext<Pick<ReturnType<typeof useDisclosure>, 'isOpen' | 'onOpen' | 'onClose'>>({
   isOpen: false,
@@ -37,6 +38,29 @@ const ConnectWalletProvider: FC<ConnectModalProps> = ({ children, ...props }) =>
   const { connectAsync: connectWalletConnect } = useConnect({
     connector: walletConnectConnector,
   });
+  const { connectAsync: connectLedger } = useConnect({
+    connector: ledgerConnector,
+  });
+
+  const connectors = [
+    { connect: connectMetaMask, image: metamaskLogo, label: 'MetaMask' },
+    {
+      connect: () => {
+        onClose();
+        connectWalletConnect();
+      },
+      image: walletConnectLogo,
+      label: 'WalletConnect',
+    },
+    {
+      connect: () => {
+        onClose();
+        connectLedger();
+      },
+      image: ledgerLogo,
+      label: 'Ledger',
+    },
+  ];
 
   return (
     <ConnectWalletContext.Provider value={{ isOpen, onOpen, onClose }}>
@@ -50,31 +74,21 @@ const ConnectWalletProvider: FC<ConnectModalProps> = ({ children, ...props }) =>
           <ModalCloseButton />
           <ModalBody>
             <Grid templateColumns="1fr" gap={4} mb={4}>
-              <Button
-                height="auto"
-                display="flex"
-                flexDirection="column"
-                alignItems="center"
-                justifyContent="space-between"
-                py={2}
-                onClick={() => connectMetaMask()}
-              >
-                <Image src={metamaskLogo} width="50px" height="50px" alt="MetaMask logo" />
-                <Text>MetaMask</Text>
-              </Button>
-
-              <Button
-                height="auto"
-                display="flex"
-                flexDirection="column"
-                alignItems="center"
-                justifyContent="space-around"
-                py={2}
-                onClick={() => connectWalletConnect()}
-              >
-                <Image src={walletConnectLogo} width="50px" height="50px" alt="WalletConnect logo" />
-                <Text>WalletConnect</Text>
-              </Button>
+              {connectors.map(({ connect, image, label }) => (
+                <Button
+                  key={label}
+                  height="auto"
+                  display="flex"
+                  flexDirection="column"
+                  alignItems="center"
+                  justifyContent="space-between"
+                  py={4}
+                  onClick={() => connect()}
+                >
+                  <Image src={image} height={50} alt={`${label} logo`} />
+                  <Text>{label}</Text>
+                </Button>
+              ))}
             </Grid>
           </ModalBody>
         </ModalContent>

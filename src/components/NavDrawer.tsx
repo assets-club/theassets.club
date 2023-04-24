@@ -1,5 +1,6 @@
 import NextLink from 'next/link';
 import { useSwipeable } from 'react-swipeable';
+import { useAccount } from 'wagmi';
 import { FC, ReactNode } from 'react';
 import {
   Button,
@@ -13,7 +14,6 @@ import {
   Link,
   Text,
 } from '@chakra-ui/react';
-import { useWeb3React } from '@web3-react/core';
 import shortAddress from '../utils/shortAddress';
 
 interface NavDrawerProps extends Omit<DrawerProps, 'children'> {
@@ -22,7 +22,7 @@ interface NavDrawerProps extends Omit<DrawerProps, 'children'> {
 }
 
 const NavDrawer: FC<NavDrawerProps> = ({ sections, onConnect, ...props }) => {
-  const { account } = useWeb3React();
+  const { address } = useAccount();
   const handlers = useSwipeable({
     onSwipedRight: props?.onClose,
   });
@@ -52,12 +52,12 @@ const NavDrawer: FC<NavDrawerProps> = ({ sections, onConnect, ...props }) => {
               ))}
             </Flex>
 
-            {!account ? (
+            {!address ? (
               <Button variant="nav" onClick={onConnect}>
                 connect
               </Button>
             ) : (
-              <Button variant="nav">{shortAddress(account)}</Button>
+              <Button variant="nav">{shortAddress(address)}</Button>
             )}
           </DrawerBody>
         </DrawerContent>

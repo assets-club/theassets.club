@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import Image from 'next/future/image';
+import Image from 'next/image';
 import { Box, Container, Flex, Text } from '@chakra-ui/react';
 import collaborator from '../../public/team/contributor.png';
 import leafLeft from '../../public/team/leaf-left.png';

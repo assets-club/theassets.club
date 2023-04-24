@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import Image from 'next/future/image';
+import Image from 'next/image';
 import { FullPage, Slide } from 'react-full-page';
 import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
 import { Box, Flex, useBreakpointValue } from '@chakra-ui/react';
