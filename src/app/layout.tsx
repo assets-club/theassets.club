@@ -6,8 +6,11 @@ import MarkerFelt from '@/app/fonts/MarkerFelt';
 import SuisseIntl from '@/app/fonts/SuisseIntl';
 import Providers from './providers';
 
-const metadata: Metadata = {
-  title: 'The Assets Club',
+export const metadata: Metadata = {
+  title: {
+    template: '%s | The Assets Club',
+    default: 'The Assets Club',
+  },
 };
 
 const RootLayout: FC<{ children: ReactNode }> = ({ children }) => {
