@@ -1,16 +1,18 @@
 'use client';
 
+import { Metadata } from 'next';
+import Image from 'next/image';
+import { FC } from 'react';
 import collaborator from '@/public/team/contributor.png';
 import leafLeft from '@/public/team/leaf-left.png';
 import leafRight from '@/public/team/leaf-right.png';
 import sign from '@/public/team/sign.png';
 import { Box, Container, Flex, Text } from '@chakra-ui/react';
-import Image from 'next/image';
-import { FC } from 'react';
 import HeadingMF from '../components/HeadingMF';
 import TeamCard from './components/TeamCard';
 import contributors from './constants/contributors';
 import team from './constants/team';
+
 
 const TeamPageClient: FC = () => {
   return (

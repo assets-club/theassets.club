@@ -10,7 +10,7 @@ import music2 from '@/public/music/02 Jay Fase - Time (Inward Records).mp3';
 import music3 from '@/public/music/03 Jay Fase - Nasta.mp3';
 import music4 from '@/public/music/04 Cuemen, Jay Fase - Hyema (Original Mix)_Master.mp3';
 import music5 from '@/public/music/05 The Doors - Riders on The Storm (Jay Fase Remix).mp3';
-import { Box, BoxProps, Flex, IconButton, keyframes, Link, Text } from '@chakra-ui/react';
+import { Box, BoxProps, Flex, IconButton, Link, Text, keyframes } from '@chakra-ui/react';
 
 interface PlayerProps extends BoxProps {}
 
