@@ -1,6 +1,7 @@
 import { BigNumber } from 'ethers';
 import { Address, useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi';
 import { useMemo } from 'react';
+import useNFTParisToken from '@/web3/hooks/useNFTParis';
 import { TransactionReceipt } from '@ethersproject/providers';
 import TheAssetsClub, { Phase, Proof, Tier } from '../contracts/TheAssetsClub';
 import useMintStatus from './useMintStatus';
@@ -29,13 +30,19 @@ export default function useMint({ quantity, onSuccess }: UseMintOptions) {
     );
   }, [leaves]);
 
+  const { tokenId, proof: proofParis } = useNFTParisToken();
+
   const proof = useMemo(() => {
     if (!address || !tier) {
       return undefined;
     }
 
+    if (proofParis) {
+      return proofParis;
+    }
+
     return tree?.getProof([address, Proof.MINT, tier]) as `0x${string}`[];
-  }, [address, tier, tree]);
+  }, [address, proofParis, tier, tree]);
 
   const args: readonly [Address, BigNumber, number, `0x${string}`[]] | undefined = useMemo(() => {
     if (!address || !quantity) {
@@ -74,6 +81,7 @@ export default function useMint({ quantity, onSuccess }: UseMintOptions) {
 
   return {
     mint: write,
+    tokenId,
     tier,
     proof,
     price,

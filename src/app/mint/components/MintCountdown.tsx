@@ -9,7 +9,7 @@ import { Box, BoxProps, Grid, GridItem, Text } from '@chakra-ui/react';
 
 const startDate = new Date(START_DATE * 1000);
 
-const Countdown: FC<BoxProps> = (props) => {
+const MintCountdown: FC<BoxProps> = (props) => {
   const mounted = useMounted();
   const renderer: CountdownRendererFn = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
@@ -28,15 +28,15 @@ const Countdown: FC<BoxProps> = (props) => {
             <GridItem
               key={label}
               fontFamily={MarkerFelt.style.fontFamily}
-              py={3}
+              p={3}
               textAlign="center"
               bgColor="whiteAlpha.200"
               borderRadius="xl"
             >
-              <Text fontSize="6xl" lineHeight={1}>
+              <Text fontSize={{ base: '3xl', lg: '6xl' }} lineHeight={1}>
                 {value}
               </Text>
-              <Text>{label}</Text>
+              <Text fontSize={{ base: 'sm', md: 'md' }}>{label}</Text>
             </GridItem>
           );
         })}
@@ -51,4 +51,4 @@ const Countdown: FC<BoxProps> = (props) => {
   return <Box {...props}>{mounted && <ReactCountdown date={startDate} renderer={renderer} />}</Box>;
 };
 
-export default Countdown;
+export default MintCountdown;
