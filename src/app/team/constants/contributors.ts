@@ -23,14 +23,14 @@ const contributors: Omit<TeamCardProps, 'image'>[] = [
     website: 'https://fanlink.to/jayfase',
   },
   {
-    name: 'Rocco',
-    title: 'Community coordinator',
-    twitter: 'Roccotiscrocco',
-  },
-  {
     name: 'HuntClubHero',
     title: 'Advisor',
     twitter: 'huntclubhero',
+  },
+  {
+    name: 'wale.swoosh',
+    title: 'Advisor',
+    twitter: 'waleswoosh',
   },
   {
     name: 'Drawknife',
@@ -56,11 +56,6 @@ const contributors: Omit<TeamCardProps, 'image'>[] = [
     name: 'Neken',
     title: 'Moderator',
     twitter: 'neken666666',
-  },
-  {
-    name: 'Table',
-    title: 'Moderator',
-    twitter: 'TableQM',
   },
 ];
 
