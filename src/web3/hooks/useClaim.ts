@@ -9,7 +9,7 @@ interface UseClaimOptions {
   onSuccess?: (data: TransactionReceipt) => Promise<void> | void;
 }
 
-export default function useClaim({ onSuccess }: UseClaimOptions) {
+export default function useClaim({ onSuccess }: UseClaimOptions = {}) {
   const { address } = useAccount();
 
   const { tree, leaves } = useTree();
@@ -39,13 +39,14 @@ export default function useClaim({ onSuccess }: UseClaimOptions) {
       return;
     }
 
-    return [address, BigNumber.from(quantity), proof];
+    return [address, BigNumber.from(quantity), proof] as const;
   }, [address, proof, quantity]);
 
   const { config } = usePrepareContractWrite({
     enabled: !!args,
     ...TheAssetsClub,
     functionName: 'claimTo',
+    args,
   });
   const { data: writeData, writeAsync: write, isLoading: isWriting } = useContractWrite(config);
   const { isLoading: isWaiting } = useWaitForTransaction({ hash: writeData?.hash, onSuccess });

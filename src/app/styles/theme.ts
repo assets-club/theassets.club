@@ -1,12 +1,13 @@
 import merge from 'lodash/merge';
+import MarkerFelt from '@/app/fonts/MarkerFelt';
 import SuisseIntl from '@/app/fonts/SuisseIntl';
 import { extendTheme, Theme, ThemeOverride } from '@chakra-ui/react';
 
 const theme = extendTheme((original: Theme) => {
   return merge(original, {
     fonts: {
-      heading: `${SuisseIntl.variable}, sans-serif`,
-      body: `${SuisseIntl.variable}, sans-serif`,
+      heading: `${SuisseIntl.style.fontFamily}, sans-serif`,
+      body: `${SuisseIntl.style.fontFamily}, sans-serif`,
     },
     colors: {
       primary: {
@@ -26,7 +27,8 @@ const theme = extendTheme((original: Theme) => {
           colorScheme: 'gray',
         },
         baseStyle: {
-          fontFamily: 'Marker Felt, sans-serif',
+          color: '#000000',
+          fontFamily: `${MarkerFelt.style.fontFamily}, sans-serif`,
         },
       },
     },

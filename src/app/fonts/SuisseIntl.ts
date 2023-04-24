@@ -11,7 +11,7 @@ const SuisseIntl = localFont({
       weight: '700',
     },
   ],
-  variable: '--suisse-intl',
+  variable: '--font-suisse-intl',
 });
 
 export default SuisseIntl;

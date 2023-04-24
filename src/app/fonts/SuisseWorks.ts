@@ -11,6 +11,7 @@ const SuisseWorks = localFont({
       weight: '700',
     },
   ],
+  variable: '--font-suisse-works',
 });
 
 export default SuisseWorks;

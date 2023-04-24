@@ -2,6 +2,7 @@
 
 import { WagmiConfig } from 'wagmi';
 import { FC, ReactNode } from 'react';
+import ConnectWalletProvider from '@/app/providers/ConnectWalletProvider';
 import theme from '@/app/styles/theme';
 import client from '@/web3/client';
 import { CacheProvider } from '@chakra-ui/next-js';
@@ -15,7 +16,9 @@ const Providers: FC<{ children: ReactNode }> = ({ children }: { children: React.
     <WagmiConfig client={client}>
       <QueryClientProvider client={queryClient}>
         <CacheProvider>
-          <ChakraProvider theme={theme}>{children}</ChakraProvider>
+          <ChakraProvider theme={theme}>
+            <ConnectWalletProvider>{children}</ConnectWalletProvider>
+          </ChakraProvider>
         </CacheProvider>
       </QueryClientProvider>
     </WagmiConfig>

@@ -14,7 +14,7 @@ interface UseMintOptions {
 
 export default function useMint({ quantity, onSuccess }: UseMintOptions) {
   const { address } = useAccount();
-  const { data: phase } = useMintStatus();
+  const { phase } = useMintStatus();
   const { tree, leaves } = useTree();
 
   const tier = useMemo(() => {

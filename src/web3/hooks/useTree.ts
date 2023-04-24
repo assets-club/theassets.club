@@ -40,6 +40,7 @@ async function fetchMerkleTree() {
 
 export default function useTree() {
   const { data: tree, ...rest } = useQuery({
+    queryKey: ['tree'],
     queryFn: fetchMerkleTree,
   });
   const { address } = useAccount();

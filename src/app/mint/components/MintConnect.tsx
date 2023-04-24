@@ -1,13 +1,18 @@
-import { useConnectModal } from '@/app/providers/ConnectWalletProvider';
-import { Box, Button } from '@chakra-ui/react';
 import { FC } from 'react';
+import { useConnectModal } from '@/app/providers/ConnectWalletProvider';
+import { Box, Button, Heading, Text } from '@chakra-ui/react';
 
 const MintConnect: FC = () => {
   const { onOpen } = useConnectModal();
 
   return (
     <Box>
-      <Button onClick={onOpen}>Connect</Button>
+      <Heading fontSize="2xl" mb={2}>
+        Check your eligibility
+      </Heading>
+
+      <Text mb={2}>Connect your wallet to check your eligibility</Text>
+      <Button onClick={onOpen}>Connect wallet</Button>
     </Box>
   );
 };

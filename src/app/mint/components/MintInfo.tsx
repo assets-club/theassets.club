@@ -1,6 +1,8 @@
 import { FC, ReactNode } from 'react';
+import Countdown from '@/app/mint/components/Countdown';
+import useMounted from '@/lib/hooks/useMounted';
 import useMintStatus, { MintStatus } from '@/web3/hooks/useMintStatus';
-import { Box, Heading, Text } from '@chakra-ui/react';
+import { Box, BoxProps, Heading, Text } from '@chakra-ui/react';
 
 const statuses: Record<MintStatus, { title: string; description: ReactNode }> = {
   [MintStatus.CLOSED]: {
@@ -25,16 +27,25 @@ const statuses: Record<MintStatus, { title: string; description: ReactNode }> = 
   },
 };
 
-const PhaseInfo: FC = (props) => {
-  const { status } = useMintStatus();
+const MintInfo: FC<BoxProps> = (props) => {
+  const mounted = useMounted();
+  let { status, remaining } = useMintStatus();
   const { title, description } = statuses[status ?? MintStatus.CLOSED];
 
   return (
-    <Box color="white">
-      <Heading mb={2}>Mint status: {title}</Heading>
-      <Text>{description}</Text>
+    <Box color="white" {...props}>
+      <Heading as="h2" mb={2}>
+        Mint status: {title}
+      </Heading>
+      <Heading as="h3" mb={2} fontSize="2xl">
+        {mounted && remaining} remaining Asses
+      </Heading>
+
+      <Text mb={4}>{description}</Text>
+
+      {status === MintStatus.CLOSED && <Countdown />}
     </Box>
   );
 };
 
-export default PhaseInfo;
+export default MintInfo;

@@ -1,27 +1,14 @@
 'use client';
 
-import { constants, utils } from 'ethers';
-import { range } from 'lodash';
 import { NextPage } from 'next';
 import { useAccount } from 'wagmi';
 import { useState } from 'react';
+import Eligibility from '@/app/mint/components/Eligibility';
 import MintConnect from '@/app/mint/components/MintConnect';
-import Phase from '@/app/mint/components/PhaseName';
+import MintInfo from '@/app/mint/components/MintInfo';
 import useMint from '@/web3/hooks/useMint';
-import {
-  Box,
-  Button,
-  Flex,
-  Heading,
-  Slider,
-  SliderFilledTrack,
-  SliderThumb,
-  SliderTrack,
-  Text,
-  useToken,
-} from '@chakra-ui/react';
+import { Box, Flex, useToken } from '@chakra-ui/react';
 import { price } from '../constants/mint';
-import MintMark from './components/MintMark';
 
 const bgColor = '#121212';
 
@@ -62,71 +49,10 @@ const MintPageClient: NextPage = () => {
   return (
     <Flex minH="100vh">
       <Flex minW="900px" bgColor={bgColor} alignItems="center" justifyContent="center">
-        <Box w="600px">
-          <Phase color="white" />
+        <Box w="600px" color="white">
+          <MintInfo mb={6} />
 
-          {!isConnected ? (
-            <MintConnect />
-          ) : (
-            <>
-              <Box>
-                {phases.map(({ name }, i) => (
-                  <Button colorScheme="blue" key={name} onClick={() => setPhaseId(i)}>
-                    {name}
-                  </Button>
-                ))}
-
-                <Button colorScheme="blue" onClick={() => setVideo(Video.END)}>
-                  Mint
-                </Button>
-              </Box>
-
-              <Text mb={8}>
-                {!isConnected || !address ? (
-                  <>Connect your wallet to see your waitlist tier</>
-                ) : (
-                  <>Wallet: {address} - tier:</>
-                )}
-              </Text>
-
-              <Slider
-                aria-label="Mint slider"
-                defaultValue={2}
-                min={1}
-                max={7}
-                mb={8}
-                value={count}
-                onChange={setCount}
-                mx="40px"
-                width="calc(100% - 80px)"
-                isDisabled={disabled}
-              >
-                <Flex justifyContent="space-between" mb={4} mx="-40px">
-                  {range(7).map((_, i) => (
-                    <MintMark key={i} value={i + 1} free={phase.free} disabled={disabled} />
-                  ))}
-                </Flex>
-
-                <SliderTrack sx={{ top: '100% !important' }}>
-                  <SliderFilledTrack />
-                </SliderTrack>
-
-                <SliderThumb sx={{ top: '100% !important' }} />
-              </Slider>
-
-              <Heading mb={8}>How to proceed</Heading>
-
-              <Text mb={4}>
-                You will be able to mint at most 3 Asset. Depending of your waitlist tier, you will have access to 1 or
-                2 free NFTs. {!isConnected && <>Connect your wallet to check your WaitList tier.</>}
-              </Text>
-
-              <Button size="lg" color="chakra-body-text">
-                Mint {count} Asset for{' '}
-                {total.isZero() ? 'free' : `${utils.formatEther(total)} ${constants.EtherSymbol}`}
-              </Button>
-            </>
-          )}
+          {isConnected ? <Eligibility /> : <MintConnect />}
         </Box>
       </Flex>
 
