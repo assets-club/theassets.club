@@ -76,6 +76,7 @@ export default function useMint({ quantity, onSuccess }: UseMintOptions) {
     mint: write,
     tier,
     proof,
+    price,
     isLoading: isPricing || isWriting || isWaiting,
     isWriting,
     isWaiting,

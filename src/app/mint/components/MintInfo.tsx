@@ -1,5 +1,4 @@
 import { FC, ReactNode } from 'react';
-import Countdown from '@/app/mint/components/Countdown';
 import useMounted from '@/lib/hooks/useMounted';
 import useMintStatus, { MintStatus } from '@/web3/hooks/useMintStatus';
 import { Box, BoxProps, Heading, Text } from '@chakra-ui/react';
@@ -42,8 +41,6 @@ const MintInfo: FC<BoxProps> = (props) => {
       </Heading>
 
       <Text mb={4}>{description}</Text>
-
-      {status === MintStatus.CLOSED && <Countdown />}
     </Box>
   );
 };

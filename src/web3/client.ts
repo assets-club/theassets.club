@@ -1,12 +1,14 @@
 import { createClient } from 'wagmi';
 import { provider, webSocketProvider } from './chains';
-import { metamaskConnector, walletConnectConnector } from './connectors';
+import { ledgerConnector, metamaskConnector, walletConnectConnector } from './connectors';
 
 const client = createClient({
+  // @ts-expect-error Sepolia network does seem to be supported
   provider,
+  // @ts-expect-error Sepolia network does seem to be supported
   webSocketProvider,
   autoConnect: false,
-  connectors: [metamaskConnector, walletConnectConnector],
+  connectors: [metamaskConnector, walletConnectConnector, ledgerConnector],
 });
 
 export default client;

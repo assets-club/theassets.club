@@ -25,7 +25,15 @@ export default function usePrice(tier: Tier | undefined, quantity: number | unde
   }, [tier]);
 
   const price = useMemo(() => {
-    if (typeof quantity !== 'number' || typeof free !== 'number' || typeof skip !== 'number') {
+    if (typeof quantity === 'undefined') {
+      return undefined;
+    }
+
+    if (typeof free !== 'number' || typeof skip !== 'number') {
+      if (typeof quantity === 'number') {
+        return SALE_PRICE.mul(quantity);
+      }
+
       return undefined;
     }
 

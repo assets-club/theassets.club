@@ -1,43 +1,54 @@
-import { count } from 'console';
 import { constants, utils } from 'ethers';
 import { range } from 'lodash';
+import { FC, useCallback, useEffect, useState } from 'react';
 import MintMark from '@/app/mint/components/MintMark';
-import { Button, Flex, Heading, Slider, SliderFilledTrack, SliderThumb, SliderTrack } from '@chakra-ui/react';
+import { MAXIMUM_MINTS_PER_ACCOUNT, Tier } from '@/web3/contracts/TheAssetsClub';
+import useMint from '@/web3/hooks/useMint';
+import { Box, Button, Flex, Slider, SliderFilledTrack, SliderThumb, SliderTrack } from '@chakra-ui/react';
 
-const MintForm = () => {
+const freeMap: Record<Tier, number> = {
+  [Tier.PUBLIC]: 0,
+  [Tier.ACCESS_LIST]: 2,
+  [Tier.OG]: 3,
+};
+
+const MintForm: FC = () => {
+  const [quantity, setQuantityInternal] = useState(1);
+  const { mint, tier, price } = useMint({ quantity });
+  const free = freeMap[tier ?? Tier.PUBLIC];
+
+  const setQuantity = useCallback(
+    (newValue: number) => {
+      setQuantityInternal(() => {
+        return Math.min(Math.max(Math.floor(newValue), free, 1), 7);
+      });
+    },
+    [free],
+  );
+
+  const disabled = false;
+
+  useEffect(() => {
+    setQuantity(free + 1);
+  }, [free, setQuantity]);
+
   return (
-    <>
-      <Box>
-        {phases.map(({ name }, i) => (
-          <Button colorScheme="blue" key={name} onClick={() => setPhaseId(i)}>
-            {name}
-          </Button>
-        ))}
-
-        <Button colorScheme="blue" onClick={() => setVideo(Video.END)}>
-          Mint
-        </Button>
-      </Box>
-
-      <Text mb={8}>
-        {!isConnected || !address ? <>Connect your wallet to see your waitlist tier</> : <>Wallet: {address} - tier:</>}
-      </Text>
-
+    <Box>
       <Slider
         aria-label="Mint slider"
         defaultValue={2}
         min={1}
         max={7}
         mb={8}
-        value={count}
-        onChange={setCount}
+        value={quantity}
+        onChange={setQuantity}
         mx="40px"
         width="calc(100% - 80px)"
         isDisabled={disabled}
       >
         <Flex justifyContent="space-between" mb={4} mx="-40px">
-          {range(7).map((_, i) => (
-            <MintMark key={i} value={i + 1} free={phase.free} disabled={disabled} />
+          {range(MAXIMUM_MINTS_PER_ACCOUNT).map((_, i) => (
+            <MintMark key={i} value={i + 1} free={free} disabled={disabled} />
           ))}
         </Flex>
 
@@ -48,17 +59,10 @@ const MintForm = () => {
         <SliderThumb sx={{ top: '100% !important' }} />
       </Slider>
 
-      <Heading mb={8}>How to proceed</Heading>
-
-      <Text mb={4}>
-        You will be able to mint at most 3 Asset. Depending of your waitlist tier, you will have access to 1 or 2 free
-        NFTs. {!isConnected && <>Connect your wallet to check your WaitList tier.</>}
-      </Text>
-
-      <Button size="lg" color="chakra-body-text">
-        Mint {count} Asset for {total.isZero() ? 'free' : `${utils.formatEther(total)} ${constants.EtherSymbol}`}
+      <Button onClick={mint}>
+        Mint {quantity} for {price && utils.formatEther(price)} {constants.EtherSymbol}
       </Button>
-    </>
+    </Box>
   );
 };
 
