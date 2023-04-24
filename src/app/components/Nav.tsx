@@ -7,12 +7,14 @@ import { FC, useEffect, useRef } from 'react';
 import MarkerFelt from '@/app/fonts/MarkerFelt';
 import LogoWhite from '@/public/brand/logo.svg';
 import shortAddress from '@/utils/shortAddress';
+import useChain from '@/web3/hooks/useChain';
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { Link } from '@chakra-ui/next-js';
 import {
   Button,
   Flex,
   FlexProps,
+  HStack,
   IconButton,
   Menu,
   MenuButton,
@@ -47,6 +49,7 @@ const Nav: FC<NavPropsProps> = (props) => {
 
   const { address } = useAccount();
   const { disconnect } = useDisconnect();
+  const { chain, expectedChain, shouldSwitch, switchNetwork } = useChain();
 
   useEffect(() => {
     if (pathname === '/') {
@@ -59,27 +62,33 @@ const Nav: FC<NavPropsProps> = (props) => {
       <Flex
         as="header"
         alignItems="center"
-        justifyContent={{ base: 'space-between', md: 'end' }}
+        justifyContent={{ base: 'space-between' }}
         py={{ base: 2, md: 4 }}
         px={{ base: 4, md: 32 }}
         gap={{ base: 8, md: 16 }}
         bgColor="rgba(0, 0, 0, 0.4)"
+        // position="relative"
         {...props}
       >
         <Image src={LogoWhite} height={40} alt="TheAssetsClub logo" />
 
-        <Show below="md">
-          <IconButton icon={<HamburgerIcon />} onClick={onMenuOpen} aria-label="Open menu" />
-          <NavDrawer
-            finalFocusRef={btnRef}
-            isOpen={isMenuOpen}
-            onClose={onMenuClose}
-            sections={sections}
-            onConnect={onConnectOpen}
-          />
+        <Show below="lg">
+          <HStack>
+            <Button as={Link} href="/mint">
+              Mint
+            </Button>
+            <IconButton icon={<HamburgerIcon />} onClick={onMenuOpen} aria-label="Open menu" />
+            <NavDrawer
+              finalFocusRef={btnRef}
+              isOpen={isMenuOpen}
+              onClose={onMenuClose}
+              sections={sections}
+              onConnect={onConnectOpen}
+            />
+          </HStack>
         </Show>
 
-        <Show above="md">
+        <Show above="lg">
           <Flex as="nav" gap={16} alignItems="center">
             {sections.map(({ children, href }) => (
               <Text key={href} color="white">
@@ -118,6 +127,23 @@ const Nav: FC<NavPropsProps> = (props) => {
             )}
           </Flex>
         </Show>
+
+        {shouldSwitch && (
+          <Text
+            position="absolute"
+            inset="100% 0 auto"
+            bgColor="whiteAlpha.800"
+            m={0}
+            py={1}
+            px={{ base: 4, md: 32 }}
+            textAlign="center"
+          >
+            TheAssetsClub is not available on {chain?.name}, please{' '}
+            <Button variant="link" onClick={switchNetwork}>
+              switch to {expectedChain.name}
+            </Button>
+          </Text>
+        )}
       </Flex>
 
       <TrailerModal isOpen={isTrailerOpen} onClose={onTrailerClose} />

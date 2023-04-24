@@ -30,6 +30,15 @@ const theme = extendTheme((original: Theme) => {
           color: '#000000',
           fontFamily: `${MarkerFelt.style.fontFamily}, sans-serif`,
         },
+        variants: {
+          link: {
+            px: 0,
+            color: 'inherit',
+            fontFamily: 'inherit',
+            fontWeight: 'inherit',
+            textDecoration: 'underline',
+          },
+        },
       },
     },
   } as ThemeOverride);
