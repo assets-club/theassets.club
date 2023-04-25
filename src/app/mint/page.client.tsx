@@ -1,11 +1,14 @@
 'use client';
 
 import { NextPage } from 'next';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
+import ClaimForm from '@/app/mint/components/ClaimForm';
 import MintCountdown from '@/app/mint/components/MintCountdown';
 import MintEligibility from '@/app/mint/components/MintEligibility';
 import MintForm from '@/app/mint/components/MintForm';
 import MintInfo from '@/app/mint/components/MintInfo';
+import MintTier from '@/app/mint/components/MintTier';
+import ParisHolder from '@/app/mint/components/ParisHolder';
 import useMintStatus, { MintStatus } from '@/web3/hooks/useMintStatus';
 import { Box, Flex, Show, Stack } from '@chakra-ui/react';
 
@@ -41,6 +44,10 @@ const MintPageClient: NextPage = () => {
     </video>
   );
 
+  const handleSuccess = useCallback(() => {
+    setVideo(Video.END);
+  }, []);
+
   return (
     <Flex minH="100vh">
       <Flex
@@ -54,8 +61,7 @@ const MintPageClient: NextPage = () => {
         <Stack
           color="white"
           gap={4}
-          pt={{ base: '120px', lg: 0 }}
-          pb={{ base: '120px', lg: 0 }}
+          py="120px"
           px={{ base: 4 }}
           mx="auto"
           width={{ base: '100%', lg: '600px' }}
@@ -64,7 +70,11 @@ const MintPageClient: NextPage = () => {
           <MintInfo />
           {status === MintStatus.CLOSED && <MintCountdown mb={4} />}
           <MintEligibility />
-          {[MintStatus.PRIVATE_SALE, MintStatus.PUBLIC_SALE].includes(status!) && <MintForm />}
+          <ParisHolder />
+          <ClaimForm onSuccess={handleSuccess} />
+
+          <MintTier />
+          <MintForm onSuccess={handleSuccess} />
         </Stack>
       </Flex>
 

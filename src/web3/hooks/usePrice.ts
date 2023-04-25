@@ -1,19 +1,38 @@
 import { useAccount, useContractRead } from 'wagmi';
 import { useMemo } from 'react';
+import useNFTParisToken from '@/web3/hooks/useNFTParis';
 import TheAssetsClub, { SALE_PRICE, Tier } from '../contracts/TheAssetsClub';
 
-export default function usePrice(tier: Tier | undefined, quantity: number | undefined) {
-  const { address } = useAccount();
+function getPrice(quantity: number, free: number, minted: number) {
+  const actualFree = Math.max(free - minted, 0);
+  return SALE_PRICE.mul(quantity - actualFree);
+}
 
-  const { data: skip, ...rest } = useContractRead({
+export default function usePrice(tier: Tier | undefined, slider: number | undefined) {
+  const { address } = useAccount();
+  const paris = useNFTParisToken();
+
+  const { data: minted, ...rest } = useContractRead({
     enabled: typeof address === 'string',
     ...TheAssetsClub,
-    functionName: 'balanceOf',
+    functionName: 'minted',
     args: address ? [address] : undefined,
     select: (data) => data.toNumber(),
   });
 
+  const quantity = useMemo(() => {
+    if (typeof slider !== 'number' || typeof minted !== 'number') {
+      return;
+    }
+
+    return slider - minted;
+  }, [minted, slider]);
+
   const free = useMemo(() => {
+    if (paris.proof) {
+      return 2;
+    }
+
     switch (tier) {
       case Tier.OG:
         return 3;
@@ -22,26 +41,15 @@ export default function usePrice(tier: Tier | undefined, quantity: number | unde
       case Tier.PUBLIC:
         return 0;
     }
-  }, [tier]);
+  }, [paris.proof, tier]);
 
   const price = useMemo(() => {
-    if (typeof quantity === 'undefined') {
+    if (typeof quantity !== 'number' || typeof free !== 'number' || typeof minted !== 'number') {
       return undefined;
     }
 
-    if (typeof free !== 'number' || typeof skip !== 'number') {
-      if (typeof quantity === 'number') {
-        return SALE_PRICE.mul(quantity);
-      }
+    return getPrice(quantity, free, minted);
+  }, [quantity, free, minted]);
 
-      return undefined;
-    }
-
-    let actualFree = free >= skip ? free - skip : 0;
-    actualFree = actualFree >= quantity ? quantity : free;
-
-    return SALE_PRICE.mul(quantity - actualFree);
-  }, [free, quantity, skip]);
-
-  return { data: price, ...rest };
+  return { quantity, minted, price, free, paris, ...rest };
 }

@@ -1,7 +1,6 @@
 import { BigNumber } from 'ethers';
 import { Address, useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi';
 import { useMemo } from 'react';
-import useNFTParisToken from '@/web3/hooks/useNFTParis';
 import { TransactionReceipt } from '@ethersproject/providers';
 import TheAssetsClub, { Phase, Proof, Tier } from '../contracts/TheAssetsClub';
 import useMintStatus from './useMintStatus';
@@ -9,43 +8,42 @@ import usePrice from './usePrice';
 import useTree, { Leaf } from './useTree';
 
 interface UseMintOptions {
-  quantity?: number;
+  slider?: number;
   onSuccess?: (data: TransactionReceipt) => Promise<void> | void;
 }
 
-export default function useMint({ quantity, onSuccess }: UseMintOptions) {
+export default function useMint({ slider, onSuccess }: UseMintOptions) {
   const { address } = useAccount();
   const { phase } = useMintStatus();
   const { tree, leaves } = useTree();
 
   const tier = useMemo(() => {
-    return (
-      leaves?.reduce((max: Tier, leaf: Leaf) => {
-        if (leaf[1] !== Proof.MINT) {
-          return max;
-        }
+    return leaves?.reduce((max: Tier, leaf: Leaf) => {
+      if (leaf[1] !== Proof.MINT) {
+        return max;
+      }
 
-        return Math.max(leaf[2], max);
-      }, Tier.PUBLIC) ?? Tier.PUBLIC
-    );
+      return Math.max(leaf[2], max);
+    }, Tier.PUBLIC);
   }, [leaves]);
 
-  const { tokenId, proof: proofParis } = useNFTParisToken();
-
-  const proof = useMemo(() => {
-    if (!address || !tier) {
-      return undefined;
-    }
-
-    if (proofParis) {
-      return proofParis;
-    }
-
-    return tree?.getProof([address, Proof.MINT, tier]) as `0x${string}`[];
-  }, [address, proofParis, tier, tree]);
+  const { price, quantity, minted, isLoading: isPricing, free, paris } = usePrice(tier, slider);
 
   const args: readonly [Address, BigNumber, number, `0x${string}`[]] | undefined = useMemo(() => {
-    if (!address || !quantity) {
+    if (!address || !quantity || typeof tier !== 'number') {
+      return;
+    }
+
+    if (paris.proof && !paris.used) {
+      return [address, BigNumber.from(quantity), Tier.ACCESS_LIST, paris.proof];
+    }
+
+    let proof: `0x${string}`[] | undefined;
+    try {
+      proof = tree?.getProof([address, Proof.MINT, tier]) as `0x${string}`[];
+    } catch {}
+
+    if (!proof) {
       return;
     }
 
@@ -55,7 +53,7 @@ export default function useMint({ quantity, onSuccess }: UseMintOptions) {
           return [address, BigNumber.from(quantity), tier, proof];
         }
         break;
-      case Phase.PRIVATE_SALE:
+      case Phase.PUBLIC_SALE:
         if (tier === Tier.PUBLIC) {
           return [address, BigNumber.from(quantity), tier, []];
         } else if (proof) {
@@ -63,9 +61,7 @@ export default function useMint({ quantity, onSuccess }: UseMintOptions) {
         }
         break;
     }
-  }, [address, phase, proof, quantity, tier]);
-
-  const { data: price, isLoading: isPricing } = usePrice(tier, quantity);
+  }, [address, quantity, tier, paris, phase, tree]);
 
   const { config } = usePrepareContractWrite({
     enabled: typeof args !== 'undefined' && BigNumber.isBigNumber(price),
@@ -77,14 +73,21 @@ export default function useMint({ quantity, onSuccess }: UseMintOptions) {
     },
   });
   const { data: writeData, writeAsync: write, isLoading: isWriting } = useContractWrite(config);
-  const { isLoading: isWaiting } = useWaitForTransaction({ hash: writeData?.hash, onSuccess });
+  const { isLoading: isWaiting } = useWaitForTransaction({
+    hash: writeData?.hash,
+    onSuccess: (receipt) => {
+      return onSuccess?.(receipt);
+    },
+  });
 
   return {
     mint: write,
-    tokenId,
     tier,
-    proof,
+    free,
+    quantity,
+    minted,
     price,
+    paris,
     isLoading: isPricing || isWriting || isWaiting,
     isWriting,
     isWaiting,
