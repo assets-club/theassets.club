@@ -4,6 +4,7 @@ import Nav from '@/app/components/Nav';
 import Player from '@/app/components/Player';
 import MarkerFelt from '@/app/fonts/MarkerFelt';
 import SuisseIntl from '@/app/fonts/SuisseIntl';
+import { Analytics } from '@vercel/analytics/react';
 import Providers from './providers';
 
 export const metadata: Metadata = {
@@ -27,6 +28,7 @@ const RootLayout: FC<{ children: ReactNode }> = ({ children }) => {
             zIndex={1000}
           />
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
