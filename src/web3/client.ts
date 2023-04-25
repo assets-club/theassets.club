@@ -7,7 +7,7 @@ const client = createClient({
   provider,
   // @ts-expect-error Sepolia network does seem to be supported
   webSocketProvider,
-  autoConnect: false,
+  autoConnect: true,
   connectors: [metamaskConnector, walletConnectConnector, ledgerConnector],
 });
 

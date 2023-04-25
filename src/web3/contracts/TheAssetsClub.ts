@@ -33,12 +33,21 @@ export const MAXIMUM_MINTS_PER_ACCOUNT = 7;
 export const SALE_PRICE = utils.parseEther('0.02');
 
 // The private sale duration in seconds.
-export const PRIVATE_SALE_DURATION = 24 * 3600; // 1 day in seconds
+export const PRIVATE_SALE_DURATION = chainMap<number>({
+  [mainnet.id]: 24 * 3600, // 1 day in seconds
+  [sepolia.id]: 30 * 24 * 3600, // 30 day in seconds
+});
 
 // The public sale duration in seconds.
-export const PUBLIC_SALE_DURATION = 2 * 24 * 3600; // 2 days in seconds
+export const PUBLIC_SALE_DURATION = chainMap<number>({
+  [mainnet.id]: 2 * 24 * 3600, // 2 days in seconds
+  [sepolia.id]: 30 * 24 * 3600, // 30 day in seconds
+});
 
-export const START_DATE = 1682586000; // Thu Apr 27 2023 09:00:00 GMT
+export const START_DATE = chainMap<number>({
+  [mainnet.id]: 1682586000, // Thu Apr 27 2023 09:00:00 GMT
+  [sepolia.id]: 1680339600,
+});
 
 // Thu Apr 28 2023 09:00:00 GMT
 export const PRIVATE_SALE_END_DATE = START_DATE + PRIVATE_SALE_DURATION;
@@ -47,13 +56,13 @@ export const PUBLIC_SALE_END_DATE = PRIVATE_SALE_END_DATE + PUBLIC_SALE_DURATION
 
 export const NFT_PARIS = chainMap<Address>({
   [mainnet.id]: '0xd13fbe29dbd15bd0175122a4f8c90072c568511d',
-  [sepolia.id]: '0xd13fbe29dbd15bd0175122a4f8c90072c568511d',
+  [sepolia.id]: '0x7ddE30D4d8bD23481E6f92B15A365797891413ed',
 });
 
 const TheAssetsClub = {
   address: chainMap<Address>({
     [mainnet.id]: '0x81F2E73c790BFB10912151ab5A7B411Ed391D0F7',
-    [sepolia.id]: '0x65DEb1BA58cF7ECfD9967ae3cf8B059114e05187',
+    [sepolia.id]: '0x5f47c6c69a4c371082388b2c68d96dbc6088b758',
   }),
 
   abi: [
