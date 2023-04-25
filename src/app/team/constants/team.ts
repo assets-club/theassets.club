@@ -26,7 +26,7 @@ const team: TeamCardProps[] = [
     name: 'Charly M. (Lymnah)',
     image: lymnah,
     title: 'Co-Founder / Software Engineer',
-    twitter: 'charly_mancel',
+    twitter: 'lymnah',
     github: 'Lymnah',
   },
   {
