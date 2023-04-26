@@ -33,21 +33,12 @@ export const MAXIMUM_MINTS_PER_ACCOUNT = 7;
 export const SALE_PRICE = utils.parseEther('0.02');
 
 // The private sale duration in seconds.
-export const PRIVATE_SALE_DURATION = chainMap<number>({
-  [mainnet.id]: 24 * 3600, // 1 day in seconds
-  [sepolia.id]: 30 * 24 * 3600, // 30 day in seconds
-});
+export const PRIVATE_SALE_DURATION = 24 * 3600; // 1 day in seconds;
 
 // The public sale duration in seconds.
-export const PUBLIC_SALE_DURATION = chainMap<number>({
-  [mainnet.id]: 2 * 24 * 3600, // 2 days in seconds
-  [sepolia.id]: 30 * 24 * 3600, // 30 day in seconds
-});
+export const PUBLIC_SALE_DURATION = 2 * 24 * 3600; // 2 days in seconds;
 
-export const START_DATE = chainMap<number>({
-  [mainnet.id]: 1682586000, // Thu Apr 27 2023 09:00:00 GMT
-  [sepolia.id]: 1680339600,
-});
+export const START_DATE = 1682586000; // Thu Apr 27 2023 09:00:00 GMT;
 
 // Thu Apr 28 2023 09:00:00 GMT
 export const PRIVATE_SALE_END_DATE = START_DATE + PRIVATE_SALE_DURATION;
@@ -62,7 +53,7 @@ export const NFT_PARIS = chainMap<Address>({
 const TheAssetsClub = {
   address: chainMap<Address>({
     [mainnet.id]: '0x81F2E73c790BFB10912151ab5A7B411Ed391D0F7',
-    [sepolia.id]: '0x5f47c6c69a4c371082388b2c68d96dbc6088b758',
+    [sepolia.id]: '0x643BdaBe108218f92C1F8085D2618a32D883B30C',
   }),
 
   abi: [
@@ -74,8 +65,13 @@ const TheAssetsClub = {
           type: 'address',
         },
         {
+          internalType: 'address',
+          name: 'treasury',
+          type: 'address',
+        },
+        {
           internalType: 'contract IERC721A',
-          name: '_tacp',
+          name: '_paris',
           type: 'address',
         },
         {
@@ -250,28 +246,6 @@ const TheAssetsClub = {
       type: 'error',
     },
     {
-      inputs: [
-        {
-          internalType: 'uint256',
-          name: 'tokenId',
-          type: 'uint256',
-        },
-      ],
-      name: 'NFTParisAlreadyUsed',
-      type: 'error',
-    },
-    {
-      inputs: [
-        {
-          internalType: 'uint256',
-          name: 'tokenId',
-          type: 'uint256',
-        },
-      ],
-      name: 'NFTParisNotHolder',
-      type: 'error',
-    },
-    {
       inputs: [],
       name: 'NewOwnerIsZeroAddress',
       type: 'error',
@@ -279,6 +253,17 @@ const TheAssetsClub = {
     {
       inputs: [],
       name: 'NoHandoverRequest',
+      type: 'error',
+    },
+    {
+      inputs: [
+        {
+          internalType: 'uint256',
+          name: 'tokenId',
+          type: 'uint256',
+        },
+      ],
+      name: 'NotParisHolder',
       type: 'error',
     },
     {
@@ -321,6 +306,17 @@ const TheAssetsClub = {
     {
       inputs: [],
       name: 'OwnershipNotInitializedForExtraData',
+      type: 'error',
+    },
+    {
+      inputs: [
+        {
+          internalType: 'uint256',
+          name: 'tokenId',
+          type: 'uint256',
+        },
+      ],
+      name: 'ParisAlreadyUsed',
       type: 'error',
     },
     {
@@ -526,7 +522,7 @@ const TheAssetsClub = {
       inputs: [
         {
           internalType: 'address',
-          name: 'to',
+          name: 'operator',
           type: 'address',
         },
         {
@@ -839,38 +835,6 @@ const TheAssetsClub = {
     },
     {
       inputs: [],
-      name: 'nftParis',
-      outputs: [
-        {
-          internalType: 'contract IERC721A',
-          name: '',
-          type: 'address',
-        },
-      ],
-      stateMutability: 'view',
-      type: 'function',
-    },
-    {
-      inputs: [
-        {
-          internalType: 'uint256',
-          name: '',
-          type: 'uint256',
-        },
-      ],
-      name: 'nftParisUsed',
-      outputs: [
-        {
-          internalType: 'bool',
-          name: '',
-          type: 'bool',
-        },
-      ],
-      stateMutability: 'view',
-      type: 'function',
-    },
-    {
-      inputs: [],
       name: 'owner',
       outputs: [
         {
@@ -928,6 +892,25 @@ const TheAssetsClub = {
           internalType: 'uint64',
           name: '',
           type: 'uint64',
+        },
+      ],
+      stateMutability: 'view',
+      type: 'function',
+    },
+    {
+      inputs: [
+        {
+          internalType: 'uint256',
+          name: '',
+          type: 'uint256',
+        },
+      ],
+      name: 'parisUsed',
+      outputs: [
+        {
+          internalType: 'address',
+          name: '',
+          type: 'address',
         },
       ],
       stateMutability: 'view',
@@ -1082,7 +1065,7 @@ const TheAssetsClub = {
         },
         {
           internalType: 'bytes',
-          name: '_data',
+          name: 'data',
           type: 'bytes',
         },
       ],

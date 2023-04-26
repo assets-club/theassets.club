@@ -39,12 +39,15 @@ export default function useMint({ slider, onSuccess }: UseMintOptions) {
     }
 
     let proof: `0x${string}`[] | undefined;
-    try {
-      proof = tree?.getProof([address, Proof.MINT, tier]) as `0x${string}`[];
-    } catch {}
 
-    if (!proof) {
-      return;
+    if (tier > Tier.PUBLIC) {
+      try {
+        proof = tree?.getProof([address, Proof.MINT, tier]) as `0x${string}`[];
+      } catch {}
+
+      if (!proof) {
+        return;
+      }
     }
 
     switch (phase) {
@@ -72,7 +75,7 @@ export default function useMint({ slider, onSuccess }: UseMintOptions) {
       value: price,
     },
   });
-  const { data: writeData, writeAsync: write, isLoading: isWriting } = useContractWrite(config);
+  const { data: writeData, writeAsync: write, isLoading: isWriting, error } = useContractWrite(config);
   const { isLoading: isWaiting } = useWaitForTransaction({
     hash: writeData?.hash,
     onSuccess: (receipt) => {
