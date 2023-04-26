@@ -1,6 +1,7 @@
 import { TransactionReceipt } from 'alchemy-sdk';
 import { constants, utils } from 'ethers';
 import { range } from 'lodash';
+import { useAccount } from 'wagmi';
 import { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import MintBox from '@/app/mint/components/MintBox';
 import MintMark from '@/app/mint/components/MintMark';
@@ -24,6 +25,7 @@ interface MintFormProps {
 
 const MintForm: FC<MintFormProps> = ({ onSuccess }) => {
   const [slider, setInternalSlider] = useState(1);
+  const { address } = useAccount();
   const { status } = useMintStatus();
   const { tier, mint, quantity, minted, price, free, isLoading, paris } = useMint({ slider, onSuccess });
   const size = useBreakpointValue({ lg: 60 }) ?? 40;
@@ -60,12 +62,16 @@ const MintForm: FC<MintFormProps> = ({ onSuccess }) => {
   }, [minted, free, setSlider]);
 
   const locked = useMemo(() => {
-    if (status === MintStatus.PRIVATE_SALE) {
-      return paris.used || tier === Tier.PUBLIC;
+    if (status !== MintStatus.PRIVATE_SALE) {
+      return false;
     }
 
-    return false;
-  }, [paris.used, status, tier]);
+    if (paris.used === constants.AddressZero || paris.used === address) {
+      return false;
+    }
+
+    return tier === Tier.PUBLIC;
+  }, [paris.used, status, tier, address]);
 
   const title = useMemo(() => {
     if (locked) {

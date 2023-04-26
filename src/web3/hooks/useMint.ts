@@ -1,4 +1,4 @@
-import { BigNumber } from 'ethers';
+import { BigNumber, constants } from 'ethers';
 import { Address, useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi';
 import { useMemo } from 'react';
 import { TransactionReceipt } from '@ethersproject/providers';
@@ -34,7 +34,7 @@ export default function useMint({ slider, onSuccess }: UseMintOptions) {
       return;
     }
 
-    if (paris.proof && !paris.used) {
+    if (paris.proof && (paris.used === constants.AddressZero || paris.used === address)) {
       return [address, BigNumber.from(quantity), Tier.ACCESS_LIST, paris.proof];
     }
 
