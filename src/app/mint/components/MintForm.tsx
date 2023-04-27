@@ -94,7 +94,7 @@ const MintForm: FC<MintFormProps> = ({ onSuccess }) => {
   }, [locked]);
 
   const disabled = useMemo(() => {
-    if (locked || insufficientBalance) {
+    if (locked) {
       return true;
     }
 
@@ -110,7 +110,7 @@ const MintForm: FC<MintFormProps> = ({ onSuccess }) => {
     }
 
     return true;
-  }, [insufficientBalance, locked, paris.tokenId, status, tier]);
+  }, [locked, paris.tokenId, status, tier]);
 
   if (typeof status === 'undefined' || ![MintStatus.PRIVATE_SALE, MintStatus.PUBLIC_SALE].includes(status)) {
     return null;
@@ -156,7 +156,12 @@ const MintForm: FC<MintFormProps> = ({ onSuccess }) => {
 
       {quantity !== 0 && BigNumber.isBigNumber(price) && (
         <Flex gap={4} flexDir={{ base: 'column', lg: 'row' }} alignItems="center">
-          <Button isLoading={isLoading} isDisabled={disabled} onClick={mint} width={{ base: '100%', lg: 'auto' }}>
+          <Button
+            isLoading={isLoading}
+            isDisabled={disabled || insufficientBalance}
+            onClick={mint}
+            width={{ base: '100%', lg: 'auto' }}
+          >
             Mint {quantity} for {utils.formatEther(price)} {constants.EtherSymbol}
           </Button>
           {insufficientBalance && <Text fontSize="sm">Insufficient balance</Text>}
