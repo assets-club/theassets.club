@@ -25,7 +25,8 @@ export default function usePrice(tier: Tier | undefined, slider: number | undefi
       return;
     }
 
-    return slider - minted;
+    const newQuantity = slider - minted;
+    return newQuantity < 0 ? undefined : newQuantity;
   }, [minted, slider]);
 
   const free = useMemo(() => {
