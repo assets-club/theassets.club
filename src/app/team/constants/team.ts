@@ -12,7 +12,7 @@ const team: TeamCardProps[] = [
     name: 'Johann P. (Sélwat)',
     image: johann,
     title: 'Co-founder / CPO / Creative Director / Film director',
-    twitter: 'selwatisback',
+    twitter: 'selwatx',
     instagram: 'selwat',
   },
   {
