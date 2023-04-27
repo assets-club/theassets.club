@@ -52,7 +52,7 @@ export const NFT_PARIS = chainMap<Address>({
 
 const TheAssetsClub = {
   address: chainMap<Address>({
-    [mainnet.id]: '0x81F2E73c790BFB10912151ab5A7B411Ed391D0F7',
+    [mainnet.id]: '0xe6eb4cfd8600832edd617f6d86ab9d63a4fb7bda',
     [sepolia.id]: '0x643BdaBe108218f92C1F8085D2618a32D883B30C',
   }),
 
