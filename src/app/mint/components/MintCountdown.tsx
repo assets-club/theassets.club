@@ -1,7 +1,8 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import ReactCountdown, { CountdownRendererFn } from 'react-countdown';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import MarkerFelt from '@/app/fonts/MarkerFelt';
 import useMounted from '@/lib/hooks/useMounted';
 import { START_DATE } from '@/web3/contracts/TheAssetsClub';
@@ -11,7 +12,14 @@ const startDate = new Date(START_DATE * 1000);
 
 const MintCountdown: FC<BoxProps> = (props) => {
   const mounted = useMounted();
+  const router = useRouter();
+  const [refreshed, setRefreshed] = useState(false);
   const renderer: CountdownRendererFn = ({ days, hours, minutes, seconds, completed }) => {
+    if (completed && Date.now() - startDate.getTime() < 1000 && !refreshed) {
+      setRefreshed(true);
+      router.refresh();
+    }
+
     if (completed) {
       return null;
     }
@@ -48,7 +56,11 @@ const MintCountdown: FC<BoxProps> = (props) => {
     return null;
   }
 
-  return <Box {...props}>{mounted && <ReactCountdown date={startDate} renderer={renderer} />}</Box>;
+  return (
+    <Box {...props}>
+      <ReactCountdown date={startDate} renderer={renderer} />
+    </Box>
+  );
 };
 
 export default MintCountdown;

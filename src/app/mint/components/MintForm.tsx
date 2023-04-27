@@ -1,13 +1,16 @@
 import { TransactionReceipt } from 'alchemy-sdk';
-import { constants, utils } from 'ethers';
+import { BigNumber, constants, utils } from 'ethers';
 import { range } from 'lodash';
+import { useAccount, useBalance } from 'wagmi';
 import { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import MintBox from '@/app/mint/components/MintBox';
 import MintMark from '@/app/mint/components/MintMark';
+import useMounted from '@/lib/hooks/useMounted';
 import { MAXIMUM_MINTS_PER_ACCOUNT, Tier } from '@/web3/contracts/TheAssetsClub';
 import useMint from '@/web3/hooks/useMint';
 import useMintStatus, { MintStatus } from '@/web3/hooks/useMintStatus';
 import {
+  Box,
   Button,
   Flex,
   Slider,
@@ -24,9 +27,20 @@ interface MintFormProps {
 
 const MintForm: FC<MintFormProps> = ({ onSuccess }) => {
   const [slider, setInternalSlider] = useState(1);
+  const { address } = useAccount();
+  const { data: balance } = useBalance({ address });
   const { status } = useMintStatus();
   const { tier, mint, quantity, minted, price, free, isLoading, paris } = useMint({ slider, onSuccess });
+  const insufficientBalance = useMemo(() => {
+    if (!BigNumber.isBigNumber(balance?.value) || !BigNumber.isBigNumber(price)) {
+      return false;
+    }
+
+    return balance?.value?.lt(price) ?? false;
+  }, [balance?.value, price]);
+
   const size = useBreakpointValue({ lg: 60 }) ?? 40;
+  const mounted = useMounted();
 
   const setSlider = useCallback(
     (newValue: number) => {
@@ -60,12 +74,16 @@ const MintForm: FC<MintFormProps> = ({ onSuccess }) => {
   }, [minted, free, setSlider]);
 
   const locked = useMemo(() => {
-    if (status === MintStatus.PRIVATE_SALE) {
-      return paris.used || tier === Tier.PUBLIC;
+    if (status !== MintStatus.PRIVATE_SALE) {
+      return false;
     }
 
-    return false;
-  }, [paris.used, status, tier]);
+    if (paris.used === constants.AddressZero || paris.used === address) {
+      return false;
+    }
+
+    return tier === Tier.PUBLIC;
+  }, [paris.used, status, tier, address]);
 
   const title = useMemo(() => {
     if (locked) {
@@ -76,7 +94,7 @@ const MintForm: FC<MintFormProps> = ({ onSuccess }) => {
   }, [locked]);
 
   const disabled = useMemo(() => {
-    if (locked) {
+    if (locked || insufficientBalance) {
       return true;
     }
 
@@ -92,9 +110,13 @@ const MintForm: FC<MintFormProps> = ({ onSuccess }) => {
     }
 
     return true;
-  }, [locked, paris.tokenId, status, tier]);
+  }, [insufficientBalance, locked, paris.tokenId, status, tier]);
 
   if (typeof status === 'undefined' || ![MintStatus.PRIVATE_SALE, MintStatus.PUBLIC_SALE].includes(status)) {
+    return null;
+  }
+
+  if (!mounted) {
     return null;
   }
 
@@ -132,14 +154,19 @@ const MintForm: FC<MintFormProps> = ({ onSuccess }) => {
         <SliderThumb sx={{ top: '100% !important' }} />
       </Slider>
 
-      {quantity !== 0 ? (
-        <Button isLoading={isLoading} isDisabled={disabled} onClick={mint} width={{ base: '100%', lg: 'auto' }}>
-          Mint {quantity} for {price && utils.formatEther(price)} {constants.EtherSymbol}
-        </Button>
-      ) : (
-        <MintBox title="Thank you!">
+      {quantity !== 0 && BigNumber.isBigNumber(price) && (
+        <Flex gap={4} flexDir={{ base: 'column', lg: 'row' }} alignItems="center">
+          <Button isLoading={isLoading} isDisabled={disabled} onClick={mint} width={{ base: '100%', lg: 'auto' }}>
+            Mint {quantity} for {utils.formatEther(price)} {constants.EtherSymbol}
+          </Button>
+          {insufficientBalance && <Text fontSize="sm">Insufficient balance</Text>}
+        </Flex>
+      )}
+
+      {quantity === 0 && (
+        <Box>
           <Text>You minted the maximum assets per wallet, thank you so much for your support!</Text>
-        </MintBox>
+        </Box>
       )}
     </MintBox>
   );

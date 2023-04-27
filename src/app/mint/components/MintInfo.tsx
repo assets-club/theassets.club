@@ -28,19 +28,19 @@ const statuses: Record<MintStatus, { title: string; description: ReactNode }> = 
 
 const MintInfo: FC<BoxProps> = (props) => {
   const mounted = useMounted();
-  let { status, remaining } = useMintStatus();
+  const { status, remaining } = useMintStatus();
   const { title, description } = statuses[status ?? MintStatus.CLOSED];
 
   return (
     <Box color="white" {...props}>
       <Heading as="h2" mb={2}>
-        Mint status: {title}
+        Mint status: {mounted && title}
       </Heading>
       <Heading as="h3" mb={2} fontSize="2xl">
         {mounted && remaining} remaining Asses
       </Heading>
 
-      <Text>{description}</Text>
+      <Text>{mounted && description}</Text>
     </Box>
   );
 };

@@ -1,6 +1,9 @@
-import { BigNumber } from 'ethers';
+import { BigNumber, constants } from 'ethers';
 import { Address, useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi';
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
+import { chain } from '@/web3/chains';
+import { Link } from '@chakra-ui/next-js';
+import { ToastId, useToast } from '@chakra-ui/react';
 import { TransactionReceipt } from '@ethersproject/providers';
 import TheAssetsClub, { Phase, Proof, Tier } from '../contracts/TheAssetsClub';
 import useMintStatus from './useMintStatus';
@@ -13,6 +16,12 @@ interface UseMintOptions {
 }
 
 export default function useMint({ slider, onSuccess }: UseMintOptions) {
+  const toastRef = useRef<ToastId>();
+  const toast = useToast({
+    position: 'top-right',
+    isClosable: true,
+  });
+
   const { address } = useAccount();
   const { phase } = useMintStatus();
   const { tree, leaves } = useTree();
@@ -34,17 +43,20 @@ export default function useMint({ slider, onSuccess }: UseMintOptions) {
       return;
     }
 
-    if (paris.proof && !paris.used) {
+    if (paris.proof && (paris.used === constants.AddressZero || paris.used === address)) {
       return [address, BigNumber.from(quantity), Tier.ACCESS_LIST, paris.proof];
     }
 
     let proof: `0x${string}`[] | undefined;
-    try {
-      proof = tree?.getProof([address, Proof.MINT, tier]) as `0x${string}`[];
-    } catch {}
 
-    if (!proof) {
-      return;
+    if (tier > Tier.PUBLIC) {
+      try {
+        proof = tree?.getProof([address, Proof.MINT, tier]) as `0x${string}`[];
+      } catch {}
+
+      if (!proof) {
+        return;
+      }
     }
 
     switch (phase) {
@@ -72,10 +84,20 @@ export default function useMint({ slider, onSuccess }: UseMintOptions) {
       value: price,
     },
   });
-  const { data: writeData, writeAsync: write, isLoading: isWriting } = useContractWrite(config);
+  const { data: writeData, writeAsync: write, isLoading: isWriting, error } = useContractWrite(config);
   const { isLoading: isWaiting } = useWaitForTransaction({
     hash: writeData?.hash,
     onSuccess: (receipt) => {
+      toastRef.current = toast({
+        title: 'Transaction sent',
+        description: (
+          <Link href={`${chain.blockExplorers.default.url}/tx/${receipt.transactionHash}`} target="_blank">
+            See on Etherscan
+          </Link>
+        ),
+        status: 'success',
+      });
+
       return onSuccess?.(receipt);
     },
   });

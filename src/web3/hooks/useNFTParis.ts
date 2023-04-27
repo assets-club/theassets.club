@@ -26,7 +26,7 @@ export default function useNFTParisToken() {
   const { data: used } = useContractRead({
     enabled: typeof tokenId === 'number',
     ...TheAssetsClub,
-    functionName: 'nftParisUsed',
+    functionName: 'parisUsed',
     args: typeof tokenId === 'number' ? [BigNumber.from(tokenId)] : undefined,
   });
 
