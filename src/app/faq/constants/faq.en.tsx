@@ -1,4 +1,4 @@
-import { Stack, Text } from '@chakra-ui/react';
+import { Link, Stack, Text } from '@chakra-ui/react';
 
 export const titleEN = {
   title: <>Frequently assked questions</>,
@@ -24,6 +24,33 @@ export const questionsEN = [
         The Assets Club is the genesis collection of our ecosystem. 5&apos;777 unique Assets granting its holders access
         to a journey called Inspirata. Assets are an early access pass and unique Non-fungible ERC-721-A tokens created
         on Ethereum blockchain.
+      </>
+    ),
+  },
+  {
+    question: <>Is the collection available on OpenSea?</>,
+    answer: (
+      <>
+        Indeed, the collection is available on OpenSea. You can find it by visiting this{' '}
+        <Link href="https://opensea.io/collection/theassetsclub">link</Link>.{' '}
+      </>
+    ),
+  },
+  {
+    question: <>What are the animated assets, and why do they appear identical?</>,
+    answer: (
+      <>
+        The animated assets you see are NFTs that have not been revealed yet. We will unveil them in batches, twice
+        daily, throughout the minting process.
+      </>
+    ),
+  },
+  {
+    question: <>When does the minting process conclude?</>,
+    answer: (
+      <>
+        The minting process spans 3 days, commencing on April 27th at 9:00am GMT and concluding on April 30th at 9:00am
+        GMT. If the mint does not sell out, the final circulating supply will be less than 5,777.
       </>
     ),
   },

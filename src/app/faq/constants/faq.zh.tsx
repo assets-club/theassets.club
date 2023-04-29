@@ -1,3 +1,5 @@
+import { Link } from '@chakra-ui/next-js';
+
 export const titleZH = {
   title: <>常见问题</>,
   question: <>什么是非同质化代币（NFT）？</>,
@@ -14,6 +16,27 @@ export const questionsZH = [
     question: <>什么是The Assets Club？</>,
     answer: (
       <>The Assets Club是在以太坊区块链上创建的独一无二的非同质化ERC-721-A代币。Assets是一种早期访问的通行证P-ASS。</>
+    ),
+  },
+  {
+    question: <>这个收藏品在OpenSea上可以找到吗？</>,
+    answer: (
+      <>
+        确实，这个收藏品可以在OpenSea上找到。您可以通过访问此
+        <Link href="https://opensea.io/collection/theassetsclub">链接</Link>找到它。
+      </>
+    ),
+  },
+  {
+    question: <>什么是动态资产，为什么它们看起来相同？</>,
+    answer: <>您看到的动态资产是尚未揭示的NFT。在整个铸币过程中，我们将每天两次分批揭示它们。</>,
+  },
+  {
+    question: <>铸币过程何时结束？</>,
+    answer: (
+      <>
+        铸币过程持续3天，从4月27日格林尼治标准时间9:00开始，到4月30日格林尼治标准时间9:00结束。如果铸币未售罄，最终的流通供应量将少于5,777。
+      </>
     ),
   },
   {
