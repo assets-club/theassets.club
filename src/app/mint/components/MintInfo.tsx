@@ -1,7 +1,9 @@
 import { FC, ReactNode } from 'react';
+import { opensea } from '@/app/constants/socials';
 import useMounted from '@/lib/hooks/useMounted';
 import useMintStatus, { MintStatus } from '@/web3/hooks/useMintStatus';
-import { Box, BoxProps, Heading, Text } from '@chakra-ui/react';
+import { Link } from '@chakra-ui/next-js';
+import { Box, BoxProps, Button, Heading, Text } from '@chakra-ui/react';
 
 const statuses: Record<MintStatus, { title: string; description: ReactNode }> = {
   [MintStatus.CLOSED]: {
@@ -18,7 +20,18 @@ const statuses: Record<MintStatus, { title: string; description: ReactNode }> = 
   },
   [MintStatus.ENDED]: {
     title: 'Ended',
-    description: 'Mint has eneded.',
+    description: (
+      <>
+        <Text>Mint has ended, no more Assets can be minted (forever).</Text>
+        <Text>
+          Checkout the collection on{' '}
+          <Button variant="link" as={Link} href={opensea} target="_blank">
+            OpenSea
+          </Button>
+          !
+        </Text>
+      </>
+    ),
   },
   [MintStatus.SOLD_OUT]: {
     title: 'Sold out',
@@ -31,16 +44,22 @@ const MintInfo: FC<BoxProps> = (props) => {
   const { status, remaining } = useMintStatus();
   const { title, description } = statuses[status ?? MintStatus.CLOSED];
 
+  if (!mounted) {
+    return null;
+  }
+
   return (
     <Box color="white" {...props}>
       <Heading as="h2" mb={2}>
-        Mint status: {mounted && title}
+        Mint status: {title}
       </Heading>
-      <Heading as="h3" mb={2} fontSize="2xl">
-        {mounted && remaining} remaining Asses
-      </Heading>
+      {status !== MintStatus.ENDED && (
+        <Heading as="h3" mb={2} fontSize="2xl">
+          {remaining} remaining Asses
+        </Heading>
+      )}
 
-      <Text>{mounted && description}</Text>
+      {typeof description === 'string' ? <Text>{description}</Text> : description}
     </Box>
   );
 };

@@ -2,12 +2,18 @@ import { useAccount } from 'wagmi';
 import { FC } from 'react';
 import { useConnectModal } from '@/app/providers/ConnectWalletProvider';
 import useMounted from '@/lib/hooks/useMounted';
+import useMintStatus, { MintStatus } from '@/web3/hooks/useMintStatus';
 import { Box, BoxProps, Button, Heading, Text } from '@chakra-ui/react';
 
 const MintEligibility: FC<BoxProps> = (props) => {
   const mounted = useMounted();
   const { onOpen } = useConnectModal();
   const { address, isConnected } = useAccount();
+  const { status } = useMintStatus();
+
+  if (status === MintStatus.ENDED) {
+    return null;
+  }
 
   return (
     <Box {...props}>
