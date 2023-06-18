@@ -1,20 +1,32 @@
 'use client';
 
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { useAccount, useDisconnect } from 'wagmi';
+import { FC, useEffect, useRef } from 'react';
 import MarkerFelt from '@/app/fonts/MarkerFelt';
 import LogoWhite from '@/public/brand/logo.svg';
 import shortAddress from '@/utils/shortAddress';
 import useChain from '@/web3/hooks/useChain';
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { Link } from '@chakra-ui/next-js';
-import { Button, Flex, FlexProps, HStack, IconButton, Menu, MenuButton, MenuItem, MenuList, Show, Text, useDisclosure } from '@chakra-ui/react';
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
-import { FC, useEffect, useRef } from 'react';
-import { useAccount, useDisconnect } from 'wagmi';
+import {
+  Button,
+  Flex,
+  FlexProps,
+  HStack,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Show,
+  Text,
+  useDisclosure,
+} from '@chakra-ui/react';
 import { useConnectModal } from '../providers/ConnectWalletProvider';
 import NavDrawer from './NavDrawer';
 import TrailerModal from './TrailerModal';
-
 
 const sections = [
   { children: 'home', href: '/' },
@@ -22,7 +34,7 @@ const sections = [
   { children: 'faq', href: '/faq' },
   { children: 'twitter', href: 'https://twitter.com/NonFungibleAss' },
   { children: 'discord', href: 'https://discord.gg/RKaCGfQjdP' },
-  { children: 'opensea', href: 'https://opensea.io/collection/theassetsclub' },
+  // { children: 'opensea', href: 'https://opensea.io/collection/theassetsclub' },
 ];
 
 interface NavPropsProps extends FlexProps {}
@@ -94,8 +106,12 @@ const Nav: FC<NavPropsProps> = (props) => {
             {/*  trailer*/}
             {/*</Button>*/}
 
-            <Button as={Link} href="/mint">
+            {/* <Button as={Link} href="/mint">
               mint
+            </Button> */}
+
+            <Button as={Link} href="https://opensea.io/collection/theassetsclub">
+              OpenSea
             </Button>
 
             {!address ? (
