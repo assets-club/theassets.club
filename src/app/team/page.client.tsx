@@ -69,9 +69,9 @@ const TeamPageClient: FC = () => {
             <HeadingMF textTransform="uppercase" mb={4}>
               Contributors
             </HeadingMF>
-            We’re looking for builders who share our passion for Web3, art, and storytelling. If you want to contribute,
+            We’re looking for builders who share our passion for Web3, art, and storytelling. If you want to contribute, email us at {' '}
             <a href="mailto:selwatp@gmail.com" style={{ color: 'white', textDecoration: 'underline' }}>
-              email us at selwatp@gmail.com
+              selwatp@gmail.com
             </a>
           </Container>
 
