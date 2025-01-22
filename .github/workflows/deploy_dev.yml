@@ -10,13 +10,32 @@ jobs:
   vercel:
     name: Deploy to Vercel
     runs-on: ubuntu-latest
+    env:
+      COREPACK_ENABLE_AUTO_PIN: 0
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install Vercel CLI
+        run: pnpm add -g vercel
+
       - name: Generate domain aliases
         if: github.event_name == 'push'
         id: aliases
         run: echo "domain=sepolia.theassets.club" >> $GITHUB_OUTPUT
+
       - name: Deploy to Vercel Action
         uses: BetaHuhn/deploy-to-vercel-action@v1
         with:
