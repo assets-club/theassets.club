@@ -20,8 +20,11 @@ jobs:
           node-version: '20'
           cache: 'pnpm'
 
-      - name: Install PNPM
-        run: npm install -g pnpm
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8  # Ensure latest PNPM version
+          run_install: true  # Automatically run `pnpm install`
 
       - name: Install Vercel CLI
         run: pnpm add -g vercel
