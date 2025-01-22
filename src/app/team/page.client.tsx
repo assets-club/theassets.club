@@ -13,7 +13,6 @@ import TeamCard from './components/TeamCard';
 import contributors from './constants/contributors';
 import team from './constants/team';
 
-
 const TeamPageClient: FC = () => {
   return (
     <Box
@@ -60,18 +59,6 @@ const TeamPageClient: FC = () => {
             />
           </Box>
 
-          <Container color="white" textAlign="center" my={16}>
-            <HeadingMF textTransform="uppercase" mb={4}>
-              We are
-            </HeadingMF>
-
-            <Text>
-              A collective of artists and engineers from Switzerland. None of us comes from BigTech. We are independent
-              story tellers loaded with creativity. We are excited to bring our unique skills and creative vision to
-              blockchain and NFTs. The first chapter is The Asse(t)s Club. The book is called Inspirata.
-            </Text>
-          </Container>
-
           <Flex wrap="wrap" justify="center" gap={{ base: 8, md: 16 }}>
             {team.map((props, i) => (
               <TeamCard key={i} {...props} width={{ md: 'calc(100% / 3 - 64px)' }} />
@@ -82,6 +69,10 @@ const TeamPageClient: FC = () => {
             <HeadingMF textTransform="uppercase" mb={4}>
               Contributors
             </HeadingMF>
+            We’re looking for builders who share our passion for Web3, art, and storytelling. If you want to contribute,
+            <a href="mailto:selwatp@gmail.com" style={{ color: 'white', textDecoration: 'underline' }}>
+              email us at selwatp@gmail.com
+            </a>
           </Container>
 
           <Flex wrap="wrap" justify="center" gap={{ base: 4, md: 8 }}>
