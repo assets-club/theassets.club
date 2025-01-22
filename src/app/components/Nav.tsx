@@ -150,7 +150,7 @@ const Nav: FC<NavPropsProps> = (props) => {
         )}
       </Flex>
 
-      <TrailerModal isOpen={isTrailerOpen} onClose={onTrailerClose} />
+      {/* <TrailerModal isOpen={isTrailerOpen} onClose={onTrailerClose} /> */}
     </>
   );
 };

@@ -1,10 +1,10 @@
 'use client';
 
-import { Box, Flex, useBreakpointValue } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import { FullPage, Slide } from 'react-full-page';
 import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
+import { Box, Flex, useBreakpointValue } from '@chakra-ui/react';
 import cloud1 from '../../public/animations/cloud1.png';
 import cloud2 from '../../public/animations/cloud2.png';
 import palmLeft1 from '../../public/animations/palm-left1.png';
