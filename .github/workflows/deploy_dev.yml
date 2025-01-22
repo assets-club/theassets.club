@@ -14,17 +14,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install Node.js and PNPM
+      - name: Enable Corepack
+        shell: bash
+        run: corepack enable
+
+      - name: Install pnpm
+        shell: bash
+        run: corepack enable pnpm
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'pnpm'
-
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8  # Ensure latest PNPM version
-          run_install: true  # Automatically run `pnpm install`
+          node-version: 20
+          cache: pnpm
 
       - name: Install Vercel CLI
         run: pnpm add -g vercel
