@@ -13,10 +13,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Install Vercel CLI
+        run: pnpm add -g vercel
+
       - name: Generate domain aliases
         if: github.event_name == 'push'
         id: aliases
         run: echo "domain=sepolia.theassets.club" >> $GITHUB_OUTPUT
+
       - name: Deploy to Vercel Action
         uses: BetaHuhn/deploy-to-vercel-action@v1
         with:
